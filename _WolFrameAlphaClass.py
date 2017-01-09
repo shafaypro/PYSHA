@@ -9,7 +9,7 @@ class WolFrameAlphaClass:
     # Basic usage is pretty simple. Create the client with your App ID (request from Wolfram Alpha):
     def create_engine (self, search_input=''):  # this will create an engine
         client = wolframalpha.Client(
-            app_id="23XUAT-H2875HHEEX")  # The app_id will be the application id which will be for the clientside.
+            app_id="REPLACE HERE")  # The app_id will be the application id which will be for the clientside.
         res = client.query(
             search_input)  # this will call the Client Function from the wolframaplha and then return the resources for the queries.
         for single_pod in res.pods:
