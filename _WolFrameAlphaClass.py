@@ -28,7 +28,7 @@ class WolFrameAlphaClass:
     def search_engine (self, search_input=""):
         try:
             client = wolframalpha.Client(
-                app_id="23XUAT-H2875HHEEX")  # this is the client App id specification for the PYSHA
+                app_id="REPLACE HERE")  # this is the client App id specification for the PYSHA
             results = client.query(search_input)  # this searchs the input from the client side
             answer = next(
                 results.results).text  # this gets the String Answered from the Search Engine . so that the answer spoken out by Pysha
