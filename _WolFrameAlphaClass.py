@@ -9,7 +9,7 @@ class WolFrameAlphaClass:
     # Basic usage is pretty simple. Create the client with your App ID (request from Wolfram Alpha):
     def create_engine (self, search_input=''):  # this will create an engine
         client = wolframalpha.Client(
-            app_id="REPLACE HERE")  # The app_id will be the application id which will be for the clientside.
+            app_id="23XUAT-H2875HHEEX")  # The app_id will be the application id which will be for the clientside.
         res = client.query(
             search_input)  # this will call the Client Function from the wolframaplha and then return the resources for the queries.
         for single_pod in res.pods:
@@ -28,7 +28,7 @@ class WolFrameAlphaClass:
     def search_engine (self, search_input=""):
         try:
             client = wolframalpha.Client(
-                app_id="REPLACE HERE")  # this is the client App id specification for the PYSHA
+                app_id="23XUAT-H2875HHEEX")  # this is the client App id specification for the PYSHA
             results = client.query(search_input)  # this searchs the input from the client side
             answer = next(
                 results.results).text  # this gets the String Answered from the Search Engine . so that the answer spoken out by Pysha

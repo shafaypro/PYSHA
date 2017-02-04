@@ -7,3 +7,13 @@ USER SAID: 	tell me a joke
 USER SAID: 	tell me a joke
 USER SAID: 	show me a comic
 USER SAID: 	Question Asked :  when was lebron born
+USER SAID: 	Question Asked :  what is the
+USER SAID: 	Question Asked :  when was jordan born
+USER SAID: 	Question Asked :  when was donald trump born
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	Searching on Browser : who is going to win the election
+USER SAID: 	Question Asked : question who is donald trump
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	tell me a joke
+USER SAID: 	show me a comic
+USER SAID: 	show me a comic
