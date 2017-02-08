@@ -9,4 +9,5 @@ class YouTubeSearch:
         search_text = search_text.replace(' ', '+')  # This replaces the spaces with the + sign
         search_url = "https://www.youtube.com/results?search_query=" + search_text
         webbrowser.open(search_url)  # this opens the url on the webbrowser
+        return search_url # This returns the link, which has to be returned in order to be read in the next phase
 

@@ -1,7 +1,6 @@
 import time
 import stat
 import os
-from FYP.Unhocking.VirtualAssistant import text_to_speech
 class FileCheck:
     def __init__ (self):
         print("")
@@ -40,4 +39,3 @@ class FileCheck:
               st_mtime (last modification time), st_ctime (time of creation, Windows)""")
         else:
             print("No File Detected , hence Exiting !")
-            text_to_speech("No File Detected!")

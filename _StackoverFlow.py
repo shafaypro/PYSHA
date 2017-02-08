@@ -9,4 +9,5 @@ class StackoverFlow:
         search_text = search_text.replace(' ', '+')  # This replaces the spaces with the + sign
         search_url = "http://stackoverflow.com/search?q=" + search_text
         webbrowser.open(search_url)
+        return search_url # returns the search url for the reading purposes
         #need to work with the api instead of the static referring

@@ -17,3 +17,30 @@ USER SAID: 	Search on Stackoverflow : python error 5
 USER SAID: 	tell me a joke
 USER SAID: 	show me a comic
 USER SAID: 	show me a comic
+USER SAID: 	Searching on Browser : how to play music on my phone
+USER SAID: 	Searching on Browser :
+USER SAID: 	Searching on Browser : program
+USER SAID: 	Searching on Browser : 505
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	Question Asked : question when was donald trump born
+USER SAID: 	Search on Stackoverflow : by tomorrow 6
+USER SAID: 	Searching on Browser : fighting tutorials on live coding
+USER SAID: 	show me a comic
+USER SAID: 	tell me a joke
+USER SAID: 	Question Asked : question when was donald trump born
+USER SAID: 	Question Asked : question what is 2 + 3
+USER SAID: 	Question Asked : question what is 5 + 7
+USER SAID: 	Question Asked :  when was donald trump born
+USER SAID: 	Question Asked :  when was donald trump born
+USER SAID: 	Question Asked :  what is 5 + 6
+USER SAID: 	Question Asked :  how many euros are in 3 pound
+USER SAID: 	quit
+USER SAID: 	Search on Stackoverflow : fighting at 6
+USER SAID: 	Search on Stackoverflow : by 10 error 5
+USER SAID: 	Search on Stackoverflow : 5296
+USER SAID: 	Search on Stackoverflow : by 10 after 6
+USER SAID: 	Search on Stackoverflow : parking at 5
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	quit
