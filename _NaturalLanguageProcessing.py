@@ -94,6 +94,9 @@ class NaturalProcessing:
                      :5]:  # here we are applying sentence limit so we can use this one for the processing the sentences.
                 words = nltk.word_tokenize(i)  # Tokenizes all the word , using the word tokenize!
                 tagged = nltk.pos_tag(words)  # Tags the specific words with the Natural language .
+
+                named_Ent= nltk.ne_chunk(tagged,binary=False)
+                named_Ent.draw() # Draws with the Tagging of the Named Entity , which the machine knows the name of those !
                 print(tagged)  # Prints the words with the Tags in the form of the tupple .!
 
 

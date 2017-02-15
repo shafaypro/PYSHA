@@ -1,25 +1,27 @@
 import datetime  # Importing the datetime for the timing modules since the date time is used to answer the questions
-import pyttsx  # Python text to speech and speech to text
+import time
+import urllib.request  # importing the url pacakage for the
 import wave  # Importing the wave of for the recording(This is the format for the recording which is used .wav
+import webbrowser
 from random import *  # Using the random  function for the creation
 import pyaudio  # importing the header file of the pyaudio
 import speech_recognition as sr  # Importing the speech recognition file for the code.!!
-from PYSHA._Fileinfo import *  # importing the pysha dependencies
-from PYSHA._ImageProcessing import *  # importing the image processing
+import tweepy
+from bs4 import BeautifulSoup  # importing the beautiful soup package
+from PYSHA.PygletMusic.Pygletimplementation import *  # Music player GUI implemented
 from PYSHA._Joke import *
-from PYSHA._Monitoring import *
-from PYSHA._MusicPlayer import *
 from PYSHA._NaturalLanguageProcessing import *
-from PYSHA._reverseshell import *
-from PYSHA._SocialMedia import *
-from PYSHA._StackoverFlow import *
-from PYSHA._TextMode import *
-from PYSHA._Weather import *
 from PYSHA._WolFrameAlphaClass import *
-from PYSHA._YouTube import *
-from PYSHA._dbdata import *  # Database function for the request and all others
 from PYSHA.__soundcloud import *
 from PYSHA.__speakcode import *  # For speaking the code from the web scrapping .
+from PYSHA._dbdata import *  # Database function for the request and all others
+from PYSHA._stackoverflow import * # Stackoverflow pysha module beeing imported
+from PYSHA._twitter import * # imports the twitter Pysha client which has been
+from PYSHA._weatherchecking import *
+from PYSHA._youtube import *
+from PYSHA.__github import *
+from facepy import GraphAPI
+import facebook
 
 # this si the importing of the header files !
 # Pre requirements : You need to Install Microsoft SDK fo Speech and all the available Tools
@@ -138,16 +140,23 @@ class PYSHA_CLASS:
         if text_input != "":
             if text_input == "calculator":
                 os.system('calc.exe')  # Running the calculator in the Operating system
+                self.text_to_speech("Calculator launched")
             elif text_input == "notepad":
                 os.system('notepad.exe')  # Running the notepad using the Os module for the spoecified Atrtirbuote !
+                self.text_to_speech("notepad launched")
             elif text_input == "performance monitor":
                 os.system('perfmon.exe')  # Launchign the Performance monitor from the exe
+                self.text_to_speech("Performance monitor has been launched")
             elif text_input == "smart screen":
                 os.system('smartscreen.exe')  # Working on the smart screen and running the Exe !
+                self.text_to_speech("smart screen launched ")
             elif text_input == "space agent":
                 os.system('SpaceAgent.exe')  # Running the space agent for the
+                self.text_to_speech("space agent has been launched")
             elif text_input == "network status":
                 os.system('netstat.exe')  # you are working ehre !
+                self.text_to_speech("Network status for today have been shown in the screen")
+                self.text_to_speech("somethings seems to be off")
             elif text_input == "bluetooth setting":
                 os.system('fsquirt.exe')  # you are working ehre !
             elif text_input == "defragment":
@@ -515,7 +524,7 @@ class PYSHA_CLASS:
 
     # This function is responsible for the defining of the particular session and then recording the particular input, and working on the continuous
     # Recognition of the voice.!
-
+    #TODO: Responsible for recording the audio in the wave format
     def speech_to_text_wav (self, file_to_recognize):
         r = sr.Recognizer()
 
@@ -557,15 +566,23 @@ class PYSHA_CLASS:
                 Below is the place where are your working on!!!
 
                 '''
+            if total_saying.__contains__("stop listenning both of you") or total_saying.__contains__(
+                    "stop listenning Anna"):
+                self.text_to_speech("ok ok I am turning myself off")
+                exit(0)  # this exits the program, since we have stopped Anna from listenning
             if total_saying.startswith('search for') or total_saying.startswith('google'):
                 self.text_to_speech("Opening a Browser For you.")
-                self.store_userinput("Searching on Browser :" + total_saying[10:])
+                self.total_saying = total_saying.replace("search for", "")
+                self.total_saying = self.total_saying.replace("search", "")
+                self.total_saying = self.total_saying.replace("on google", "")
+                self.total_saying = self.total_saying.replace("google", "")
+                self.store_userinput("Searching on Browser :" + self.total_saying)  # recording into database
                 total_saying = total_saying.replace('search for',
                                                     '')  # Replacing the Search for with the total saying .
                 total_saying = total_saying.replace('google', '')  # Replacing the Key word Googe with it
                 self.search_browser(
-                    text_input=total_saying[10:])  # sending every remanining thing to the Browser to browse for
-
+                    text_input=self.total_saying)  # sending every remanining thing to the Browser to browse for
+                self.text_to_speech("Browser Result have been displayed.")
             elif total_saying.startswith('social media'):
                 self.store_userinput(total_saying)  # this stores the particular input.
                 browse_key = total_saying.replace('social media',
@@ -640,7 +657,7 @@ class PYSHA_CLASS:
                 np = NaturalProcessing()  # creting the object of the classs
                 # -------------You are working here -------------
                 tokenized_sentences_return = np.word_tokeniztion(
-                    self.total_saying)  # this parse the Np with the tokenizing of the words
+                    self.total_saying, sent_tokenized=False)  # this parse the Np with the tokenizing of the words
                 print(tokenized_sentences_return)  # this prints the TOkenized the words
             elif total_saying.startswith("youtube") or total_saying.startswith(
                     "search on youtube") or total_saying.startswith("search youtube") or total_saying.startswith(
@@ -672,25 +689,63 @@ class PYSHA_CLASS:
                 SOF = StackoverFlow()  # -- Creates the Object Stack over flow class and calls the search function
                 self.lastlink = SOF.search(
                     self.total_saying)  # replacing the last link so that we can read it out later
-                self.db.insert_into_History("searching on stackoverflow : " + self.lastlink)
+                # self.db.insert_into_History("searching on stackoverflow : " + self.lastlink)
                 self.text_to_speech("Stack over flow Results Shown")
             elif total_saying.startswith("search music") or total_saying.__contains__(
                     "search music") or total_saying.__contains__("find music"):
-                total_saying = total_saying.replace('search music', "")  # replacing the search music with empty
+                self.total_saying = total_saying.replace('search music', "")  # replacing the search music with empty
                 self.total_saying = self.total_saying.replace("find music", '')
                 self.total_saying = self.total_saying.replace("music", '')
                 SoundCloudSearch(self.total_saying)
+            elif total_saying.startswith("play music") or total_saying.__contains__("music please"):
+                self.total_saying = total_saying.replace("play music", "")
+                self.total_saying = self.total_saying.replace("music please", "")  # replacing the string !
+                MP_gui = main()
+                MP_gui.run()
+                self.store_userinput("playing music")
             # last link being read
             # This calls the Web scrap class in the __speakcode.py
             # TODO : Add the links to be dynamically updated from the last scrapped page
             elif total_saying.startswith("read it out to me") or total_saying.startswith("read it out for me"):
-                self.db.insert_into_History(total_saying + ":" + self.lastlink)
+                # self.db.insert_into_History(total_saying + ":" + self.lastlink)
+                self.store_userinput(total_saying + ":" + self.lastlink)
                 self.total_saying = total_saying.replace("read it out to me", "")
                 WS = WebScrap()
                 WS.scrap_link(self.lastlink)
-            elif total_saying.startswith('question'):
+                self.store_userinput(total_saying + ":" + self.lastlink)
+            elif total_saying.startswith("web"):
                 self.total_saying = total_saying
-                self.total_saying = self.total_saying.replace('question', '')
+                webbrowser.open("")
+            elif total_saying.startswith("twitter status") or total_saying.startswith("status"):
+                self.total_saying = total_saying.replace("tweet ", "")
+                self.total_saying = self.total_saying.replace("status ", "")
+                self.total_saying = self.total_saying.replace("twitter status ", "")
+                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
+                TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
+                api = TP._api_auth()
+                status = self.total_saying
+                self.store_userinput("tweeting on twitter:" + self.total_saying)
+                self.text_to_speech("tweeting on twitter :" + self.total_saying)
+                api.update_status(status)  # Posts the status om the twitter.
+
+            elif total_saying.startswith("mail") or total_saying.startswith("check email") or total_saying.startswith(
+                    "check mail"):
+                self.text_to_speech("")
+                webbrowser.open("www.gmail.com")
+                webbrowser.open("www.hotmail.com")
+                webbrowser.open("www.yahoo.com")
+            elif total_saying.startswith("twitter"):
+                webbrowser.open("www.twitter.com")
+            elif total_saying.startswith("reddit"):
+                webbrowser.open("www.reddit.com")
+            elif total_saying.startswith('what') or total_saying.startswith("when") or total_saying.startswith(
+                    "how") or total_saying.startswith("where") or total_saying.startswith(
+                "solve") or total_saying.startswith("who") or total_saying.startswith(
+                "whom") or total_saying.startswith("why") or total_saying.startswith("which"):
+                self.total_saying = total_saying
                 self.store_userinput('Question Asked : ' + self.total_saying)
                 # since this is a computation engine that will be used for the computation of the question asked .!
                 WFM = WolFrameAlphaClass()  # creating the wolframapla class that will be used for the cretion of the api assistant
@@ -700,7 +755,76 @@ class PYSHA_CLASS:
                 if WFM_backstring != "":  # if the input returned from the Wolframalpha turns out to be null then leave it .
                     self.text_to_speech(WFM_backstring)  # this converts text to speech
 
-                    # .###.....
+
+
+
+
+
+# TODO : text mode needs to be created
+# going in the form of the chat bot, since the particular chat bot will be used
+class TextMode:
+    def __init__ (self):
+        print("text mode Class Accessed!")
+
+    def text_mode (self, text_input=''):
+        print("--runs the Text Mode --")
+        # here you need tohave a user interface , and then provide a chatting history to!
+
+
+# keep in mind that it can also be used for the other queries like loggin into the particular websites.
+# These all moduels are under progress,
+# Development module will be started building after 30 november 2016, !
+
+# TODO : Social Media Access like facebook , Instagram and others
+class SocialMedia:
+    def __int__ (self):
+        print("This is the Constructor of the class Social media")
+
+    def email_access (self):
+        print("")
+
+    # The below function will be used regerding to the twitter accessing and stuff
+    def twitter_access (self):
+        print("Granting the twitter Access")
+
+    # The below function will be used for the messaging and getting the messages from the facebook
+
+    def Messenger_access (self):
+        print("MESSEBGER ACCESS FOR SENDING AND RECIEVING MESSSAGES")
+
+    # The below function will be used to access the facebook and all the stuff.
+
+
+    def facebook_access (self):
+        print("FACEBOOK Access for accessing and recieving facebook messages")
+
+    # This will be used to access the instagram, so that you can access the current features
+
+    def instagram_access (self):
+        print("Granting the instagram Access and checking")
+
+    # This function will be used to access the social medias and choose the correct social media for the particular stuff.
+
+    # keep in mind that it can also be used for the other queries like loggin into the particular websites.
+    def social_media_access (self, browse_key=""):
+        print("SOCIAL MEDIA DETECTED")  # This will be used for the debugging purposes
+        if browse_key != "":
+            if browse_key == 'facebook':
+                print("Browsing Facebook")
+                webbrowser.open("www.facebook.com")
+            elif browse_key == 'twitter':
+                print("Browsing twitter")
+                webbrowser.open("www.twitter.com")
+            elif 'linkedin' == browse_key:
+                print("Browsing linkedin")
+                webbrowser.open("www.linkedin.com")
+            elif browse_key == 'instagram':
+                print("Browsing Instagram")
+                webbrowser.open("www.instagram.com")
+            elif browse_key == 'reddit':
+                print("Browsing Reddit")
+                webbrowser.open("www.reddit.com")
+
 
 
 class Main_Call():
@@ -725,8 +849,8 @@ class Main_Call():
             # except:
             #   text_to_speech("There is a problem with the internet connection , kindly try to configure it.!")
 
-# The above the Audio has been recorded , and now the Audio needs to be converted into texts/
+            # The above the Audio has been recorded , and now the Audio needs to be converted into texts/
 
-# Machine Learning book + NLTK BOOK need to be studied  with Plotting and OPENCV2
+            # Machine Learning book + NLTK BOOK need to be studied  with Plotting and OPENCV2
 
-## Work with the MEGA VOICE COMMAND AFTER THE EXAM HAVE BEEN FINISHED.
+            ## Work with the MEGA VOICE COMMAND AFTER THE EXAM HAVE BEEN FINISHED.

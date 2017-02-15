@@ -44,3 +44,71 @@ USER SAID: 	Search on Stackoverflow : python error 5
 USER SAID: 	quit
 USER SAID: 	quit
 USER SAID: 	quit
+USER SAID: 	Search on Stackoverflow : 506
+USER SAID: 	Searching on Browser : pakistan
+USER SAID: 	Searching on Browser : pakistan on google
+USER SAID: 	playing music
+USER SAID: 	playing music
+USER SAID: 	Searching on Browser : dollar tree
+USER SAID: 	Searching on Browser : machine gun wiki
+USER SAID: 	Question Asked :  when was the christian
+USER SAID: 	playing music
+USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	playing music
+USER SAID: 	playing music
+USER SAID: 	Searching on Browser : wikipedia
+USER SAID: 	Searching on Browser : stack overflow microphone
+USER SAID: 	Searching on Browser : wikipedia
+USER SAID: 	Searching on Browser : wikipedia
+USER SAID: 	Searching on Browser : wikipedia
+USER SAID: 	Searching on Browser :  and wikipedia compassion
+USER SAID: 	Searching on Browser : what is the name of pakistan's capital
+USER SAID: 	Searching on Browser : what is the capital of pakistan
+USER SAID: 	Question Asked :  when was john brown born
+USER SAID: 	Searching on Browser : 
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	Search on Stackoverflow : python ariston
+USER SAID: 	playing music
+USER SAID: 	run calculator
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : what is the capital of pakistan
+USER SAID: 	Searching on Browser : direction you off facebook
+USER SAID: 	tell me a joke
+USER SAID: 	show me a comic
+USER SAID: 	Question Asked :   
+USER SAID: 	Question Asked :  when was the drama
+USER SAID: 	Question Asked : 
+USER SAID: 	Question Asked :  when was donald trump born
+USER SAID: 	Question Asked :   
+USER SAID: 	Question Asked :  when was donald trump born
+USER SAID: 	Question Asked :  when was donald trump born
+USER SAID: 	Question Asked :  what is 2x + 3x + 1 x
+USER SAID: 	Question Asked :  when was dollar tree
+USER SAID: 	Question Asked :  who was the first president of pakistan
+USER SAID: 	Question Asked :  what is 3x + 2x + 4x
+USER SAID: 	Question Asked :  what is the integration of 10 x square
+USER SAID: 	Question Asked :  which is greater 3 or 4
+USER SAID: 	Question Asked :  what is the value of dollar in euro
+USER SAID: 	Question Asked :  how many euros are in 5 pound
+USER SAID: 	parse sentence hi my name is adam and i live in new york
+USER SAID: 	Question Asked : how can i send an hi my name is and i live in new york
+USER SAID: 	Question Asked : who was the first president of pakistan
+USER SAID: 	Question Asked : solve this integration of 2x squared plus 3x plus 4
+USER SAID: 	Question Asked : solve this food experiments to ridgecrest ca
+USER SAID: 	Searching on Browser :
+USER SAID: 	Question Asked : what is
+USER SAID: 	Question Asked : who does status this is my first application
+USER SAID: 	tweeting on twitter:this is my postcode
+USER SAID: 	tweeting on twitter:this is
+USER SAID: 	tweeting on twitter:testing twitter api
+USER SAID: 	quit
+USER SAID: 	Question Asked : what is 2 + 2
+USER SAID: 	Question Asked : what is 5x + 6x + 7x
+USER SAID: 	Question Asked : what is the meaning of nostalgia
+USER SAID: 	Question Asked : why human exist in this world
+USER SAID: 	Question Asked : which one is better python or java
+USER SAID: 	Question Asked : which is greater 3 or 2
+USER SAID: 	quit
+USER SAID: 	Question Asked : what
+USER SAID: 	quit
