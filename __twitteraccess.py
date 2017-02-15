@@ -73,10 +73,10 @@ class Twitter_PYSHA:
 
 
 if __name__ == '__main__':
-    ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
-    csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
-    atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
-    asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
+    ckey = 'REPLACEHERE'
+    csecret = 'REPLACEHERE'
+    atoken = 'REPLACEHERE'
+    asecret = 'REPLACEHERE'
     TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
     api = TP._api_auth()
     status = input("Enter the Status Here : ")
