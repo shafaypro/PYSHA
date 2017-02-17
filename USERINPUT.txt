@@ -112,3 +112,10 @@ USER SAID: 	Question Asked : which is greater 3 or 2
 USER SAID: 	quit
 USER SAID: 	Question Asked : what
 USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : doraemon
+USER SAID: 	Question Asked : what is the name of
+USER SAID: 	Question Asked : who invented facebook
+USER SAID: 	Question Asked : when was donald trump born
+USER SAID: 	Question Asked : what is the integration of 2x square
+USER SAID: 	quit

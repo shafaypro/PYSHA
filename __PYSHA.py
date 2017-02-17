@@ -1,27 +1,20 @@
 import datetime  # Importing the datetime for the timing modules since the date time is used to answer the questions
-import time
-import urllib.request  # importing the url pacakage for the
 import wave  # Importing the wave of for the recording(This is the format for the recording which is used .wav
-import webbrowser
 from random import *  # Using the random  function for the creation
 import pyaudio  # importing the header file of the pyaudio
 import speech_recognition as sr  # Importing the speech recognition file for the code.!!
-import tweepy
-from bs4 import BeautifulSoup  # importing the beautiful soup package
-from PYSHA.PygletMusic.Pygletimplementation import *  # Music player GUI implemented
-from PYSHA._Joke import *
-from PYSHA._NaturalLanguageProcessing import *
-from PYSHA._WolFrameAlphaClass import *
-from PYSHA.__soundcloud import *
-from PYSHA.__speakcode import *  # For speaking the code from the web scrapping .
-from PYSHA._dbdata import *  # Database function for the request and all others
-from PYSHA._stackoverflow import * # Stackoverflow pysha module beeing imported
-from PYSHA._twitter import * # imports the twitter Pysha client which has been
-from PYSHA._weatherchecking import *
-from PYSHA._youtube import *
-from PYSHA.__github import *
-from facepy import GraphAPI
-import facebook
+ #from .PygletMusic.Pygletimplementation import *  # Music player GUI implemented
+from _Joke import *
+from _NaturalLanguageProcessing import *
+from _WolFrameAlphaClass import *
+from __soundcloud import *
+from __speakcode import *  # For speaking the code from the web scrapping .
+from _dbdata import *  # Database function for the request and all others
+from _stackoverflow import * # Stackoverflow pysha module beeing imported
+from _twitter import * # imports the twitter Pysha client which has been
+from _youtube import *
+from __github import *
+from _SocialMedia import *
 
 # this si the importing of the header files !
 # Pre requirements : You need to Install Microsoft SDK fo Speech and all the available Tools
@@ -197,7 +190,7 @@ class PYSHA_CLASS:
         print('-searching on browser-')
         try:
             url = 'http://google.com/search?q=' + text_input  # Creating or generating a google link for the particular file
-            webbrowser.open(url)
+            __github.webbrowser.open(url)
             return
 
         except:
@@ -700,8 +693,8 @@ class PYSHA_CLASS:
             elif total_saying.startswith("play music") or total_saying.__contains__("music please"):
                 self.total_saying = total_saying.replace("play music", "")
                 self.total_saying = self.total_saying.replace("music please", "")  # replacing the string !
-                MP_gui = main()
-                MP_gui.run()
+                #MP_gui = main()
+                #MP_gui.run()
                 self.store_userinput("playing music")
             # last link being read
             # This calls the Web scrap class in the __speakcode.py
@@ -715,15 +708,15 @@ class PYSHA_CLASS:
                 self.store_userinput(total_saying + ":" + self.lastlink)
             elif total_saying.startswith("web"):
                 self.total_saying = total_saying
-                webbrowser.open("")
+                __github.webbrowser.open("")
             elif total_saying.startswith("twitter status") or total_saying.startswith("status"):
                 self.total_saying = total_saying.replace("tweet ", "")
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
-                ckey = 'REPLACEHERE'
-                csecret = 'REPLACEHERE'
-                atoken = 'REPLACEHERE'
-                asecret = 'REPLACEHERE'
+                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
                 TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
                 api = TP._api_auth()
                 status = self.total_saying
@@ -734,13 +727,13 @@ class PYSHA_CLASS:
             elif total_saying.startswith("mail") or total_saying.startswith("check email") or total_saying.startswith(
                     "check mail"):
                 self.text_to_speech("")
-                webbrowser.open("www.gmail.com")
-                webbrowser.open("www.hotmail.com")
-                webbrowser.open("www.yahoo.com")
+                __github.webbrowser.open("www.gmail.com")
+                __github.webbrowser.open("www.hotmail.com")
+                __github.webbrowser.open("www.yahoo.com")
             elif total_saying.startswith("twitter"):
-                webbrowser.open("www.twitter.com")
+                __github.webbrowser.open("www.twitter.com")
             elif total_saying.startswith("reddit"):
-                webbrowser.open("www.reddit.com")
+                __github.webbrowser.open("www.reddit.com")
             elif total_saying.startswith('what') or total_saying.startswith("when") or total_saying.startswith(
                     "how") or total_saying.startswith("where") or total_saying.startswith(
                 "solve") or total_saying.startswith("who") or total_saying.startswith(
@@ -757,73 +750,6 @@ class PYSHA_CLASS:
 
 
 
-
-
-
-# TODO : text mode needs to be created
-# going in the form of the chat bot, since the particular chat bot will be used
-class TextMode:
-    def __init__ (self):
-        print("text mode Class Accessed!")
-
-    def text_mode (self, text_input=''):
-        print("--runs the Text Mode --")
-        # here you need tohave a user interface , and then provide a chatting history to!
-
-
-# keep in mind that it can also be used for the other queries like loggin into the particular websites.
-# These all moduels are under progress,
-# Development module will be started building after 30 november 2016, !
-
-# TODO : Social Media Access like facebook , Instagram and others
-class SocialMedia:
-    def __int__ (self):
-        print("This is the Constructor of the class Social media")
-
-    def email_access (self):
-        print("")
-
-    # The below function will be used regerding to the twitter accessing and stuff
-    def twitter_access (self):
-        print("Granting the twitter Access")
-
-    # The below function will be used for the messaging and getting the messages from the facebook
-
-    def Messenger_access (self):
-        print("MESSEBGER ACCESS FOR SENDING AND RECIEVING MESSSAGES")
-
-    # The below function will be used to access the facebook and all the stuff.
-
-
-    def facebook_access (self):
-        print("FACEBOOK Access for accessing and recieving facebook messages")
-
-    # This will be used to access the instagram, so that you can access the current features
-
-    def instagram_access (self):
-        print("Granting the instagram Access and checking")
-
-    # This function will be used to access the social medias and choose the correct social media for the particular stuff.
-
-    # keep in mind that it can also be used for the other queries like loggin into the particular websites.
-    def social_media_access (self, browse_key=""):
-        print("SOCIAL MEDIA DETECTED")  # This will be used for the debugging purposes
-        if browse_key != "":
-            if browse_key == 'facebook':
-                print("Browsing Facebook")
-                webbrowser.open("www.facebook.com")
-            elif browse_key == 'twitter':
-                print("Browsing twitter")
-                webbrowser.open("www.twitter.com")
-            elif 'linkedin' == browse_key:
-                print("Browsing linkedin")
-                webbrowser.open("www.linkedin.com")
-            elif browse_key == 'instagram':
-                print("Browsing Instagram")
-                webbrowser.open("www.instagram.com")
-            elif browse_key == 'reddit':
-                print("Browsing Reddit")
-                webbrowser.open("www.reddit.com")
 
 
 

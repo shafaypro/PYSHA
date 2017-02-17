@@ -4,7 +4,8 @@ import image
 import requests
 from PIL import Image, ImageTk  # this is the PIL Package for the Picture Image Learning
 from bs4 import BeautifulSoup  # importing the beautiful soup for the web scraping !!!!!!
-import urllib.request  # urllib requirests for the scrapping of the website.
+#import urllib.request  # urllib requirests for the scrapping of the website.
+import requests
 from tkinter import *
 
 # This Joke Class is created By Muhammad Shafay Amjad for the showing of the comic and comic from the internet
