@@ -3,7 +3,7 @@ import wave  # Importing the wave of for the recording(This is the format for th
 from random import *  # Using the random  function for the creation
 import pyaudio  # importing the header file of the pyaudio
 import speech_recognition as sr  # Importing the speech recognition file for the code.!!
- #from .PygletMusic.Pygletimplementation import *  # Music player GUI implemented
+#from .PygletMusic.Pygletimplementation import *  # Music player GUI implemented
 from _Joke import *
 from _NaturalLanguageProcessing import *
 from _WolFrameAlphaClass import *
@@ -15,7 +15,8 @@ from _twitter import * # imports the twitter Pysha client which has been
 from _youtube import *
 from __github import *
 from _SocialMedia import *
-
+from _TextMode import *
+from AssistantProperties import _chooseassitant # importing the properties of the assistant being choosen.
 # this si the importing of the header files !
 # Pre requirements : You need to Install Microsoft SDK fo Speech and all the available Tools
 # Keep in mind that This is Under Heavy Construction and will be used in the later increments and
@@ -94,8 +95,10 @@ And all the other things given to the Assistant so that it can work in there.
 # TODO : USE THE IBM WATSON TOO, To improve the Virtual Assistant
 __author__ = "M Shafay Amjad"
 __QA__ = "mshafayamjad@gmail.com"
+__repository__ = "https://github.com/shafaypro/PYSHA"
 __version__ = 1.0
 __productname__ = "PYSHA"
+__TIPS__ = "Requirements.txt and additionalRequirements.txt"
 # TODO : File Information needs to be implemented
 
 
@@ -190,7 +193,7 @@ class PYSHA_CLASS:
         print('-searching on browser-')
         try:
             url = 'http://google.com/search?q=' + text_input  # Creating or generating a google link for the particular file
-            __github.webbrowser.open(url)
+            webbrowser.open(url)
             return
 
         except:
@@ -445,13 +448,16 @@ class PYSHA_CLASS:
             # instead of `r.recognize_google(audio)`
             # print(r.energy_threshold )
             # print(help(r.recognize_google))
-            print("You said: " + r.recognize_google(audio, language='en-US'))
+            text = r.recognize_google(audio, language='en-US')
+            print("You said: " + text)
+            self.total_saying = text
+            self.process_text_input(self.total_saying)
+            return text  # returning the text which has been inputed.
         except sr.UnknownValueError:
             print("Google Speech Recognition could not understand audio")
 
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
-
     # if you want to record for the specific interval of time
 
     # The duration ins specified by the user, since the default value passed from the main funtion is 7 seconds,
@@ -580,7 +586,7 @@ class PYSHA_CLASS:
                 self.store_userinput(total_saying)  # this stores the particular input.
                 browse_key = total_saying.replace('social media',
                                                   '')  # Replacing the total saying variable value'd (social media with empty string)
-                browse_key = browse_key.strip()
+                browse_key = browse_key.strip() # removing the extra white spaces
                 sma = SocialMedia()  # Creating the social media object
                 sma.social_media_access(
                     browse_key=browse_key)  # Passing the browser key to the social media access function.
@@ -618,7 +624,7 @@ class PYSHA_CLASS:
                 tm = TextMode()  # this calls the text mode function, and there we can do the processing in the form of the text!
                 tm.text_mode(total_saying)  # Passes the total saying to the Class Function!
             elif total_saying == "show me a comic":
-                self.store_userinput("show me a comic")
+                self.store_userinput("show me a comic")  # finding the comic from the web
                 joke_object = Joke()  # creating an object of ht Joke class !
                 self.text_to_speech("Finding a Comic the Database")
                 joke_object.Image_Joke()  # Calls the Joke class Image Joke Object to show a Joke in the form of an image
@@ -708,15 +714,16 @@ class PYSHA_CLASS:
                 self.store_userinput(total_saying + ":" + self.lastlink)
             elif total_saying.startswith("web"):
                 self.total_saying = total_saying
-                __github.webbrowser.open("")
+                webbrowser.open("")
             elif total_saying.startswith("twitter status") or total_saying.startswith("status"):
                 self.total_saying = total_saying.replace("tweet ", "")
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
-                ckey = 'REPLACEHERE'
-                csecret = 'REPLACEHERE'
-                atoken = 'REPLACEHERE'
-                asecret = 'REPLACEHERE'
+                # TODO: Replace your twitter credentials here
+                ckey = '--replacehere'
+                csecret = '--replacehere'
+                atoken = '--replacehere'
+                asecret = '--replacehere'
                 TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
                 api = TP._api_auth()
                 status = self.total_saying
@@ -727,13 +734,13 @@ class PYSHA_CLASS:
             elif total_saying.startswith("mail") or total_saying.startswith("check email") or total_saying.startswith(
                     "check mail"):
                 self.text_to_speech("")
-                __github.webbrowser.open("www.gmail.com")
-                __github.webbrowser.open("www.hotmail.com")
-                __github.webbrowser.open("www.yahoo.com")
+                webbrowser.open("www.gmail.com")
+                webbrowser.open("www.hotmail.com")
+                webbrowser.open("www.yahoo.com")
             elif total_saying.startswith("twitter"):
-                __github.webbrowser.open("www.twitter.com")
+                webbrowser.open("www.twitter.com")
             elif total_saying.startswith("reddit"):
-                __github.webbrowser.open("www.reddit.com")
+                webbrowser.open("www.reddit.com")
             elif total_saying.startswith('what') or total_saying.startswith("when") or total_saying.startswith(
                     "how") or total_saying.startswith("where") or total_saying.startswith(
                 "solve") or total_saying.startswith("who") or total_saying.startswith(
@@ -769,11 +776,12 @@ class Main_Call():
         self.PYSHA_Obj.text_to_speech()  # Calls the virtual assistant to speech
         # speech_to_text()  # calling the function
         while True:
-            # try:
-            self.PYSHA_Obj.record_something(7)  # providing the Duration in the Record function!
-            self.PYSHA_Obj.speech_to_text_wav("output.wav")  # Converting the recorded format of WAV to speech!
-            # except:
-            #   text_to_speech("There is a problem with the internet connection , kindly try to configure it.!")
+            '''-- if you want to record for 7 seconds as short term memory and have a bad microphone then'''
+            # # try:
+            # self.PYSHA_Obj.record_something(7)  # providing the Duration in the Record function!
+            # self.PYSHA_Obj.speech_to_text_wav("output.wav")  # Converting the recorded format of WAV to speech!
+
+            self.PYSHA_Obj.speech_to_text() # Calls the function automatically getting the queries. This is for live recording
 
             # The above the Audio has been recorded , and now the Audio needs to be converted into texts/
 
