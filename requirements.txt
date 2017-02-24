@@ -19,4 +19,4 @@ facepy
 tweepy
 nltk
 bs4
-
+pafy

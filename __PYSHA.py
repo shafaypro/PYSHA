@@ -3,20 +3,21 @@ import wave  # Importing the wave of for the recording(This is the format for th
 from random import *  # Using the random  function for the creation
 import pyaudio  # importing the header file of the pyaudio
 import speech_recognition as sr  # Importing the speech recognition file for the code.!!
-#from .PygletMusic.Pygletimplementation import *  # Music player GUI implemented
+# from .PygletMusic.Pygletimplementation import *  # Music player GUI implemented
 from _Joke import *
 from _NaturalLanguageProcessing import *
-from _WolFrameAlphaClass import *
+from _WolFrameAlphaClass import *  # For computation and intelligence engine.
 from __soundcloud import *
 from __speakcode import *  # For speaking the code from the web scrapping .
 from _dbdata import *  # Database function for the request and all others
-from _stackoverflow import * # Stackoverflow pysha module beeing imported
-from _twitter import * # imports the twitter Pysha client which has been
-from _youtube import *
+from _stackoverflow import *  # Stackoverflow
+from _twitter import *  # imports the twitter Pysha client which has been
+from _youtube import *  # imports youtube created local header file , for searching on youtube
 from __github import *
-from _SocialMedia import *
-from _TextMode import *
-from AssistantProperties import _chooseassitant # importing the properties of the assistant being choosen.
+from _SocialMedia import *  # importing the social media moduel for the implementation of the social medias
+from _TextMode import *  # the text mode will be used for the messaging application like look, like a bot
+from AssistantProperties import _chooseassitant  # importing the properties of the assistant being choosen.
+
 # this si the importing of the header files !
 # Pre requirements : You need to Install Microsoft SDK fo Speech and all the available Tools
 # Keep in mind that This is Under Heavy Construction and will be used in the later increments and
@@ -37,15 +38,10 @@ The device of the microphone is connected and then it is parsed to the pyaudio w
 
 Converted to the Audio file  Formatted as WAV, under the F.L.A.C encoding, then it is parsed to the google api,
 
-since the api is then accessed and the chunks of the audio is converted into the string and then returned into the string.
+since the api is then accessed and the chunks of the audio is converted into the string and then returned into the
+string.
 
 There are some already stored procedures for the particular messages , like if a message starts from the :::
-
-Search for <--- This opens up the browser for the result so that the Virtual assistant is able to read from the data!!!
-
-Stop,stop listening,quit <---- This will results in the Quiting , exiting for the virtual assistant!!
-
-search ________ on Wikipedia : will search on wikipedia based on certain meaningful words(replaces at _____)
 
 what is the ----> Time, Date and others can tell you the the time ,date and others.
 Ther are some other features also added in the header file , like haviing a random chat and working on different kind of
@@ -57,7 +53,8 @@ If you want to ask for the Application running modules then
 for that :
 RUN or OPEN _________ the Underscore should be replaced by the application name
 --> This script will also be monitroing the computer (Here it contains the data analysis and the data visualization part
-This will be including the statistical analysis and well as the sentimental analysis . ! so that this may be used in the later
+This will be including the statistical analysis and well as the sentimental analysis . ! so that this may be used in the
+ later
 sequences of the version
 --> ask for any operation ,, if other than all of the above , it will
 --> You can ask the Mathematical operation as : 2+ 3 or integeration of 4 or General Knowledge.
@@ -85,7 +82,36 @@ _________ replace this with your song name of artist or any :p
 
 ask--> Read it out to me      or Read it out for me
 # This will read all the text from the last visited page
+ask --> switch to _______   : replace the _________ with Female , male , dave , hazel , zira
+
+ask --> tweet __________________  : posts a tweet on twitter.
+
+ask --> search  music ________________ : searched the music.
+
+ask --> find music _______________ : finds the music from the internet.
+
+ask --> search for ________________ : searches on google
+
+ask --> launch ___________________ or RUN ______________ : runs the define application.
+
+ask --> read it out for me : reads the last visited page
+
+ask --> Search for _________: This opens up the browser for the result so that the Virtual assistant is able to read
+from the
+data
+
+ask --> Stop,stop listening,quit : This will results in the Quiting , exiting for the virtual assistant!!
+
+ask --> search ________ on Wikipedia : will search on wikipedia based on certain meaningful words(replaces at _____)
+
+ask --> show me a comic : finds a comic from the internet and displayed the comic
+
+ask --> tell me a joke : Finds a joke from the web and shows the joke
+
 '''
+# TODO : Working on EMAILS, MESSENGERS, OPEN CV, IMAGE RECOGNITION, NATURAL LANGUAGE PROCESSING, MACHINE LEARNING, DB
+# TODO : SELF LEARNING, additonal Chat properties
+
 
 ''' Keep in mind to have all the back up things,
 For the personal computer you need to have the computer access,
@@ -95,10 +121,8 @@ And all the other things given to the Assistant so that it can work in there.
 # TODO : USE THE IBM WATSON TOO, To improve the Virtual Assistant
 __author__ = "M Shafay Amjad"
 __QA__ = "mshafayamjad@gmail.com"
-__repository__ = "https://github.com/shafaypro/PYSHA"
 __version__ = 1.0
 __productname__ = "PYSHA"
-__TIPS__ = "Requirements.txt and additionalRequirements.txt"
 # TODO : File Information needs to be implemented
 
 
@@ -112,33 +136,34 @@ This is the personal Computer Reverse shell!
 class PYSHA_CLASS:
     db = NONE
     lastlink = ""  # just to be reminded for the last link visited
+    engine = pyttsx.init()  # intializing the engine here so that there are global engine speech , which can be changed
 
-    def __init__ (self):
+    def __init__(self):
 
         print("PYSHA INITIALIZED!")
         self.createlocaldb()  # this creates the localdb for requests
 
     # creating the local Database
-    def createlocaldb (self):
+    def createlocaldb(self):
         self.db = db_data()  # this calls the db class
         self.db.create_database()  # this creates the database for the class.
 
     # TODO : more Accurate apps running
     # for going through the history
 
-
-    def insert_into_request (self, request_text,
-                             responce_text):  # this is the function responsible for the writing in the history.
-        self.db.insert_into_Requests(request_text, responce_text)  # this is wrigint into the reposnce text
+    def insert_into_request(self, request_text, responce_text):
+        # this is the function responsible for the writing in the history.
+        self.db.insert_into_Requests(request_text, responce_text)  # this is twrite into the reposce text
 
     # For running the apps
-    def run_apps (self, text_input=""):
+    def run_apps(self, text_input=""):
+        text_input = text_input.strip()
         if text_input != "":
             if text_input == "calculator":
                 os.system('calc.exe')  # Running the calculator in the Operating system
                 self.text_to_speech("Calculator launched")
             elif text_input == "notepad":
-                os.system('notepad.exe')  # Running the notepad using the Os module for the spoecified Atrtirbuote !
+                os.system('notepad.exe')  # Running the notepad using the Os module for the specified Attrirbute !
                 self.text_to_speech("notepad launched")
             elif text_input == "performance monitor":
                 os.system('perfmon.exe')  # Launchign the Performance monitor from the exe
@@ -166,7 +191,8 @@ class PYSHA_CLASS:
             elif text_input == "control panel":
                 os.system('control.exe')
             elif text_input == 'resource monitor':
-                os.system('resmon.exe')  # this laucnhed the resource monitor to onitor the resourcr!!es of the comput
+                os.system('resmon.exe')
+                # this launched the resource monitor to monitor the resource!
             elif text_input == "game panel":
                 os.system('GamePanel.exe')
             elif text_input == 'graphic settings':
@@ -177,8 +203,10 @@ class PYSHA_CLASS:
                 os.system('diskpart.exe')
             elif text_input == 'python' or text_input == "python interpreter":
                 os.startfile(
-                    "C:\\Users\\Programmer\\AppData\\Local\\Programs\\Python\\Python35\\pythonw.exe")  # this calls the file location and then run the program of the python.
-                # There you should run the pyton programming language so that the language will be specified by the face of the
+                    "C:\\Program Files\\Python35\\pythonw.exe")
+                # this calls the file location and then run the program of the python.
+                # There you should run the pyton programming language
+                # so that the language will be specified by the face of the
             elif text_input == "pycharm" or text_input == "python best interpreter":
                 os.startfile("C:\\Program Files (x86)\\JetBrains\\PyCharm 5.0.4\\bin\\pycharm.exe")
                 # --- This runs the pycharm Compiler which can be used for the Html or the python programming
@@ -189,24 +217,26 @@ class PYSHA_CLASS:
                     "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe")  # window media player execution!
 
     # TODO : Exact Searching
-    def search_browser (self, text_input):
+    def search_browser(self, text_input):
         print('-searching on browser-')
         try:
-            url = 'http://google.com/search?q=' + text_input  # Creating or generating a google link for the particular file
+            url = 'http://google.com/search?q=' + text_input
+            # Creating or generating a google link for the particular file
             webbrowser.open(url)
             return
 
         except:
             self.text_to_speech(
-                "I'm sorry, I couldn't reach google")  # Calling the Function so that it can be identified that ,machine can speaks for itself
+                "I'm sorry, I couldn't reach google")
+            # Calling the Function so that it can be identified that ,machine can speaks for itself
             return
 
-    # The below function is responsible for the search on the wikipedia.
+    # The below function is responsible for the search on the Wikipedia
 
-    # searching on the wikipedia and then asking the pysha to speak the respectable result!!
+    # searching on the Wikipedia and then asking the pysha to speak the respectable result!!
 
     # TODO : WIkI Algorithum improvment
-    def search_wiki (self, text_input):
+    def search_wiki(self, text_input):
         # suggested_string = wikipedia.suggest(text_input)  # now going for the suggestion
         try:
             wiki_page = wikipedia.page(text_input)  # this opens up the wiki page for the particular thing
@@ -232,7 +262,7 @@ class PYSHA_CLASS:
     # The Human computer interaction will be updated according to the software development module!
 
     # TODO: Frontend HCI needs to be created !
-    def frontend_hci (self, label_text):
+    def frontend_hci(self, label_text):
         root = Tk()  # This created the tkinter , face.!
         root.title("PYSHA 1.0")  # Making the Title for the Py Sha 1.0 ,
         root.geometry("300x300")  # specifying the x and the y axis in the scenario
@@ -242,8 +272,9 @@ class PYSHA_CLASS:
         root.after(10000, lambda: root.destroy())  # Destroying after 10 seconds
         root.mainloop()  # Executing the main loop for the Gui Till it gets exited
 
-    # TODO : make the Chat intelligent , using the Natural language processing and AIML (artifical intelligence markup language)
-    def chat (self, input):
+    # TODO : make the Chat intelligent , using the Natural language processing and AIML (artifical intelligence markup
+    #  language)
+    def chat(self, input):
         insults = ["weirdo", "stupid", "weird", "dumb", "idiot", "retard", "retarded", "fat", "lazy",
                    "annoying", "moron", "simp", "big", "ugly", "sad", "wimp", "troll"]
         complements = ["nice", "happy", "good", "smart", "wonderful", "really ", "intellegent", "awesome", "beautiful"]
@@ -362,11 +393,12 @@ class PYSHA_CLASS:
 
     # if there is any person question regarding to the Virtual Assistant go for this
 
-    # When there is a question regarding to the self , Like the questions given to the Pysha, or the personal question about her !
+    # When there is a question regarding to the self
+    # Like the questions given to the Pysha, or the personal question about her !
     # Since , The below Function is an already stored function by the developer, there are some processed required like
     # Machine learning should be implemented in here too, for the particular specific questions
     # TODO : Do some of the Complex parsing
-    def Personal_PYSHA (self, text_input=""):
+    def Personal_PYSHA(self, text_input=""):
         if text_input == "name":
             self.text_to_speech("PYSHA")
             return
@@ -392,7 +424,7 @@ class PYSHA_CLASS:
     #  Follows the same day check priciple for the  particular day check<!
 
     # TODO NOTHING
-    def day_check (self):
+    def day_check(self):
         current_date = datetime.datetime.now()
         self.text_to_speech("The current date is " + str(current_date.date()))
         return
@@ -402,7 +434,7 @@ class PYSHA_CLASS:
     # IF the user asked for the particular time check , after the text processing this function is called ! ,
     # This later calls the text to speech function using the P.y.t.t.s.x. for the user to speak the particular output !
     # TODO : Nothing
-    def time_check (self):
+    def time_check(self):
         current_time = time.strftime('%H:%M:%S')
         self.text_to_speech("The time is " + current_time)
         return
@@ -410,7 +442,7 @@ class PYSHA_CLASS:
     # storing the respectable input for the user  while the computer will be able to use the resources and speak
 
     # TODO: add sqlite3 database and store the input in the form of the data base
-    def store_userinput (self, input_check):
+    def store_userinput(self, input_check):
         self.db.insert_into_History(str(input_check))  # this stores and creates a history
         file_out = open("USERINPUT.txt", "a")
         file_out.writelines("USER SAID: \t" + input_check)
@@ -422,7 +454,7 @@ class PYSHA_CLASS:
     # Converting the spoken string to the speech , so that the call is Visible
 
     # TODO : speech to Text   (Google api, Microsoft Speech recording )
-    def speech_to_text (self):
+    def speech_to_text(self):
         client_id = ""  # this is the google api client id
         client_secret = ""  # this is the google api client secret key
         api_key = ""
@@ -458,12 +490,13 @@ class PYSHA_CLASS:
 
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
+
     # if you want to record for the specific interval of time
 
     # The duration ins specified by the user, since the default value passed from the main funtion is 7 seconds,
     # since the short term memory duration is 5 +- 2 So , for the maximum iof seven seconds.!!!
     # TIps : Using the Wave , which is built by the microsoft
-    def record_something (self, duration):
+    def record_something(self, duration):
         # Below the Audio is accessed and then the audio is recorded and then converted in to text
         CHUNK = 1024  # Specifying the chunks for the recording
         FORMAT = pyaudio.paInt16  # the Format is picked up from the pyaudio
@@ -478,14 +511,16 @@ class PYSHA_CLASS:
                         channels=CHANNELS,
                         rate=RATE,
                         input=True,
-                        frames_per_buffer=CHUNK)  # Creating the stream and specifing the access channels , and the rate, Input to be on.
+                        frames_per_buffer=CHUNK)
+        # Creating the stream and specifing the access channels , and the rate, Input to be on.
 
         print("* recording, Ask me something!")  # Just a Message to tell the user that the Voice is being recorded
 
         frames = []  # A list of frame is created which is
 
         for i in range(0, int(
-                                RATE / CHUNK * RECORD_SECONDS)):  # This is the Rate(bit rate) / Chuncks to be recorded * the Seconds
+                                RATE / CHUNK * RECORD_SECONDS)):
+            # This is the Rate(bit rate) / Chuncks to be recorded * the Seconds
             data = stream.read(CHUNK)  # Reading the dat afrom the stream
             frames.append(data)  # Adding the each data to the frame list and appending it up.
 
@@ -493,7 +528,7 @@ class PYSHA_CLASS:
         print("Processing the input................")
 
         stream.stop_stream()  # Stopping the stream so that the stream(recorder for audio is stopped )
-        stream.close()  # Clossing the stream of the audio
+        stream.close()  # Closing the stream of the audio
         p.terminate()  # Termination the Py AUDIO Module cause it was accesses
 
         wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')  # Accessing the WAV
@@ -504,27 +539,58 @@ class PYSHA_CLASS:
         wf.close()
 
     #
-    # Converting the text to speech using the pysha personal assistant and then specifing the input!
+    # Converting the text to speech using the pysha personal assistant and then specifying the input!
     '''  BELOW ARE THE FUNCTIONS FOR THE ENGINE change regarding to Text to Speech
     '''
 
     # Machine Speaking!
-    def text_to_speech (self, text_input='HI! my name is PYSHA and i am your assistant'):
-        engine = pyttsx.init()
-        engine.say(text_input)
-        engine.runAndWait()
-        engine.stop()
+    def text_to_speech(self, text_input='HI! my name is PYSHA and i am your assistant'):
+        self.engine.say(text_input)
+        self.engine.runAndWait()
+        self.engine.stop()
+        '''Adding the changing of the voices according to the specified module
+        , since the module will be changing the applications'''
+        #
+
         return
+
+    # TODO: Add additional Voices such as  child voice and later onward , create an algorithum so that we can have voice
+    # TODO: The accent of the particular region and the people voices should also be considered
+    # Creating the function for the changing of the voice of the module
+    def change_person(self, name='', gender=''):
+        self.engine = None  # setting the engine to NONE
+        if name != '':  # make it more intelligent
+            if name == 'hazel':
+                self.engine = _chooseassitant.change_byname('hazel')
+            elif name == 'david':
+                self.engine = _chooseassitant.change_byname('david')  # changing the name to david
+            elif name == 'zira':
+                self.engine = _chooseassitant.change_byname('zira')  # Changing the engine to zira
+            return
+        elif gender != '':
+            if gender == 'male':
+                self.engine = _chooseassitant.change_gender('male')  # Changing the assistant by gender --> daVid
+            else:
+                self.engine = _chooseassitant.change_gender('female')  # female gender assistant
+            return
+            # TODO : Add More additonal voices and other things
 
     ''' Ending of the functions of the system change regarding to the engine text speech
     '''
 
-    # Checking the input of the speech to text so that the result can cbe picked up and then stored in the displat ..!!!
+    def volumeupdate(self, status_value=''):
+        assert status_value != '', 'Value should have been not emptied'  # Debugging purpose
+        if status_value != '':
+            self.engine = _chooseassitant.volume_update(status_value)  # Updating the status of the engine
+        else:
+            print("--------Volume status---------")  # just for debugging purpose
+        return  # returning
 
-    # This function is responsible for the defining of the particular session and then recording the particular input, and working on the continuous
+    # This function is responsible for the defining of the particular session and
+    # then recording the particular input, and working on the continuous
     # Recognition of the voice.!
-    #TODO: Responsible for recording the audio in the wave format
-    def speech_to_text_wav (self, file_to_recognize):
+    # TODO: Responsible for recording the audio in the wave format
+    def speech_to_text_wav(self, file_to_recognize):
         r = sr.Recognizer()
 
         with sr.WavFile(str(file_to_recognize)) as source:  # use "test.wav" as the audio source
@@ -532,6 +598,7 @@ class PYSHA_CLASS:
 
         try:
             total_saying = r.recognize_google(audio)
+            # total_saying = r.recognize_sphinx()
             # if total_saying != "" or total_saying != NONE:
             #   text_to_speech("processing the audio")
             print("you said: " + total_saying)  # recognize speech using Google Speech Recognition
@@ -546,14 +613,14 @@ class PYSHA_CLASS:
         except sr.UnknownValueError:
             print("UNKNOWN!!")
 
-    # The follwing function will be responsible for the text to be parsed regerding to the certain input.
+    # The following function will be responsible for the text to be parsed regarding to the certain input.
 
-    # keep in mind to use the natural language processing ,, www.pythonprogramming.org
-
-    # The below function is responsible for the text prcessing of the Total syaing ,, since what the user i ssaying is recorded in this
-    def process_text_input (self, total_saying=""):
-        total_saying = total_saying.strip()  # Stripping the string for the extra white spaces
-        total_saying = total_saying.lower()  # Converting a string to lower case
+    # The below function is responsible for the text processing of the Total saying
+    #  since what the user i ssaying is recorded in this
+    def process_text_input(self, total_saying=""):
+        self.total_saying = total_saying.strip()  # Stripping the string for the extra white spaces
+        total_saying = self.total_saying.lower()  # Converting a string to lower case
+        self.total_saying = self.total_saying.lower() # Debugging purpose
         if total_saying == "quit" or total_saying.lower() == "stop listening" or total_saying.lower() == "stop" or total_saying.lower() == "exit":
             self.store_userinput("quit")
             self.text_to_speech("BYE")
@@ -586,7 +653,7 @@ class PYSHA_CLASS:
                 self.store_userinput(total_saying)  # this stores the particular input.
                 browse_key = total_saying.replace('social media',
                                                   '')  # Replacing the total saying variable value'd (social media with empty string)
-                browse_key = browse_key.strip() # removing the extra white spaces
+                browse_key = browse_key.strip()  # removing the extra white spaces
                 sma = SocialMedia()  # Creating the social media object
                 sma.social_media_access(
                     browse_key=browse_key)  # Passing the browser key to the social media access function.
@@ -601,6 +668,7 @@ class PYSHA_CLASS:
                     total_saying)  # calling the wikipedia search function , for the results
                 self.lastlink = retrieved_link
                 print(self.lastlink)
+
             elif total_saying.startswith("what is the date") or total_saying == 'date':
                 # Here you will be required to input the date
                 self.day_check()  # This calls the day check
@@ -610,6 +678,29 @@ class PYSHA_CLASS:
 
             # Create a Grammer , that represents the questions regerding to the respectable machine
 
+            # TODO: Working on the changing of the Assistant and others.
+            elif total_saying.startswith("switch to") or self.total_saying.startswith("want to ta"):
+                self.total_saying = total_saying.replace("switch to", "")  # replacing the text string
+                self.total_saying = self.total_saying.strip()  # stripping the white spaces
+                self.db.insert_into_History("Switch to:" + self.total_saying)  # adding the string in the database
+                # assert self.total_saying not in ['male', 'female', 'david', 'zira',
+                # 'hazel'], "You haven't selected the correct list"  # Debugging purpose
+                Assistant_string = self.total_saying
+                if Assistant_string in ['male', 'female']:
+                    self.change_person(gender=Assistant_string)  # Changing on the basis of gender
+                    self.text_to_speech("I am here Shafay , Ask your query ")
+                elif Assistant_string in ['david', 'hazel', 'zira', 'anna', 'lizy']:
+                    if Assistant_string == 'anna':
+                        self.change_person(name='hazel')
+                    elif Assistant_string == 'lizy':
+                        self.change_person(name='zira')
+                        pass
+                    else:
+                        self.change_person(name=Assistant_string)  # Channging on the basis of name
+                        self.text_to_speech("I am here Shafay , Ask your query ")
+                else:
+                    self.text_to_speech("Who you want to switch to")
+
             elif total_saying.startswith("what is your"):
                 # here you need to create the question saying file so that the file is readable.
                 '''
@@ -617,34 +708,41 @@ class PYSHA_CLASS:
 
                     '''
                 self.total_saying = total_saying.replace("what is your",
-                                                         "")  # replacing the words so that it will be easier for the program to Check the last thing
+                                                         "")
+                # replacing the words so that it will be easier for the program to Check the last thing
                 self.Personal_PYSHA(self.total_saying)
 
             elif total_saying.startswith("text mode"):
-                tm = TextMode()  # this calls the text mode function, and there we can do the processing in the form of the text!
+                tm = TextMode()
+                # this calls the text mode function, and there we can do the processing in the form of the text!
                 tm.text_mode(total_saying)  # Passes the total saying to the Class Function!
+
             elif total_saying == "show me a comic":
                 self.store_userinput("show me a comic")  # finding the comic from the web
                 joke_object = Joke()  # creating an object of ht Joke class !
                 self.text_to_speech("Finding a Comic the Database")
-                joke_object.Image_Joke()  # Calls the Joke class Image Joke Object to show a Joke in the form of an image
+                joke_object.Image_Joke()
+                # Calls the Joke class Image Joke Object to show a Joke in the form of an image
 
-            elif total_saying == "tell me a joke" or total_saying == "tell me another joke":
+            elif total_saying == "tell me a joke" or total_saying == "tell me another joke" or total_saying == "joke please":
                 print("JOKE JOKE JOKE!!!")
                 self.store_userinput("tell me a joke")
                 joke_object = Joke()
                 self.text_to_speech("OH wait")
                 joke_text = joke_object.joke_category()  # Calls any nerdy or Explicit joke about Chuck Norris.!
                 # frontend_HCI(Joke_Text)  # calling the tkinter library to create the joke for the particular thing ,
-                print(
-                    joke_text)  # This is the Joke text , which will be printed in the console ,since we don't have much time , working for the Console.!
+                print(joke_text)
+                # This is the Joke text , which will be printed in the console ,since we don't have much time ,
+                # working for the Console.!
                 self.text_to_speech(joke_text)  # Speaking up the joke (By machine ) PYSHA <3
+
             elif total_saying.startswith("open") or total_saying.startswith("run"):
                 self.store_userinput(total_saying)  # This stores the Data in the Us
                 # er input file so that the history is kept
                 total_saying = total_saying.replace('open ', '')  # replacing the word open with the Total_saying!
                 total_saying = total_saying.replace('run ', '')  # This is the replacement of the run with the
                 self.run_apps(total_saying)  # This is the total saying being passed to the Running apps. !
+
             elif total_saying.startswith('parse sentence') or total_saying.startswith(
                     'parse this') or total_saying.startswith('tokenize this'):
                 self.store_userinput(total_saying)
@@ -653,11 +751,11 @@ class PYSHA_CLASS:
                                                     '')  # replacing the total saying with the parse sentence
                 self.total_saying = total_saying.replace('parse this',
                                                          '')  # replacing the total saying of the parse this with none !
-                np = NaturalProcessing()  # creting the object of the classs
+                np = NaturalProcessing()  # creating the object of the classes
                 # -------------You are working here -------------
                 tokenized_sentences_return = np.word_tokeniztion(
                     self.total_saying, sent_tokenized=False)  # this parse the Np with the tokenizing of the words
-                print(tokenized_sentences_return)  # this prints the TOkenized the words
+                print(tokenized_sentences_return)  # this prints the Tokenize the words
             elif total_saying.startswith("youtube") or total_saying.startswith(
                     "search on youtube") or total_saying.startswith("search youtube") or total_saying.startswith(
                 "youtube search"):
@@ -670,8 +768,21 @@ class PYSHA_CLASS:
                 self.store_userinput("Search on Youtube :" + total_saying)
                 Y = YouTubeSearch()  # Creates in the Youtube Class
                 self.text_to_speech('Displaying Results')
-                self.lastlink = Y.search(self.total_saying)  # Sends the Total Saying to the Youtube Search Function
-                self.text_to_speech('Youtube Result Shown!')
+                # TODO: make it more perfect, for searching on youtube.
+
+                if self.total_saying.__contains__("playlist") or self.total_saying.__contains__(
+                        "play list") or self.total_saying.__contains__("playlists"):
+                    self.total_saying = self.total_saying.replace("playlist", '')
+                    self.total_saying = self.total_saying.replace("play list", '')
+                    self.text_to_speech("Finding the playlist from youtube.")
+                    self.lastlink = Y.search(search_text=self.total_saying, play_list=True)  # Searched for the playlist
+                    self.text_to_speech("I Guess i found some , have a look at these.")
+                # If we search for a single link rather than a play list ,
+
+                else:
+                    self.lastlink = Y.search(
+                        search_text=self.total_saying)  # Sends the Total Saying to the Youtube Search Function
+                    self.text_to_speech('Youtube Result , Best match found')
             elif total_saying.startswith('stack over flow') or total_saying.startswith(
                     'stackoverflow') or total_saying.startswith("stack overflow") or total_saying.startswith(
                 'search stack over flow') or total_saying.startswith('stack search') or total_saying.startswith(
@@ -699,8 +810,8 @@ class PYSHA_CLASS:
             elif total_saying.startswith("play music") or total_saying.__contains__("music please"):
                 self.total_saying = total_saying.replace("play music", "")
                 self.total_saying = self.total_saying.replace("music please", "")  # replacing the string !
-                #MP_gui = main()
-                #MP_gui.run()
+                # MP_gui = main()
+                # MP_gui.run()
                 self.store_userinput("playing music")
             # last link being read
             # This calls the Web scrap class in the __speakcode.py
@@ -720,10 +831,10 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
                 # TODO: Replace your twitter credentials here
-                ckey = '--replacehere'
-                csecret = '--replacehere'
-                atoken = '--replacehere'
-                asecret = '--replacehere'
+                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
                 TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
                 api = TP._api_auth()
                 status = self.total_saying
@@ -748,26 +859,24 @@ class PYSHA_CLASS:
                 self.total_saying = total_saying
                 self.store_userinput('Question Asked : ' + self.total_saying)
                 # since this is a computation engine that will be used for the computation of the question asked .!
-                WFM = WolFrameAlphaClass()  # creating the wolframapla class that will be used for the cretion of the api assistant
+                WFM = WolFrameAlphaClass()
+                # creating the wolframapla class that will be used for the cretion of the api assistant
                 self.text_to_speech('searching database')
                 WFM_backstring = WFM.search_engine(
                     self.total_saying)  # this searches the WOlframAlpha for the Search Strings
-                if WFM_backstring != "":  # if the input returned from the Wolframalpha turns out to be null then leave it .
+                if WFM_backstring != "":
+                    # if the input returned from the Wolframalpha turns out to be null then leave it .
                     self.text_to_speech(WFM_backstring)  # this converts text to speech
-
-
-
-
 
 
 class Main_Call():
     # TODO : Make it a little more intelligent
     PYSHA_Obj = PYSHA_CLASS()
 
-    def __init__ (self):
+    def __init__(self):
         print("Main Class Intialized.....")
 
-    def main (self):  # main program access
+    def main(self):  # main program access
         print("--")
         # duration = float(input("How much time you need to record for ?"))
         # record_something(duration)  just trying to pause the thing
@@ -781,10 +890,11 @@ class Main_Call():
             # self.PYSHA_Obj.record_something(7)  # providing the Duration in the Record function!
             # self.PYSHA_Obj.speech_to_text_wav("output.wav")  # Converting the recorded format of WAV to speech!
 
-            self.PYSHA_Obj.speech_to_text() # Calls the function automatically getting the queries. This is for live recording
+            self.PYSHA_Obj.speech_to_text()
+            # Calls the function automatically getting the queries. This is for live recording
 
             # The above the Audio has been recorded , and now the Audio needs to be converted into texts/
 
             # Machine Learning book + NLTK BOOK need to be studied  with Plotting and OPENCV2
 
-            ## Work with the MEGA VOICE COMMAND AFTER THE EXAM HAVE BEEN FINISHED.
+            # Work with the MEGA VOICE COMMAND AFTER THE EXAM HAVE BEEN FINISHED.

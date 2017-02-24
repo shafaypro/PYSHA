@@ -119,3 +119,50 @@ USER SAID: 	Question Asked : who invented facebook
 USER SAID: 	Question Asked : when was donald trump born
 USER SAID: 	Question Asked : what is the integration of 2x square
 USER SAID: 	quit
+USER SAID: 	Question Asked : where was donald trump born
+USER SAID: 	quit
+USER SAID: 	Search on Youtube :search youtube python tutorial
+USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	Search on Youtube :youtube itune tutorial
+USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	tell me a joke
+USER SAID: 	tell me a joke
+USER SAID: 	show me a comic
+USER SAID: 	Question Asked : when was.
+USER SAID: 	Question Asked : when was donald trump born
+USER SAID: 	Question Asked : what is the integration of 2x square
+USER SAID: 	Question Asked : which is greater 20000 or 20 lakhs
+USER SAID: 	Question Asked : which is greater 3 or 4
+USER SAID: 	Question Asked : why 3 is greater than 4
+USER SAID: 	run calculator
+USER SAID: 	run python
+USER SAID: 	Search on Stackoverflow :search  python ever found
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	read it out for me:http://stackoverflow.com/search?q=python+error+5
+USER SAID: 	read it out for me:http://stackoverflow.com/search?q=python+error+5
+USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	Question Asked : which two men
+USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	Question Asked : which david
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	read it out for me:https://en.wikipedia.org/wiki/Machine_gun
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	read it out for me:http://stackoverflow.com/search?q=python+error+5
+USER SAID: 	read it out for me:http://stackoverflow.com/search?q=python+error+5
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : machine gun 
+USER SAID: 	run python
+USER SAID: 	quit
+USER SAID: 	run python
+USER SAID: 	Question Asked : what is the integration of 2 x squared plus 3 x plus 4
+USER SAID: 	Question Asked : when was donald trump born
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	quit

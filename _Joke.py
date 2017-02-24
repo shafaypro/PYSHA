@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup  # importing the beautiful soup for the web scrapi
 #import urllib.request  # urllib requirests for the scrapping of the website.
 import requests
 from tkinter import *
-
+import urllib
 # This Joke Class is created By Muhammad Shafay Amjad for the showing of the comic and comic from the internet
 '''
     The joke class was created by M Shafay Amjad ,for the purpose of building the Joke Regerding to the Specified Things or categories ,

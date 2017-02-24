@@ -1,6 +1,6 @@
 import webbrowser
 from bs4 import BeautifulSoup
-import urllib
+import urllib.request
 
 
 # Stack over flow code and checking
@@ -21,11 +21,7 @@ class StackoverFlow:
 
     def scrap_tool (self, inner_link):
         read_url = urllib.request.urlopen(inner_link).read()
-        beautiful_source = BeautifulSoup(read_url)
+        beautiful_source = BeautifulSoup(read_url,'html.parser')
         for _ in beautiful_source.find_all('div', {'class': 'result-link'}):
-            print(_)
+            print(_.span.a["href"])
 
-
-            # if __name__ == '__main__':
-            # sf = StackoverFlow()
-            # sf.search('Python 5')

@@ -1,1 +1,1 @@
-from PYSHA._dbdata import *
+from _dbdata import *
