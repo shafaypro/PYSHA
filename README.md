@@ -11,3 +11,39 @@ Run the __init__.py file, this will automatically Start the VirtualAssistant, Th
 --> #IT IS UNDER HEAVY DEVELOPMENT, SINCE Its been a month i started working on it.
 ########################TODO##################################
 Later on the code will be using different terminologies for accessing the social media, after configuring the search engine and then it will be having Artifical Intelligence , Machine Learning Modules while aiml to record the markupform of the intelligence asked question.
+
+!!!!!!!!!!!!!!!!!!!!!!!EXAMPLE QUESTIONS !!!!!!!!!!!!!!!!!!!!!!!!
+Who won the Election of 2016 in United states ?
+Who wrote the book The lord of the Flies ?
+What is the meaning of life ?
+What is the meaning of Nostalgia?
+bread <-- This will return the Other Requirements
+
+# --------------------------Example Programming Solution-----------------------
+ask --> what is the date / what is the time
+ask --> What is the integeration of 2 x squared + 3 x + 7
+ask --> which is greater in quantity 1 liter of water or 1 liter of milk 
+ask --> Stack over flow search _____________
+______ replace this with your query
+ask--> search youtube ____________ or youtube _________________
+search youtube ___________________
+______ replace this with your query
+or youtube ___________________
+ask--> search music _____________ or find music _______________
+_________ replace this with your song name of artist or any :p
+ask--> Read it out to me      or Read it out for me
+# This will read all the text from the last visited page
+ask --> switch to _______   : replace the _________ with Female , male , dave , hazel , zira
+ask --> tweet __________________  : posts a tweet on twitter.
+ask --> search  music ________________ : searched the music.
+ask --> find music _______________ : finds the music from the internet.
+ask --> search for ________________ : searches on google
+ask --> launch ___________________ or RUN ______________ : runs the define application.
+ask --> read it out for me : reads the last visited page
+ask --> Search for _________: This opens up the browser for the result so that the Virtual assistant is able to read
+from the
+data
+ask --> Stop,stop listening,quit : This will results in the Quiting , exiting for the virtual assistant!!
+ask --> search ________ on Wikipedia : will search on wikipedia based on certain meaningful words(replaces at _____)
+ask --> show me a comic : finds a comic from the internet and displayed the comic
+ask --> tell me a joke : Finds a joke from the web and shows the joke
