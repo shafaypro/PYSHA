@@ -166,3 +166,28 @@ USER SAID: 	Question Asked : when was donald trump born
 USER SAID: 	Search on Stackoverflow : python error 5
 USER SAID: 	Searching on Browser : capital of pakistan
 USER SAID: 	quit
+USER SAID: 	Searching on Browser : machine gun on wikipedia
+USER SAID: 	quit
+USER SAID: 	Question Asked : what did i just said what did i just said
+USER SAID: 	Question Asked : what did i just said
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	Search on Stackoverflow : python error
+USER SAID: 	read it out for me:http://stackoverflow.com/search?q=python+error
+USER SAID: 	read it out for me:http://stackoverflow.com/search?q=python+error
+USER SAID: 	tell me a joke
+USER SAID: 	show me a comic
+USER SAID: 	Question Asked : what did i say to you
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : machine gun on wikipedia
+USER SAID: 	tell me a joke
+USER SAID: 	Search on Stackoverflow : python android file
+USER SAID: 	read it out for me:http://stackoverflow.com/search?q=python+android+file
+USER SAID: 	read it out for me:http://stackoverflow.com/search?q=python+android+file
+USER SAID: 	show me a comic
+USER SAID: 	Searching on Browser :
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	Question Asked : what is the integration of 3 x cube + 2 x squared plus one x
+USER SAID: 	quit
+USER SAID: 	Question Asked : what is integration of 3 x cube + 2 x square + 2 x

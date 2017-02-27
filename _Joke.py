@@ -86,7 +86,8 @@ class Joke(object):
         print("Under Construction!")
 
     def joke_category (self, category=["nerdy,explicit"]):
-        # print("this is the Joke Category list which will scrap the site and provide the Joke regerding to the Category")
+        # print("this is the Joke Category list which will scrap the site
+        # and provide the Joke regerding to the Category")
         joke_web_api_link = "http://api.icndb.com/jokes/random?limitTo=[" + str(
             category) + "]"  # Limiting the link with the specification for the particular category !
         scrapped_page = str(urllib.request.urlopen(
@@ -96,8 +97,8 @@ class Joke(object):
         joke_start = scrapped_page.find('"joke": ') + 9
         joke_end = scrapped_page[joke_start:].find('"categories"')
         joke_text = scrapped_page[joke_start:joke_start + joke_end]
-        joke_text = joke_text.replace('/','')
-        joke_text = joke_text.replace('&quot;','')
+        joke_text = joke_text.replace('/', '')
+        joke_text = joke_text.replace('&quot;', '')
         return joke_text
         # self.show_image('',joke_text)
 

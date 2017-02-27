@@ -1,5 +1,5 @@
 import sqlite3
-
+import random  # For generating the random numbers (for short term memory +-2)
 
 class db_data:
     # setting the connection to None and the Cursor to none

@@ -17,7 +17,10 @@ from __github import *
 from _SocialMedia import *  # importing the social media moduel for the implementation of the social medias
 from _TextMode import *  # the text mode will be used for the messaging application like look, like a bot
 from AssistantProperties import _chooseassitant  # importing the properties of the assistant being choosen.
+import random  # importing the random module for the random Short term memory
+from __shorttermmemory import *
 
+# imports the short term memory code  --> for getting the last strings backs 7 +-2
 # this si the importing of the header files !
 # Pre requirements : You need to Install Microsoft SDK fo Speech and all the available Tools
 # Keep in mind that This is Under Heavy Construction and will be used in the later increments and
@@ -144,10 +147,30 @@ class PYSHA_CLASS:
         self.createlocaldb()  # this creates the localdb for requests
 
     # creating the local Database
+
+    def shortterm_check(self, limit=0):
+        stm_list_recieved = stmcheck()  # calls the stm check module
+        list_recieved = display_stm(stm_list_recieved)  # Filterening all the sentences and specifying the current list
+        if limit == 0:
+            random.shuffle(list_recieved)  # random shuffling , Using the random shuffle for the current memory
+            for i in range(len(list_recieved)):
+                self.text_to_speech("You said at " + str(i) + " "+list_recieved[i])
+                # just printing the list for the things.
+        elif limit == 1:
+            self.text_to_speech(list_recieved[0])  # pass the first element inthe list which is the last said.
+        # TODO : call the text to speech and speak the list in an specified order
+
+
     def createlocaldb(self):
         self.db = db_data()  # this calls the db class
         self.db.create_database()  # this creates the database for the class.
 
+
+    def play_video(self):
+        try:
+            os.system("start  E:\\MusicVideos\\Just-So-You-Know.mp4")
+        except Exception as E:
+            print("check the directory exception", E)
     # TODO : more Accurate apps running
     # for going through the history
 
@@ -208,7 +231,7 @@ class PYSHA_CLASS:
                 # There you should run the pyton programming language
                 # so that the language will be specified by the face of the
             elif text_input == "pycharm" or text_input == "python best interpreter":
-                os.startfile("C:\\Program Files (x86)\\JetBrains\\PyCharm 5.0.4\\bin\\pycharm.exe")
+                os.startfile("C:\\Program Files\\Python35\\Lib\\idlelib\\idle.pyw")
                 # --- This runs the pycharm Compiler which can be used for the Html or the python programming
                 # The Below function will be used to search on the browser and then show the desire result
             elif text_input == "movie player":
@@ -272,7 +295,7 @@ class PYSHA_CLASS:
         root.after(10000, lambda: root.destroy())  # Destroying after 10 seconds
         root.mainloop()  # Executing the main loop for the Gui Till it gets exited
 
-    # TODO : make the Chat intelligent , using the Natural language processing and AIML (artifical intelligence markup
+    # TODO : make the Chat intelligent , using the Natural language processing and AIML (artifical intelligence markup)
     #  language)
     def chat(self, input):
         insults = ["weirdo", "stupid", "weird", "dumb", "idiot", "retard", "retarded", "fat", "lazy",
@@ -620,7 +643,7 @@ class PYSHA_CLASS:
     def process_text_input(self, total_saying=""):
         self.total_saying = total_saying.strip()  # Stripping the string for the extra white spaces
         total_saying = self.total_saying.lower()  # Converting a string to lower case
-        self.total_saying = self.total_saying.lower() # Debugging purpose
+        self.total_saying = self.total_saying.lower()  # Debugging purpose
         if total_saying == "quit" or total_saying.lower() == "stop listening" or total_saying.lower() == "stop" or total_saying.lower() == "exit":
             self.store_userinput("quit")
             self.text_to_speech("BYE")
@@ -696,7 +719,7 @@ class PYSHA_CLASS:
                         self.change_person(name='zira')
                         pass
                     else:
-                        self.change_person(name=Assistant_string)  # Channging on the basis of name
+                        self.change_person(name=Assistant_string)  # Changing on the basis of name
                         self.text_to_speech("I am here Shafay , Ask your query ")
                 else:
                     self.text_to_speech("Who you want to switch to")
@@ -802,8 +825,11 @@ class PYSHA_CLASS:
                 # self.db.insert_into_History("searching on stackoverflow : " + self.lastlink)
                 self.text_to_speech("Stack over flow Results Shown")
             elif total_saying.startswith("search music") or total_saying.__contains__(
-                    "search music") or total_saying.__contains__("find music"):
+                    "search music") or total_saying.__contains__("find music") or \
+                    total_saying.__contains__("search soundcloud"):
                 self.total_saying = total_saying.replace('search music', "")  # replacing the search music with empty
+                self.total_saying = self.total_saying.replace("search music", '')
+                self.total_saying = self.total_saying.replace("search soundcloud", '')
                 self.total_saying = self.total_saying.replace("find music", '')
                 self.total_saying = self.total_saying.replace("music", '')
                 SoundCloudSearch(self.total_saying)
@@ -816,6 +842,10 @@ class PYSHA_CLASS:
             # last link being read
             # This calls the Web scrap class in the __speakcode.py
             # TODO : Add the links to be dynamically updated from the last scrapped page
+            elif total_saying.startswith("play video"):
+                self.text_to_speech("Playing Music Video for you")
+                self.play_video()
+                self.text_to_speech("Music Video played")
             elif total_saying.startswith("read it out to me") or total_saying.startswith("read it out for me"):
                 # self.db.insert_into_History(total_saying + ":" + self.lastlink)
                 self.store_userinput(total_saying + ":" + self.lastlink)
@@ -831,10 +861,10 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
                 # TODO: Replace your twitter credentials here
-                ckey = 'REPLACEHERE'
-                csecret = 'REPLACEHERE'
-                atoken = 'REPLACEHERE'
-                asecret = 'REPLACEHERE'
+                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
                 TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
                 api = TP._api_auth()
                 status = self.total_saying
@@ -852,10 +882,19 @@ class PYSHA_CLASS:
                 webbrowser.open("www.twitter.com")
             elif total_saying.startswith("reddit"):
                 webbrowser.open("www.reddit.com")
+            elif total_saying.startswith('which statements i said to you') or \
+                    total_saying.startswith("what did i said you") or \
+                    total_saying.startswith("what is in your shortterm memory")\
+                    or total_saying.startswith("what is in your short term memory") or \
+                    total_saying.startswith('what is in your ram') or total_saying.startswith("short term memory"):
+                self.shortterm_check()  # this calls the current Short term memory shuffled.
+            elif total_saying.__contains__("what did i just said to you") or total_saying.__contains__("what did i just said"):
+                self.shortterm_check(limit=1)  # specifying the limit to 1 so that the last statements is returned
             elif total_saying.startswith('what') or total_saying.startswith("when") or total_saying.startswith(
                     "how") or total_saying.startswith("where") or total_saying.startswith(
                 "solve") or total_saying.startswith("who") or total_saying.startswith(
-                "whom") or total_saying.startswith("why") or total_saying.startswith("which"):
+                "whom") or total_saying.startswith("why") or total_saying.startswith("which") or \
+                    total_saying.startswith("show me"):
                 self.total_saying = total_saying
                 self.store_userinput('Question Asked : ' + self.total_saying)
                 # since this is a computation engine that will be used for the computation of the question asked .!
@@ -877,7 +916,7 @@ class Main_Call():
         print("Main Class Intialized.....")
 
     def main(self):  # main program access
-        print("--")
+        print("-^-")
         # duration = float(input("How much time you need to record for ?"))
         # record_something(duration)  just trying to pause the thing
         client_id = ""  # this is the google api client id
@@ -889,12 +928,14 @@ class Main_Call():
             # # try:
             # self.PYSHA_Obj.record_something(7)  # providing the Duration in the Record function!
             # self.PYSHA_Obj.speech_to_text_wav("output.wav")  # Converting the recorded format of WAV to speech!
-
             self.PYSHA_Obj.speech_to_text()
             # Calls the function automatically getting the queries. This is for live recording
-
             # The above the Audio has been recorded , and now the Audio needs to be converted into texts/
-
             # Machine Learning book + NLTK BOOK need to be studied  with Plotting and OPENCV2
-
             # Work with the MEGA VOICE COMMAND AFTER THE EXAM HAVE BEEN FINISHED.
+
+
+#if __name__ == '__main__':
+# Py = PYSHA_CLASS()
+# print(Py.shortterm_check())
+# Py.play_video()  for playing music video just for testing
