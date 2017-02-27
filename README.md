@@ -51,6 +51,7 @@ Later on the code will be using different terminologies for accessing the social
  -
  
  -ask--> search youtube ____________ or youtube _________________
+ 
  -
  -
  -ask--> searh youtube playlist _________ : ___ is the query of yours
@@ -59,8 +60,10 @@ Later on the code will be using different terminologies for accessing the social
  -
  -search youtube ___________________:  -______ replace this with your query
  
+ 
  -
  -or youtube ___________________
+ 
  -
  -ask--> search music _____________ or find music _______________ : replace ___ with your song name or artist or both
  
