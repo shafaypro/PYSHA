@@ -103,7 +103,7 @@ ask --> read it out for me : reads the last visited page
 ask --> Search for _________: This opens up the browser for the result so that the Virtual assistant is able to read
 from the
 data
-
+ask --> web __________________ : opens the particular website.
 ask --> Stop,stop listening,quit : This will results in the Quiting , exiting for the virtual assistant!!
 
 ask --> search ________ on Wikipedia : will search on wikipedia based on certain meaningful words(replaces at _____)
@@ -945,10 +945,10 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
                 # TODO: Replace your twitter credentials here
-                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
-                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
-                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
-                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
+                ckey = '--REPLACE-HERE-'
+                csecret = '--REPLACE-HERE-'
+                atoken = '--REPLACE-HERE-'
+                asecret = '--REPLACE-HERE-'
                 TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
                 api = TP._api_auth()
                 status = self.total_saying
