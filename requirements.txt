@@ -20,3 +20,6 @@ tweepy
 nltk
 bs4
 pafy
+twitter
+chatterbot
+json

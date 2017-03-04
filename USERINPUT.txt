@@ -191,3 +191,20 @@ USER SAID: 	Searching on Browser : capital of pakistan
 USER SAID: 	Question Asked : what is the integration of 3 x cube + 2 x squared plus one x
 USER SAID: 	quit
 USER SAID: 	Question Asked : what is integration of 3 x cube + 2 x square + 2 x
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: i love you
+USER SAID: 	PYSHA Chat input: don't you love me
+USER SAID: 	PYSHA Chat input: you know i used to have a girlfriend having the same accident as you would
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: tips to female
+USER SAID: 	PYSHA Chat input: i love you
+USER SAID: 	PYSHA Chat input: i like you
+USER SAID: 	PYSHA Chat outputWho? Who is but a form following the function of what
+USER SAID: 	PYSHA Chat input: you
+USER SAID: 	PYSHA Chat outputo
+USER SAID: 	PYSHA Chat input: can you tell me a joke
+USER SAID: 	PYSHA Chat outputWhat do you want to know?
+USER SAID: 	tell me a joke
+USER SAID: 	show me a comic
+USER SAID: 	Question Asked : who invented facebook
+USER SAID: 	quit

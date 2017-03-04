@@ -19,6 +19,7 @@ from _TextMode import *  # the text mode will be used for the messaging applicat
 from AssistantProperties import _chooseassitant  # importing the properties of the assistant being choosen.
 import random  # importing the random module for the random Short term memory
 from __shorttermmemory import *
+from Chatdependencies._chat import *  # importing the _chat module
 
 # imports the short term memory code  --> for getting the last strings backs 7 +-2
 # this si the importing of the header files !
@@ -29,7 +30,7 @@ from __shorttermmemory import *
 // This build is heavily under progress by Muhammad Shafay Amjad, If you want to check all the dependencies,
 and want to contribute to improve the particular algorithm, check Repository.
 https://github.com/shafaypro/PYSHA1.0
-Info Dated: 23/12/2016  , WaterFall method is being Followed
+Info Dated: 2/3/2016  , WaterFall method is being Followed
 
 User Guideline:
 
@@ -110,6 +111,85 @@ ask --> search ________ on Wikipedia : will search on wikipedia based on certain
 ask --> show me a comic : finds a comic from the internet and displayed the comic
 
 ask --> tell me a joke : Finds a joke from the web and shows the joke
+-ask --> what is the date / what is the time
+ -
+ -
+ -ask --> What is the integeration of 2 x squared + 3 x + 7
+ -
+ -
+ -ask --> which is greater in quantity 1 liter of water or 1 liter of milk
+ -
+ -
+ -ask --> Stack over flow search _____________
+ -
+ -
+ -______ replace this with your query
+ -
+ -ask--> search youtube ____________ or youtube _________________
+ -
+ -
+ -ask--> searh youtube playlist _________ : ___ is the query of yours
+ -
+ -search youtube ___________________:  -______ replace this with your query
+ -
+ -or youtube ___________________
+ -
+ -ask--> search music _____________ or find music _______________ : replace ___ with your song name or artist or both
+ 
+ -ask--> Read it out to me      or Read it out for me
+ 
+ -# This will read all the text from the last visited page
+ 
+ -ask --> switch to _______   : replace the _________ with Female , male , dave , hazel , zira
+ 
+ -ask --> tweet __________________  : posts a tweet on twitter.
+ -
+ -ask --> search  music ________________ : searched the music.
+ -
+ -ask --> find music _______________ : finds the music from the internet.
+ -
+ ask --> play music  : plays the music
+ -
+ -
+ ask --> Music Please : plays the music
+ -
+ -
+ ask --> music video please : plays a music video
+ -
+ -
+ -ask --> search for ________________ : searches on google
+ -
+ -
+ -ask --> launch ___________________ or RUN ______________ : runs the define application.
+ -
+ -
+ -ask --> read it out for me : reads the last visited page
+ -
+ -
+ -ask --> Search for _________: This opens up the browser for the result so that the Virtual assistant is able to read from the
+ -data
+ -
+ -
+ -ask --> Stop,stop listening,quit : This will results in the Quiting , exiting for the virtual assistant!!
+ -
+ -
+ -ask --> search ________ on Wikipedia : will search on wikipedia based on certain meaningful words(replaces at _____)
+ -
+ -
+ -ask --> show me a comic : finds a comic from the internet and displayed the comic
+ -
+ -
+ -ask --> tell me a joke : Finds a joke from the web and shows the joke
+ --
+ -ask --> tokenize sentence ____________________________ : will returned a tokenized sentence 
+ 
+ -ask --> tokenize sentence ____________________________ : will returned a tokenized sen
+ -
+ -
+ -ask --> What did i just said : returns the last query from the short term memory(termed as the top runned query --> the last most)
+ -
+ -ask --> What did i said you:  Returns maximum from the shrot term memory(last 7+-2 statments ) as per human brain. 
+-
 
 '''
 # TODO : Working on EMAILS, MESSENGERS, OPEN CV, IMAGE RECOGNITION, NATURAL LANGUAGE PROCESSING, MACHINE LEARNING, DB
@@ -140,6 +220,7 @@ class PYSHA_CLASS:
     db = NONE
     lastlink = ""  # just to be reminded for the last link visited
     engine = pyttsx.init()  # intializing the engine here so that there are global engine speech , which can be changed
+    py_chat_bot = Chatting_PYSHA(name="PYSHA", trainable=True, train_corpus=True)  # intialized the Chatting Pysha
 
     def __init__(self):
 
@@ -154,23 +235,22 @@ class PYSHA_CLASS:
         if limit == 0:
             random.shuffle(list_recieved)  # random shuffling , Using the random shuffle for the current memory
             for i in range(len(list_recieved)):
-                self.text_to_speech("You said at " + str(i) + " "+list_recieved[i])
+                self.text_to_speech("You said at " + str(i) + " " + list_recieved[i])
                 # just printing the list for the things.
         elif limit == 1:
             self.text_to_speech(list_recieved[0])  # pass the first element inthe list which is the last said.
-        # TODO : call the text to speech and speak the list in an specified order
-
+            # TODO : call the text to speech and speak the list in an specified order
 
     def createlocaldb(self):
         self.db = db_data()  # this calls the db class
         self.db.create_database()  # this creates the database for the class.
-
 
     def play_video(self):
         try:
             os.system("start  E:\\MusicVideos\\Just-So-You-Know.mp4")
         except Exception as E:
             print("check the directory exception", E)
+
     # TODO : more Accurate apps running
     # for going through the history
 
@@ -488,7 +568,7 @@ class PYSHA_CLASS:
             CHANNELS = 2  # The Cross Channels
             # RATE = 44100
             source.CHUNK = CHUNK
-            source.format = FORMAT
+            source.format = FORMAT  # FORMATING THE SOURCE FILE
             # print(dir(source))
             print("Say something!")
             print(r.energy_threshold)
@@ -734,7 +814,7 @@ class PYSHA_CLASS:
                                                          "")
                 # replacing the words so that it will be easier for the program to Check the last thing
                 self.Personal_PYSHA(self.total_saying)
-
+            # Switching to text mode .
             elif total_saying.startswith("text mode"):
                 tm = TextMode()
                 # this calls the text mode function, and there we can do the processing in the form of the text!
@@ -836,6 +916,7 @@ class PYSHA_CLASS:
             elif total_saying.startswith("play music") or total_saying.__contains__("music please"):
                 self.total_saying = total_saying.replace("play music", "")
                 self.total_saying = self.total_saying.replace("music please", "")  # replacing the string !
+                self.text_to_speech("Playing Music")
                 # MP_gui = main()
                 # MP_gui.run()
                 self.store_userinput("playing music")
@@ -850,21 +931,24 @@ class PYSHA_CLASS:
                 # self.db.insert_into_History(total_saying + ":" + self.lastlink)
                 self.store_userinput(total_saying + ":" + self.lastlink)
                 self.total_saying = total_saying.replace("read it out to me", "")
+                self.text_to_speech("Reading the Text from the website")
                 WS = WebScrap()
                 WS.scrap_link(self.lastlink)
                 self.store_userinput(total_saying + ":" + self.lastlink)
             elif total_saying.startswith("web"):
                 self.total_saying = total_saying
-                webbrowser.open("")
+                self.store_userinput("Web : opening " + self.total_saying)
+                self.text_to_speech("opening the website for : ",self.total_saying)
+                webbrowser.open(self.total_saying)
             elif total_saying.startswith("twitter status") or total_saying.startswith("status"):
                 self.total_saying = total_saying.replace("tweet ", "")
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
                 # TODO: Replace your twitter credentials here
-                ckey = '--REPLACEHERE--'
-                csecret = '--REPLACEHERE--'
-                atoken = '--REPLACEHERE--'
-                asecret = '--REPLACEHERE--'
+                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
                 TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
                 api = TP._api_auth()
                 status = self.total_saying
@@ -884,11 +968,12 @@ class PYSHA_CLASS:
                 webbrowser.open("www.reddit.com")
             elif total_saying.startswith('which statements i said to you') or \
                     total_saying.startswith("what did i said you") or \
-                    total_saying.startswith("what is in your shortterm memory")\
+                    total_saying.startswith("what is in your shortterm memory") \
                     or total_saying.startswith("what is in your short term memory") or \
                     total_saying.startswith('what is in your ram') or total_saying.startswith("short term memory"):
                 self.shortterm_check()  # this calls the current Short term memory shuffled.
-            elif total_saying.__contains__("what did i just said to you") or total_saying.__contains__("what did i just said"):
+            elif total_saying.__contains__("what did i just said to you") or total_saying.__contains__(
+                    "what did i just said"):
                 self.shortterm_check(limit=1)  # specifying the limit to 1 so that the last statements is returned
             elif total_saying.startswith('what') or total_saying.startswith("when") or total_saying.startswith(
                     "how") or total_saying.startswith("where") or total_saying.startswith(
@@ -906,6 +991,19 @@ class PYSHA_CLASS:
                 if WFM_backstring != "":
                     # if the input returned from the Wolframalpha turns out to be null then leave it .
                     self.text_to_speech(WFM_backstring)  # this converts text to speech
+            else:
+                total_saying, self.total_saying = self.total_saying, total_saying
+                try:
+                    retrieved_output = self.py_chat_bot.retrieved_response(self.total_saying)
+                    self.text_to_speech(retrieved_output)  # calls in the retrieved output
+                    self.store_userinput("PYSHA Chat input: " + str(self.total_saying))
+                    # Storing the input value in the db
+                    self.py_chat_bot.train_text(list(self.total_saying))  # trains on the basis of the user specified
+                    # input
+                    self.store_userinput("PYSHA Chat output" + str(retrieved_output))
+                    # Storing the recieved value in db
+                except Exception as E:  # debuggin purpose
+                    print("Couldn't find something , Check the bot specification :", E)
 
 
 class Main_Call():
@@ -931,11 +1029,11 @@ class Main_Call():
             self.PYSHA_Obj.speech_to_text()
             # Calls the function automatically getting the queries. This is for live recording
             # The above the Audio has been recorded , and now the Audio needs to be converted into texts/
-            # Machine Learning book + NLTK BOOK need to be studied  with Plotting and OPENCV2
+            # Machine Learning book + N.L.T.K. BOOK need to be studied  with Plotting and O.P.E.N.C.V.2.
             # Work with the MEGA VOICE COMMAND AFTER THE EXAM HAVE BEEN FINISHED.
 
-
-#if __name__ == '__main__':
+# if __name__ == '__main__':
 # Py = PYSHA_CLASS()
 # print(Py.shortterm_check())
 # Py.play_video()  for playing music video just for testing
+# ---
