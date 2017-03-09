@@ -9,10 +9,14 @@ pip install -r requirements.txt
   install Microsoft Speech SDK(120 MB+)
   AVBIN(10 MB+)
 DEPENDENCIES: Microsoft SDK 5.1 download and install in the local machine.
+
 ############## TO optimize the code , you can just download the required module for the Natural language processing ############
+
 # RUNNING
 Run the __init__.py file, this will automatically Start the VirtualAssistant, There is no user interface which has been developed but it will be soon in the upcomming pings.
+
 --> #IT IS UNDER HEAVY DEVELOPMENT, SINCE Its been a month i started working on it.
+
 # TESTED:
 Tested on Python 3.5.2, Python 3.4 , Python 3.6, Python 2.7.13(change the versions for 2 )
 
@@ -34,6 +38,7 @@ Social Media Addition will be added soon , with messaging and emailing compatibi
 
 # EXAMPLES:
  -!!!!!!!!!!!!!!!!!!!!!!!EXAMPLE QUESTIONS !!!!!!!!!!!!!!!!!!!!!!!!
+ 
  -Who won the Election of 2016 in United states ?
  -
  
@@ -51,6 +56,7 @@ Social Media Addition will be added soon , with messaging and emailing compatibi
  -
  -
  # --------------------------Example Programming Solution-----------------------
+ 
  -ask --> what is the date / what is the time
  
  -
