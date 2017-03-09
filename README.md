@@ -139,3 +139,13 @@ Later on the code will be using different terminologies for accessing the social
  -
  -ask --> What did i said you:  Returns maximum from the shrot term memory(last 7+-2 statments ) as per human brain. 
  
+ -ask --> I love you : Will return the Best responce on the basis of the internal machine learning algorithms in chatterbot.
+ 
+ -ask --> read it out for me : reads out the complete web page by scrapping it.
+ 
+ -ask --> open link _________________________ : ask any query and will find the first link on the google and open it up 
+ 
+ -ask --> github search ___________________________-- or search on github  -- : will find suitable patterns and will tell you the github search results and show it on the browser.
+ 
+ -ask --> ______________________-  Ask anything other than the above text the responce wil be returned based on the machine larning algorithums and then the responce data will be returned.! 
+ 
