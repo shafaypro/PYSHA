@@ -13,8 +13,18 @@ DEPENDENCIES: Microsoft SDK 5.1 download and install in the local machine.
 # RUNNING
 Run the __init__.py file, this will automatically Start the VirtualAssistant, There is no user interface which has been developed but it will be soon in the upcomming pings.
 --> #IT IS UNDER HEAVY DEVELOPMENT, SINCE Its been a month i started working on it.
-# #######################TODO##################################
-Later on the code will be using different terminologies for accessing the social media, after configuring the search engine and then it will be having Artifical Intelligence , Machine Learning Modules while aiml to record the markupform of the intelligence asked question.
+# TESTED:
+Tested on Python 3.5.2, Python 3.4 , Python 3.6, Python 2.7.13(change the versions for 2 )
+
+# Author:
+Name : Shafay
+email: mshafayamjad@gmail.com
+
+# Version:
+version = 0.1 (kind of 1.0 :P)
+
+# TODO
+AIML usage , Messengers , social media application manipulations , Hardwares controls. Desktop software controls
 
 # TIPS:
 You should speak anything or any command listed below , it will work as its supposed to, if the command is not found , it will be sent for chatting, and will be used to chat.
