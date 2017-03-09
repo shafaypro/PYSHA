@@ -8,6 +8,7 @@ from _Joke import *
 from _NaturalLanguageProcessing import *
 from _WolFrameAlphaClass import *  # For computation and intelligence engine.
 from __soundcloud import *
+from __linksearch import *  # importing for the link search
 from __speakcode import *  # For speaking the code from the web scrapping .
 from _dbdata import *  # Database function for the request and all others
 from _stackoverflow import *  # Stackoverflow
@@ -103,7 +104,7 @@ ask --> read it out for me : reads the last visited page
 ask --> Search for _________: This opens up the browser for the result so that the Virtual assistant is able to read
 from the
 data
-ask --> web __________________ : opens the particular website.
+
 ask --> Stop,stop listening,quit : This will results in the Quiting , exiting for the virtual assistant!!
 
 ask --> search ________ on Wikipedia : will search on wikipedia based on certain meaningful words(replaces at _____)
@@ -522,6 +523,23 @@ class PYSHA_CLASS:
                 # This will send all the related hobbies to the specified Place.
         elif text_input == "gender":
             self.text_to_speech("Female")
+        elif text_input.__contains__("how is your name"):
+            list_responces_how = ["because my creator is Shafay, He should be answering this question.",
+                                  "i did asked Shafay most of the time but he says its way too technical",
+                                  "What can i say, perhaps is PYTHON SPEECH ON HAND ASSISTANT :p , what i "
+                                  "think, he named me after his name and language which is  PYTHON SHAFAY (PY SHA)",
+                                  "Because I am the one who is created using python language and shafay's brain",
+                                  "Well, How are you using my algorithms then ? if you don't know the answer",
+                                  "Shafay is my Chief Executive Officer CEO, He named me because of his name "
+                                  "and his favourite language",
+                                  "Shafay PYTHON makes more sense to humans, if you are in a computer field, "
+                                  "it should be Python Speech on hand assistant"
+                                  ]
+            random_select = random.randint(0, len(list_responces_how) - 1)  # gets the random responce from the list
+            selected_input = list_responces_how[random_select]
+            print(selected_input)  # Debugging purpose.
+            self.text_to_speech(text_input=selected_input)
+            return
 
     # this is the particular day check , that the user will be defining the day check ,since the day
     #  Follows the same day check priciple for the  particular day check<!
@@ -735,8 +753,8 @@ class PYSHA_CLASS:
                 Below is the place where are your working on!!!
 
                 '''
-            if total_saying.__contains__("stop listenning both of you") or total_saying.__contains__(
-                    "stop listenning Anna"):
+            if total_saying.__contains__("stop listening both of you") or total_saying.__contains__(
+                    "stop listening Anna"):
                 self.text_to_speech("ok ok I am turning myself off")
                 exit(0)  # this exits the program, since we have stopped Anna from listenning
             if total_saying.startswith('search for') or total_saying.startswith('google'):
@@ -782,7 +800,7 @@ class PYSHA_CLASS:
             # Create a Grammer , that represents the questions regerding to the respectable machine
 
             # TODO: Working on the changing of the Assistant and others.
-            elif total_saying.startswith("switch to") or self.total_saying.startswith("want to ta"):
+            elif total_saying.startswith("switch to") or self.total_saying.startswith("want to talk to someone else"):
                 self.total_saying = total_saying.replace("switch to", "")  # replacing the text string
                 self.total_saying = self.total_saying.strip()  # stripping the white spaces
                 self.db.insert_into_History("Switch to:" + self.total_saying)  # adding the string in the database
@@ -804,16 +822,17 @@ class PYSHA_CLASS:
                 else:
                     self.text_to_speech("Who you want to switch to")
 
-            elif total_saying.startswith("what is your"):
+            elif self.total_saying.startswith("what is your") or self.total_saying.startswith("your name") or self.total_saying.startswith("how is your name"):
                 # here you need to create the question saying file so that the file is readable.
                 '''
                     Write the Respectable question in this format so that, the Agent learns from the file.
 
                     '''
-                self.total_saying = total_saying.replace("what is your",
-                                                         "")
+                self.store_userinput("Personal Question asked :"+self.total_saying)  # Asking the personal question.
+                self.total_saying = total_saying.replace("what is your ", "")
+                # self.total_saying = self.total_saying.replace("how is your name ", "")
                 # replacing the words so that it will be easier for the program to Check the last thing
-                self.Personal_PYSHA(self.total_saying)
+                self.Personal_PYSHA(text_input=self.total_saying)
             # Switching to text mode .
             elif total_saying.startswith("text mode"):
                 tm = TextMode()
@@ -827,7 +846,8 @@ class PYSHA_CLASS:
                 joke_object.Image_Joke()
                 # Calls the Joke class Image Joke Object to show a Joke in the form of an image
 
-            elif total_saying == "tell me a joke" or total_saying == "tell me another joke" or total_saying == "joke please":
+            elif total_saying == "tell me a joke" or total_saying == "tell me another joke" \
+                    or total_saying == "joke please":
                 print("JOKE JOKE JOKE!!!")
                 self.store_userinput("tell me a joke")
                 joke_object = Joke()
@@ -838,7 +858,11 @@ class PYSHA_CLASS:
                 # This is the Joke text , which will be printed in the console ,since we don't have much time ,
                 # working for the Console.!
                 self.text_to_speech(joke_text)  # Speaking up the joke (By machine ) PYSHA <3
+            elif total_saying.startswith("open url"):
+                # self.store_userinput("opening url :")
 
+                text_to_search = self.total_saying.replace("open url", "")
+                search_first_link(text_to_search)
             elif total_saying.startswith("open") or total_saying.startswith("run"):
                 self.store_userinput(total_saying)  # This stores the Data in the Us
                 # er input file so that the history is kept
@@ -861,7 +885,7 @@ class PYSHA_CLASS:
                 print(tokenized_sentences_return)  # this prints the Tokenize the words
             elif total_saying.startswith("youtube") or total_saying.startswith(
                     "search on youtube") or total_saying.startswith("search youtube") or total_saying.startswith(
-                "youtube search"):
+                    "youtube search"):
                 self.total_saying = total_saying.replace("search", '')
                 self.total_saying = self.total_saying.replace("search on youtube", "")
                 self.total_saying = self.total_saying.replace("youtube", "")
@@ -888,8 +912,8 @@ class PYSHA_CLASS:
                     self.text_to_speech('Youtube Result , Best match found')
             elif total_saying.startswith('stack over flow') or total_saying.startswith(
                     'stackoverflow') or total_saying.startswith("stack overflow") or total_saying.startswith(
-                'search stack over flow') or total_saying.startswith('stack search') or total_saying.startswith(
-                'search stackoverflow'):
+                    'search stack over flow') or total_saying.startswith('stack search') or total_saying.startswith(
+                    'search stackoverflow'):
                 self.total_saying = total_saying.replace('stackoverflow', '')
                 self.total_saying = self.total_saying.replace('stack overflow', '')
                 self.total_saying = self.total_saying.replace('stack over flow', '')
@@ -913,6 +937,19 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("find music", '')
                 self.total_saying = self.total_saying.replace("music", '')
                 SoundCloudSearch(self.total_saying)
+
+            elif self.total_saying.startswith("github search") or self.total_saying.__contains__("github") or \
+                    self.total_saying.startswith("search on github"):
+                self.total_saying = self.total_saying.replace("github search", "")
+                self.total_saying = self.total_saying.replace("github", "")
+                self.total_saying = self.total_saying.replace("search on github")
+                self.store_userinput("search on github: "+self.total_saying)
+                GS = GitHubSearch()  # Creating the class for the github search
+                self.text_to_speech("Searching on github")
+                GS.search(self.total_saying)  # searching on the Github
+                self.total_saying("Found somethings on github")
+                pass
+
             elif total_saying.startswith("play music") or total_saying.__contains__("music please"):
                 self.total_saying = total_saying.replace("play music", "")
                 self.total_saying = self.total_saying.replace("music please", "")  # replacing the string !
@@ -938,17 +975,17 @@ class PYSHA_CLASS:
             elif total_saying.startswith("web"):
                 self.total_saying = total_saying
                 self.store_userinput("Web : opening " + self.total_saying)
-                self.text_to_speech("opening the website for : ",self.total_saying)
+                self.text_to_speech("opening the website for : ", self.total_saying)
                 webbrowser.open(self.total_saying)
             elif total_saying.startswith("twitter status") or total_saying.startswith("status"):
                 self.total_saying = total_saying.replace("tweet ", "")
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
                 # TODO: Replace your twitter credentials here
-                ckey = '--REPLACE-HERE-'
-                csecret = '--REPLACE-HERE-'
-                atoken = '--REPLACE-HERE-'
-                asecret = '--REPLACE-HERE-'
+                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
                 TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
                 api = TP._api_auth()
                 status = self.total_saying
@@ -984,10 +1021,10 @@ class PYSHA_CLASS:
                 self.store_userinput('Question Asked : ' + self.total_saying)
                 # since this is a computation engine that will be used for the computation of the question asked .!
                 WFM = WolFrameAlphaClass()
-                # creating the wolframapla class that will be used for the cretion of the api assistant
+                # creating the wolframapla class that will be used for the creation of the api assistant
                 self.text_to_speech('searching database')
                 WFM_backstring = WFM.search_engine(
-                    self.total_saying)  # this searches the WOlframAlpha for the Search Strings
+                    self.total_saying)  # this searches the WolframAlpha for the Search Strings
                 if WFM_backstring != "":
                     # if the input returned from the Wolframalpha turns out to be null then leave it .
                     self.text_to_speech(WFM_backstring)  # this converts text to speech
@@ -995,23 +1032,26 @@ class PYSHA_CLASS:
                 total_saying, self.total_saying = self.total_saying, total_saying
                 try:
                     retrieved_output = self.py_chat_bot.retrieved_response(self.total_saying)
+                    print("VA says : ", retrieved_output)
                     self.text_to_speech(retrieved_output)  # calls in the retrieved output
                     self.store_userinput("PYSHA Chat input: " + str(self.total_saying))
                     # Storing the input value in the db
-                    self.py_chat_bot.train_text(list(self.total_saying))  # trains on the basis of the user specified
+                    if not self.total_saying.__contains__('search'):
+                        self.py_chat_bot.train_text(list(self.total_saying))
+                        # trains on the basis of the user specified
                     # input
                     self.store_userinput("PYSHA Chat output" + str(retrieved_output))
-                    # Storing the recieved value in db
-                except Exception as E:  # debuggin purpose
-                    print("Couldn't find something , Check the bot specification :", E)
+                    # Storing the received value in db
+                except Exception as ExceptionChat:  # debugging purpose
+                    print("Couldn't find something , Check the bot specification :", ExceptionChat)  # Debugging
 
 
-class Main_Call():
+class Main_Call:
     # TODO : Make it a little more intelligent
-    PYSHA_Obj = PYSHA_CLASS()
+    PYSHA_Obj = PYSHA_CLASS()  # Creating the PYsha class for hte main checking of the values
 
     def __init__(self):
-        print("Main Class Intialized.....")
+        print("Main Class Initialized.....")
 
     def main(self):  # main program access
         print("-^-")
@@ -1019,8 +1059,13 @@ class Main_Call():
         # record_something(duration)  just trying to pause the thing
         client_id = ""  # this is the google api client id
         client_secret = ""  # this is the google api client secret key
-        self.PYSHA_Obj.text_to_speech()  # Calls the virtual assistant to speech
         # speech_to_text()  # calling the function
+        try:
+            voices = self.PYSHA_Obj.engine.getProperty('voices')
+            self.PYSHA_Obj.engine.setProperty('voice', voices[1].id)
+            self.PYSHA_Obj.text_to_speech()  # Calls the virtual assistant to speech
+        except Exception as Ex_change:
+            print("Couldn't change the voice for the Virtual Assistant as per Shafay Liked :", Ex_change)  # debugging
         while True:
             '''-- if you want to record for 7 seconds as short term memory and have a bad microphone then'''
             # # try:
@@ -1032,8 +1077,8 @@ class Main_Call():
             # Machine Learning book + N.L.T.K. BOOK need to be studied  with Plotting and O.P.E.N.C.V.2.
             # Work with the MEGA VOICE COMMAND AFTER THE EXAM HAVE BEEN FINISHED.
 
-# if __name__ == '__main__':
-# Py = PYSHA_CLASS()
-# print(Py.shortterm_check())
-# Py.play_video()  for playing music video just for testing
+# # if __name__ == '__main__':
+# y = PYSHA_CLASS()
+# # print(Py.shortterm_check())
+# y.play_video()  # for playing music video just for testing
 # ---
