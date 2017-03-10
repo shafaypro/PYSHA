@@ -259,7 +259,7 @@ class PYSHA_CLASS:
         # this is the function responsible for the writing in the history.
         self.db.insert_into_Requests(request_text, responce_text)  # this is twrite into the reposce text
 
-    # For running the apps
+    # TODO: For running the apps
     def run_apps(self, text_input=""):
         text_input = text_input.strip()
         if text_input != "":
@@ -339,7 +339,7 @@ class PYSHA_CLASS:
 
     # searching on the Wikipedia and then asking the pysha to speak the respectable result!!
 
-    # TODO : WIkI Algorithum improvment
+    # TODO : WIkI Algorithm improvements
     def search_wiki(self, text_input):
         # suggested_string = wikipedia.suggest(text_input)  # now going for the suggestion
         try:
@@ -576,32 +576,39 @@ class PYSHA_CLASS:
 
     # TODO : speech to Text   (Google api, Microsoft Speech recording )
     def speech_to_text(self):
-        client_id = ""  # this is the google api client id
-        client_secret = ""  # this is the google api client secret key
-        api_key = ""
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            CHUNK = 1024
-            FORMAT = pyaudio.paInt16  # the Format is picked up from the pyaudio
-            CHANNELS = 2  # The Cross Channels
-            # RATE = 44100
-            source.CHUNK = CHUNK
-            source.format = FORMAT  # FORMATING THE SOURCE FILE
+            r.adjust_for_ambient_noise(source, duration=1)
+            # print(r.energy_threshold)
+            print("Chucking rate: ", source.CHUNK)
+            print("format rate :", source.format)
+            # CHUNK = 1024
+            # FORMAT = pyaudio.paInt16  # the Format is picked up from the pyaudio
+            # CHANNELS = 2  # The Cross Channels
+            # # RATE = 44100
+            # source.CHUNK = CHUNK
+            # source.format = FORMAT  # FORMATING THE SOURCE FILE
             # print(dir(source))
-            print("Say something!")
-            print(r.energy_threshold)
-            r.energy_threshold -= 80
-            # print(r.adjust_for_ambient_noise(source,duration=1))
+            print("Say something!...")
+            # print(r.energy_threshold)
+            r.energy_threshold += 280
+            # # print(r.adjust_for_ambient_noise(source,duration=1))
             audio = r.listen(source)
 
             # Speech recognition using Google Speech Recognition
         try:
+            print("Parsing ...")  # Debugging To
             # for testing purposes, we're just using the default API key
             # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
             # instead of `r.recognize_google(audio)`
             # print(r.energy_threshold )
             # print(help(r.recognize_google))
-            text = r.recognize_google(audio, language='en-US')
+            # text = r.recognize_google(audio, language='en-US')
+
+            text = r.recognize_google(audio, language='en-GB')
+
+            # r.re
+            # r.re
             print("You said: " + text)
             self.total_saying = text
             self.process_text_input(self.total_saying)
@@ -611,7 +618,6 @@ class PYSHA_CLASS:
 
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
-
     # if you want to record for the specific interval of time
 
     # The duration ins specified by the user, since the default value passed from the main funtion is 7 seconds,
@@ -665,7 +671,7 @@ class PYSHA_CLASS:
     '''
 
     # Machine Speaking!
-    def text_to_speech(self, text_input='HI! my name is PYSHA and i am your assistant'):
+    def text_to_speech(self, text_input='HI!'):
         self.engine.say(text_input)
         self.engine.runAndWait()
         self.engine.stop()
@@ -731,6 +737,8 @@ class PYSHA_CLASS:
         except LookupError:  # speech is unintelligible
             print("Could not understand audio")
             self.text_to_speech("I Couldn't understand the audio")
+        except KeyError:  # Key error
+            print("Invalid API KEY ERROR")
         except sr.UnknownValueError:
             print("UNKNOWN!!")
 
@@ -744,7 +752,7 @@ class PYSHA_CLASS:
         self.total_saying = self.total_saying.lower()  # Debugging purpose
         if total_saying == "quit" or total_saying.lower() == "stop listening" or total_saying.lower() == "stop" or total_saying.lower() == "exit":
             self.store_userinput("quit")
-            self.text_to_speech("BYE")
+            self.text_to_speech("BYE Keep working.")
             os._exit(0)  # exiting the program
         else:
             # this stores the Specified Input we said Regerding to something
@@ -779,11 +787,13 @@ class PYSHA_CLASS:
                 sma.social_media_access(
                     browse_key=browse_key)  # Passing the browser key to the social media access function.
 
-            elif (total_saying.__contains__('wikipedia') and total_saying.startswith('search')) or (
+            elif (total_saying.__contains__('wikipedia') and total_saying.startswith('search')) or \
+                    self.total_saying.__contains__("wiki pedia") or (
                         total_saying.__contains__('on wikipedia') and total_saying.startswith('search')):
                 total_saying = total_saying  # this converts the string to the lower case
                 total_saying = total_saying.replace('search', '')  # replacing the start with the empty string
                 total_saying = total_saying.replace('on wikipedia', '')  # replacing the on wikiepdia with empty string
+                total_saying = total_saying.replace('wiki pedia', '')
                 self.text_to_speech('Searching on Wikipedia')
                 retrieved_link = self.search_wiki(
                     total_saying)  # calling the wikipedia search function , for the results
@@ -839,7 +849,7 @@ class PYSHA_CLASS:
                 # this calls the text mode function, and there we can do the processing in the form of the text!
                 tm.text_mode(total_saying)  # Passes the total saying to the Class Function!
 
-            elif total_saying == "show me a comic":
+            elif total_saying == "show me a comic" or total_saying == "show me the comic":
                 self.store_userinput("show me a comic")  # finding the comic from the web
                 joke_object = Joke()  # creating an object of ht Joke class !
                 self.text_to_speech("Finding a Comic the Database")
@@ -942,20 +952,23 @@ class PYSHA_CLASS:
                     self.total_saying.startswith("search on github"):
                 self.total_saying = self.total_saying.replace("github search", "")
                 self.total_saying = self.total_saying.replace("github", "")
-                self.total_saying = self.total_saying.replace("search on github")
+                self.total_saying = self.total_saying.replace("search on github","")
                 self.store_userinput("search on github: "+self.total_saying)
                 GS = GitHubSearch()  # Creating the class for the github search
                 self.text_to_speech("Searching on github")
                 GS.search(self.total_saying)  # searching on the Github
-                self.total_saying("Found somethings on github")
+                self.text_to_speech("Found somethings on github")
                 pass
-
+                """Playing the music below"""
             elif total_saying.startswith("play music") or total_saying.__contains__("music please"):
                 self.total_saying = total_saying.replace("play music", "")
                 self.total_saying = self.total_saying.replace("music please", "")  # replacing the string !
                 self.text_to_speech("Playing Music")
+                self.play_video()  # plays the video
+                self.text_to_speech("Music Video has been played")
                 # MP_gui = main()
                 # MP_gui.run()
+                time.sleep(4)  # Sleeps the computer for 4 seconds. so that the user can listen to the Sound
                 self.store_userinput("playing music")
             # last link being read
             # This calls the Web scrap class in the __speakcode.py
@@ -982,10 +995,10 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
                 # TODO: Replace your twitter credentials here
-                ckey = '--REPLACE HERE--'
-                csecret = '--REPLACE HERE--'
-                atoken = '--REPLACE HERE--'
-                asecret = '--REPLACE HERE--'
+                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
                 TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
                 api = TP._api_auth()
                 status = self.total_saying
