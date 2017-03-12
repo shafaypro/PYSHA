@@ -1,27 +1,36 @@
-import datetime  # Importing the datetime for the timing modules since the date time is used to answer the questions
-import wave  # Importing the wave of for the recording(This is the format for the recording which is used .wav
-from random import *  # Using the random  function for the creation
-import pyaudio  # importing the header file of the pyaudio
-import speech_recognition as sr  # Importing the speech recognition file for the code.!!
-# from .PygletMusic.Pygletimplementation import *  # Music player GUI implemented
-from _Joke import *
-from _NaturalLanguageProcessing import *
-from _WolFrameAlphaClass import *  # For computation and intelligence engine.
-from __soundcloud import *
-from __linksearch import *  # importing for the link search
-from __speakcode import *  # For speaking the code from the web scrapping .
-from _dbdata import *  # Database function for the request and all others
-from _stackoverflow import *  # Stackoverflow
-from _twitter import *  # imports the twitter Pysha client which has been
-from _youtube import *  # imports youtube created local header file , for searching on youtube
-from __github import *
-from _SocialMedia import *  # importing the social media moduel for the implementation of the social medias
-from _TextMode import *  # the text mode will be used for the messaging application like look, like a bot
-from AssistantProperties import _chooseassitant  # importing the properties of the assistant being choosen.
-import random  # importing the random module for the random Short term memory
-from __shorttermmemory import *
-from Chatdependencies._chat import *  # importing the _chat module
-
+try:
+    import datetime  # Importing the datetime for the timing modules since the date time is used to answer the questions
+    import wave  # Importing the wave of for the recording(This is the format for the recording which is used .wav
+    from random import *  # Using the random  function for the creation
+    import pyaudio  # importing the header file of the pyaudio
+    import speech_recognition as sr  # Importing the speech recognition file for the code.!!
+    import random  # importing the random module for the random Short term memory
+    
+    # from .PygletMusic.Pygletimplementation import *  # Music player GUI implemented
+except Exception as E:
+    print("Missing header file which needed to be installed",E)
+    exit(0)
+try:
+    from _Joke import *
+    from _NaturalLanguageProcessing import *
+    from _WolFrameAlphaClass import *  # For computation and intelligence engine.
+    from __soundcloud import *
+    from __linksearch import *  # importing for the link search
+    from __speakcode import *  # For speaking the code from the web scrapping .
+    from _dbdata import *  # Database function for the request and all others
+    from _stackoverflow import *  # Stackoverflow
+    from _twitter import *  # imports the twitter Pysha client which has been
+    from _youtube import *  # imports youtube created local header file , for searching on youtube
+    from __github import *
+    from _SocialMedia import *  # importing the social media moduel for the implementation of the social medias
+    from _TextMode import *  # the text mode will be used for the messaging application like look, like a bot
+    from AssistantProperties import _chooseassitant  # importing the properties of the assistant being choosen.
+    from __shorttermmemory import *
+    from Chatdependencies._chat import *  # importing the _chat module
+    from __facebook import * # importing the facebook module for GraphAPI.
+except Exception as E:
+    print("Missing the Built in PYSHA files for the Development",E)
+    exit(0)
 # imports the short term memory code  --> for getting the last strings backs 7 +-2
 # this si the importing of the header files !
 # Pre requirements : You need to Install Microsoft SDK fo Speech and all the available Tools
@@ -202,7 +211,7 @@ For the personal computer you need to have the computer access,
 And all the other things given to the Assistant so that it can work in there.
 '''
 
-# TODO : USE THE IBM WATSON TOO, To improve the Virtual Assistant
+# TODO : USE THE Natural Language processing TOO, To improve the Virtual Assistant
 __author__ = "M Shafay Amjad"
 __QA__ = "mshafayamjad@gmail.com"
 __version__ = 1.0
@@ -221,7 +230,7 @@ class PYSHA_CLASS:
     db = NONE
     lastlink = ""  # just to be reminded for the last link visited
     engine = pyttsx.init()  # intializing the engine here so that there are global engine speech , which can be changed
-    py_chat_bot = Chatting_PYSHA(name="PYSHA", trainable=True, train_corpus=True)  # intialized the Chatting Pysha
+    py_chat_bot = Chatting_PYSHA(name="PYSHA", trainable=False, train_corpus=True)  # intialized the Chatting Pysha
 
     def __init__(self):
 
@@ -332,6 +341,22 @@ class PYSHA_CLASS:
         except:
             self.text_to_speech(
                 "I'm sorry, I couldn't reach google")
+            # Calling the Function so that it can be identified that ,machine can speaks for itself
+            return
+
+
+
+    def search_bing(self,text_input):
+        print('-searching on browser-')
+        try:
+            url = 'http://www.bing.com/search?q=' + text_input.replace(" ", "+") + "&qs=n&form=QBLH"
+            # Creating or generating a google link for the particular file
+            webbrowser.open(url)
+            return
+
+        except:
+            self.text_to_speech(
+                "I'm sorry, I couldn't reach bing")
             # Calling the Function so that it can be identified that ,machine can speaks for itself
             return
 
@@ -618,6 +643,83 @@ class PYSHA_CLASS:
 
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
+        except sr.HTTPError as e:
+            print("Couldn't connect to the websites perhaps , Hyper text transfer protocol error",e)
+
+
+    '''Optional Other methods for the recognition of the voice texts using the other api's'''
+    # with sr.Microphone() as source:
+    #     print("Say something!")
+    #     audio = r.listen(source)
+    #
+    # # recognize speech using Sphinx
+    # try:
+    #     print("Sphinx thinks you said " + r.recognize_sphinx(audio))
+    # except sr.UnknownValueError:
+    #     print("Sphinx could not understand audio")
+    # except sr.RequestError as e:
+    #     print("Sphinx error; {0}".format(e))
+    #
+    # # recognize speech using Google Speech Recognition
+    # try:
+    #     # for testing purposes, we're just using the default API key
+    #     # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
+    #     # instead of `r.recognize_google(audio)`
+    #     print("Google Speech Recognition thinks you said " + r.recognize_google(audio))
+    # except sr.UnknownValueError:
+    #     print("Google Speech Recognition could not understand audio")
+    # except sr.RequestError as e:
+    #     print("Could not request results from Google Speech Recognition service; {0}".format(e))
+    #
+    # # recognize speech using Google Cloud Speech
+    # GOOGLE_CLOUD_SPEECH_CREDENTIALS = r"""INSERT THE CONTENTS OF THE GOOGLE CLOUD SPEECH JSON CREDENTIALS FILE HERE"""
+    # try:
+    #     print("Google Cloud Speech thinks you said " + r.recognize_google_cloud(audio,
+    #                                                                             credentials_json=GOOGLE_CLOUD_SPEECH_CREDENTIALS))
+    # except sr.UnknownValueError:
+    #     print("Google Cloud Speech could not understand audio")
+    # except sr.RequestError as e:
+    #     print("Could not request results from Google Cloud Speech service; {0}".format(e))
+    #
+    # # recognize speech using Wit.ai
+    # WIT_AI_KEY = "INSERT WIT.AI API KEY HERE"  # Wit.ai keys are 32-character uppercase alphanumeric strings
+    # try:
+    #     print("Wit.ai thinks you said " + r.recognize_wit(audio, key=WIT_AI_KEY))
+    # except sr.UnknownValueError:
+    #     print("Wit.ai could not understand audio")
+    # except sr.RequestError as e:
+    #     print("Could not request results from Wit.ai service; {0}".format(e))
+    #
+    # # recognize speech using Microsoft Bing Voice Recognition
+    # BING_KEY = "INSERT BING API KEY HERE"  # Microsoft Bing Voice Recognition API keys 32-character lowercase hexadecimal strings
+    # try:
+    #     print("Microsoft Bing Voice Recognition thinks you said " + r.recognize_bing(audio, key=BING_KEY))
+    # except sr.UnknownValueError:
+    #     print("Microsoft Bing Voice Recognition could not understand audio")
+    # except sr.RequestError as e:
+    #     print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
+    #
+    # # recognize speech using Houndify
+    # HOUNDIFY_CLIENT_ID = "INSERT HOUNDIFY CLIENT ID HERE"  # Houndify client IDs are Base64-encoded strings
+    # HOUNDIFY_CLIENT_KEY = "INSERT HOUNDIFY CLIENT KEY HERE"  # Houndify client keys are Base64-encoded strings
+    # try:
+    #     print("Houndify thinks you said " + r.recognize_houndify(audio, client_id=HOUNDIFY_CLIENT_ID,
+    #                                                              client_key=HOUNDIFY_CLIENT_KEY))
+    # except sr.UnknownValueError:
+    #     print("Houndify could not understand audio")
+    # except sr.RequestError as e:
+    #     print("Could not request results from Houndify service; {0}".format(e))
+    #
+    # # recognize speech using IBM Speech to Text
+    # IBM_USERNAME = "INSERT IBM SPEECH TO TEXT USERNAME HERE"  # IBM Speech to Text usernames are strings of the form XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+    # IBM_PASSWORD = "INSERT IBM SPEECH TO TEXT PASSWORD HERE"  # IBM Speech to Text passwords are mixed-case alphanumeric strings
+    # try:
+    #     print("IBM Speech to Text thinks you said " + r.recognize_ibm(audio, username=IBM_USERNAME,
+    #                                                                   password=IBM_PASSWORD))
+    # except sr.UnknownValueError:
+    #     print("IBM Speech to Text could not understand audio")
+    # except sr.RequestError as e:
+    #     print("Could not request results from IBM Speech to Text service; {0}".format(e))
     # if you want to record for the specific interval of time
 
     # The duration ins specified by the user, since the default value passed from the main funtion is 7 seconds,
@@ -750,7 +852,8 @@ class PYSHA_CLASS:
         self.total_saying = total_saying.strip()  # Stripping the string for the extra white spaces
         total_saying = self.total_saying.lower()  # Converting a string to lower case
         self.total_saying = self.total_saying.lower()  # Debugging purpose
-        if total_saying == "quit" or total_saying.lower() == "stop listening" or total_saying.lower() == "stop" or total_saying.lower() == "exit":
+        if self.total_saying == "quit" or self.total_saying == "stop listening" or total_saying == "stop" or \
+                        self.total_saying == "exit":
             self.store_userinput("quit")
             self.text_to_speech("BYE Keep working.")
             os._exit(0)  # exiting the program
@@ -778,6 +881,17 @@ class PYSHA_CLASS:
                 self.search_browser(
                     text_input=self.total_saying)  # sending every remanining thing to the Browser to browse for
                 self.text_to_speech("Browser Result have been displayed.")
+            elif total_saying.startswith("bing") or total_saying.startswith("search bing") \
+                    or (total_saying.startswith("search") and total_saying.__contains__("bing")):
+                self.text_to_speech("Searching on bing")
+                self.total_saying = total_saying.replace("search for", "")
+                self.total_saying = self.total_saying.replace("bing", "")
+                self.total_saying = self.total_saying.replace("search bing", "") # Texts filtering
+                self.total_saying = self.total_saying.replace("search", "")
+                self.store_userinput("searching on bing :" + self.total_saying)  # storing the texxt input in the bing
+                self.search_bing(self.total_saying)  # Calling the bing function
+                self.search_bing("Bing result have been displayed")
+
             elif total_saying.startswith('social media'):
                 self.store_userinput(total_saying)  # this stores the particular input.
                 browse_key = total_saying.replace('social media',
@@ -804,7 +918,8 @@ class PYSHA_CLASS:
                 # Here you will be required to input the date
                 self.day_check()  # This calls the day check
 
-            elif total_saying.startswith("what is the time") or total_saying == 'time':
+            elif total_saying.startswith("what is the time") or total_saying == 'time' or \
+                    total_saying.startswith("what time it is"):
                 self.time_check()  # this checks the current time according to the specified state
 
             # Create a Grammer , that represents the questions regerding to the respectable machine
@@ -990,28 +1105,58 @@ class PYSHA_CLASS:
                 self.store_userinput("Web : opening " + self.total_saying)
                 self.text_to_speech("opening the website for : ", self.total_saying)
                 webbrowser.open(self.total_saying)
-            elif total_saying.startswith("twitter status") or total_saying.startswith("status"):
-                self.total_saying = total_saying.replace("tweet ", "")
+
+            elif total_saying.__contains__("facebook status") or total_saying.startswith("post status on facebook") or total_saying.startswith("facebook post"):
+                        self.text_to_speech("posting the status on facebook") # posting the status on facebook
+                        self.total_saying = total_saying.replace("facebook status ","") # replacing the spaces with the non space typed.
+                        self.total_saying = self.total_saying.replace("post status on facebook", "")
+                        self.total_saying = self.total_saying.replace("facebook post ","") # replacing cleaning the data
+                        self.store_userinput("Facebook status post: "+ self.total_saying)  # storing the input for the Facebook in the history
+                        FB_class = FB() # Creating the facebook class for the pysha
+                        # Calling in the class which will return the boolean experession on the basis ofthe ate that is being returned 
+                        boolean_condition = FB_class.post_status("ANOTHER TESTING OF POSTING STATUS")  #  posting the message on facebook
+                        if boolean_condition == True:  # this is the boolean condition which is set true
+                            self.text_to_speech("Status on facebook have been posted")
+                        else:
+                            self.text_to_speech("Status posting was not possible, there is a problem reaching the facebook")
+                            return
+                    
+            elif total_saying.startswith("twitter status") or total_saying.startswith("post on twitter") \
+                    or total_saying.startswith("status") or total_saying.startswith("post twitter"):
+                self.total_saying = total_saying.replace("tweet ", "")  # text filterning
+                self.total_saying = self.total_saying.replace("twitter status ", "")
                 self.total_saying = self.total_saying.replace("status ", "")
                 self.total_saying = self.total_saying.replace("twitter status ", "")
+                self.total_saying = self.total_saying.replace("post twitter", "")
+                self.total_saying = self.total_saying.replace("post on twitter", "")
                 # TODO: Replace your twitter credentials here
-                ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
-                csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
-                atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
-                asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
-                TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
-                api = TP._api_auth()
-                status = self.total_saying
-                self.store_userinput("tweeting on twitter:" + self.total_saying)
-                self.text_to_speech("tweeting on twitter :" + self.total_saying)
-                api.update_status(status)  # Posts the status om the twitter.
+                # ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                # csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                # atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                # asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
+                try:
+                    credential_read = [line.strip() for line in open("E:\PYSHA\Twitter_credentials", "r").readlines()]
+                    ckey, csecret = credential_read[0], credential_read[1]
+                    atoken, asecret = credential_read[2], credential_read[3]
+                    TP = Twitter_PYSHA(ckey, csecret, atoken, asecret)  # create object and pass in values
+                    api = TP._api_auth()
+                    status = self.total_saying
+                    self.store_userinput("tweeting on twitter:" + self.total_saying)
+                    self.text_to_speech("tweeting on twitter :" + self.total_saying)
+                    api.update_status(status)  # Posts the status om the twitter.
+                except Exception as E:
+                    print("your forgot to check the File destination please reconfigure the file",E)
+                    self.text_to_speech("PYSHA sees twitter failure, shafay")
+
+                self.text_to_speech("Tweet have been posted in your twitter account")
 
             elif total_saying.startswith("mail") or total_saying.startswith("check email") or total_saying.startswith(
                     "check mail"):
-                self.text_to_speech("")
+                self.text_to_speech("Checking email")
                 webbrowser.open("www.gmail.com")
                 webbrowser.open("www.hotmail.com")
                 webbrowser.open("www.yahoo.com")
+                self.text_to_speech("You need to fill the credentials otherwise Machines will become terminator")
             elif total_saying.startswith("twitter"):
                 webbrowser.open("www.twitter.com")
             elif total_saying.startswith("reddit"):
@@ -1030,27 +1175,31 @@ class PYSHA_CLASS:
                 "solve") or total_saying.startswith("who") or total_saying.startswith(
                 "whom") or total_saying.startswith("why") or total_saying.startswith("which") or \
                     total_saying.startswith("show me"):
-                self.total_saying = total_saying
-                self.store_userinput('Question Asked : ' + self.total_saying)
-                # since this is a computation engine that will be used for the computation of the question asked .!
-                WFM = WolFrameAlphaClass()
-                # creating the wolframapla class that will be used for the creation of the api assistant
-                self.text_to_speech('searching database')
-                WFM_backstring = WFM.search_engine(
-                    self.total_saying)  # this searches the WolframAlpha for the Search Strings
-                if WFM_backstring != "":
-                    # if the input returned from the Wolframalpha turns out to be null then leave it .
-                    self.text_to_speech(WFM_backstring)  # this converts text to speech
+                try:
+                    self.total_saying = total_saying
+                    self.store_userinput('Question Asked : ' + self.total_saying)
+                    # since this is a computation engine that will be used for the computation of the question asked .!
+                    WFM = WolFrameAlphaClass()
+                    # creating the wolframapla class that will be used for the creation of the api assistant
+                    self.text_to_speech('searching database')
+                    WFM_backstring = WFM.search_engine(
+                        self.total_saying)  # this searches the WolframAlpha for the Search Strings
+                    if WFM_backstring != "":
+                        # if the input returned from the Wolframalpha turns out to be null then leave it .
+                        self.text_to_speech(WFM_backstring)  # this converts text to speech
+                except Exception as E:
+                    print("Unable to connect and Compute the required problem",E)
+                    self.text_to_speech("Unable to connect and compute the requiredd problem")
             else:
-                total_saying, self.total_saying = self.total_saying, total_saying
                 try:
                     retrieved_output = self.py_chat_bot.retrieved_response(self.total_saying)
                     print("VA says : ", retrieved_output)
                     self.text_to_speech(retrieved_output)  # calls in the retrieved output
                     self.store_userinput("PYSHA Chat input: " + str(self.total_saying))
                     # Storing the input value in the db
-                    if not self.total_saying.__contains__('search'):
-                        self.py_chat_bot.train_text(list(self.total_saying))
+                    # if not self.total_saying.__contains__('search'):
+                    #     print("training ") # just for debugging
+                        #self.py_chat_bot.train_text(list(self.total_saying))
                         # trains on the basis of the user specified
                     # input
                     self.store_userinput("PYSHA Chat output" + str(retrieved_output))
