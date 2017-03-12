@@ -1130,10 +1130,10 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("post twitter", "")
                 self.total_saying = self.total_saying.replace("post on twitter", "")
                 # TODO: Replace your twitter credentials here
-                # ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
-                # csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
-                # atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
-                # asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
+                # ckey = 
+                # csecret =
+                # atoken = 
+                # asecret = 
                 try:
                     credential_read = [line.strip() for line in open("E:\PYSHA\Twitter_credentials", "r").readlines()]
                     ckey, csecret = credential_read[0], credential_read[1]
