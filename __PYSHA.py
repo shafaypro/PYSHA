@@ -230,7 +230,7 @@ class PYSHA_CLASS:
     db = NONE
     lastlink = ""  # just to be reminded for the last link visited
     engine = pyttsx.init()  # intializing the engine here so that there are global engine speech , which can be changed
-    py_chat_bot = Chatting_PYSHA(name="PYSHA", trainable=False, train_corpus=True)  # intialized the Chatting Pysha
+    py_chat_bot = Chatting_PYSHA(name="PYSHA", trainable=False, train_corpus=True, )  # intialized the Chatting Pysha
 
     def __init__(self):
 
@@ -267,56 +267,113 @@ class PYSHA_CLASS:
     def insert_into_request(self, request_text, responce_text):
         # this is the function responsible for the writing in the history.
         self.db.insert_into_Requests(request_text, responce_text)  # this is twrite into the reposce text
+    # For terminating the prgrams use the following code
+    def close_program(self, input_string):
+        if input_string == "window media player":
+            try:
+                self.text_to_speech("Closing Window Media Player")
+                os.system("TASKKILL /F /IM wmplayer.exe")
+                self.text_to_speech("Window media player has been closed")
+            except Exception as E:
+                print("Exception occured a ",E) # printing the exception
+        elif input_string == "calculator":
+            try:
+                self.text_to_speech("Closing Calculator")
+                os.system("TASKKILL /F /IM calc.exe")
+                self.text_to_speech("calculator has been closed")
+            except Exception as E:
+                print("Exception occured a ",E) # printing the exception
 
+        elif input_string == "note pad" or input_string == "notepad":
+            try:
+                os.system("TASKKILL /F /IM notepad.exe")
+            except Exception as E:
+                print("Exception occured a ",E) # printing the exception
+        elif input_string == "performance monitor":
+            try:
+                os.system("TASKKILL /F /IM perfmon.exe") # Closing the performance monitor
+            except Exception as E:
+                print("Exception occured ",E) # printing the exception
+        elif input_string == "smartscreen" or input_string == "smart screen":
+            try:
+                os.system("TASKKILL /F /IM smartscreen.exe")
+            except Exception as E:
+                print("Exception occured ",E) # printing the exception
+        elif input_string == "space agent" or input_string == "spaceagent":
+            try:
+                os.system("TASKKILL /F /IM SpaceAgent.exe")
+            except Exception as E:
+                print("Exception occured a ",E) # printing the exception
+        elif input_string == "network status":
+            try:
+                os.system("TASKKILL /F /IM netstat.exe")
+            except Exception as E:
+                print("Exception occured a ",E) # printing the exception
+        elif input_string == "defragment":
+            try:
+                os.system("TASKKILL /F /IM defrag.exe")
+            except Exception as E:
+                print("Exception occured a ",E) # printing the exception
+        elif input_string == "clean manager":
+            try:
+                os.system("TASKKILL /F /IM cleanmgr.exe")
+            except Exception as E:
+                print("Exception occured a ",E) # printing the exception
+        elif input_string == "command prompt":
+            try:
+                os.system("TASKKILL /F /IM cmd.exe")
+            except Exception as E:
+                print("Exception occured a ",E) # printing the exception
     # TODO: For running the apps
     def run_apps(self, text_input=""):
         text_input = text_input.strip()
         if text_input != "":
             if text_input == "calculator":
-                os.system('calc.exe')  # Running the calculator in the Operating system
+                self.text_to_speech("Launching Calculator")
+                os.startfile('calc.exe')  # Running the calculator in the Operating system
                 self.text_to_speech("Calculator launched")
             elif text_input == "notepad":
-                os.system('notepad.exe')  # Running the notepad using the Os module for the specified Attrirbute !
+                self.text_to_speech("Launching Notepad")
+                os.startfile('notepad.exe')  # Running the notepad using the Os module for the specified Attrirbute !
                 self.text_to_speech("notepad launched")
             elif text_input == "performance monitor":
-                os.system('perfmon.exe')  # Launchign the Performance monitor from the exe
+                os.startfile('perfmon.exe')  # Launchign the Performance monitor from the exe
                 self.text_to_speech("Performance monitor has been launched")
             elif text_input == "smart screen":
-                os.system('smartscreen.exe')  # Working on the smart screen and running the Exe !
+                os.startfile('smartscreen.exe')  # Working on the smart screen and running the Exe !
                 self.text_to_speech("smart screen launched ")
             elif text_input == "space agent":
-                os.system('SpaceAgent.exe')  # Running the space agent for the
+                os.startfile('SpaceAgent.exe')  # Running the space agent for the
                 self.text_to_speech("space agent has been launched")
             elif text_input == "network status":
-                os.system('netstat.exe')  # you are working ehre !
-                self.text_to_speech("Network status for today have been shown in the screen")
+                os.startfile('netstat.exe')  # you are working ehre !
+                self.text_to_speech("Network status for today have been shown on the screen")
                 self.text_to_speech("somethings seems to be off")
             elif text_input == "bluetooth setting":
-                os.system('fsquirt.exe')  # you are working ehre !
+                os.startfile('fsquirt.exe')  # you are working ehre !
             elif text_input == "defragment":
-                os.system('Defrag.exe')  # you are working ehre !
+                os.startfile('Defrag.exe')  # you are working ehre !
             elif text_input == 'clean manager':
-                os.system("cleanmgr.exe")
+                os.startfile("cleanmgr.exe")
             elif text_input == "command prompt":
-                os.system("cmd.exe")
+                os.startfile("cmd.exe")
             elif text_input == 'direct ex' or text_input == 'direct setting':
-                os.system("dxdiag.exe")
+                os.startfile("dxdiag.exe")
             elif text_input == "control panel":
-                os.system('control.exe')
+                os.startfile('control.exe')
             elif text_input == 'resource monitor':
-                os.system('resmon.exe')
+                os.startfile('resmon.exe')
                 # this launched the resource monitor to monitor the resource!
             elif text_input == "game panel":
-                os.system('GamePanel.exe')
+                os.startfile('GamePanel.exe')
             elif text_input == 'graphic settings':
-                os.system('Gfxv4_0.exe')  # this access the graphic cards
+                os.startfile('Gfxv4_0.exe')  # this access the graphic cards
             elif text_input == 'dpi scaling':
-                os.system('DipScaling.exe')  # this truns the dpi scalling for the partu
+                os.startfile('DipScaling.exe')  # this truns the dpi scalling for the partu
             elif text_input == 'disk partition':
-                os.system('diskpart.exe')
+                os.startfile('diskpart.exe')
             elif text_input == 'python' or text_input == "python interpreter":
-                os.startfile(
-                    "C:\\Program Files\\Python35\\pythonw.exe")
+                os.startfile("C:\\Program Files\\Python35\\pythonw.exe")
                 # this calls the file location and then run the program of the python.
                 # There you should run the pyton programming language
                 # so that the language will be specified by the face of the
@@ -326,9 +383,10 @@ class PYSHA_CLASS:
                 # The Below function will be used to search on the browser and then show the desire result
             elif text_input == "movie player":
                 print("started movie player!!!")
-                os.startfile(
-                    "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe")  # window media player execution!
-
+                os.startfile("wmplayer.exe")  # window media player execution!
+            else:
+                print("What you want to open or run ?") # Debuggin
+                self.text_to_speech("What do you want to open or run ") # Debuggin
     # TODO : Exact Searching
     def search_browser(self, text_input):
         print('-searching on browser-')
@@ -343,9 +401,17 @@ class PYSHA_CLASS:
                 "I'm sorry, I couldn't reach google")
             # Calling the Function so that it can be identified that ,machine can speaks for itself
             return
-
-
-
+    # Below is the code for searching on yahoo.
+    def search_yahoo(self,text_input):
+        try:
+            self.text_to_speech("Searching on yahoo") # Voice Message
+            url = "https://search.yahoo.com/search;_ylc=X3oDMTFiN25laTRvBF9TAzIwMjM1MzgwNzUEaXRjAzEEc2VjA3NyY2hfcWEEc2xrA3NyY2h3ZWI-?p="+text_input.replace(" ", "+")+"&fr=yfp-t&fp=1&toggle=1&cop=mss&ei=UTF-8"
+            webbrowser.open(url) # opens the search query
+            self.text_to_speech("Yahoo search has been displayed ")
+        except Exception as E:
+            print("Problem reaching to yahoo, perhaps you have no internet connection")
+            self.text_to_speech("Connecting to yahoo failed, there must be a connection problem")
+    # Below is the code to search on the bing website
     def search_bing(self,text_input):
         print('-searching on browser-')
         try:
@@ -548,7 +614,7 @@ class PYSHA_CLASS:
                 # This will send all the related hobbies to the specified Place.
         elif text_input == "gender":
             self.text_to_speech("Female")
-        elif text_input.__contains__("how is your name"):
+        elif text_input.__contains__("how is your name") or text_input.startswith("why is your name"):
             list_responces_how = ["because my creator is Shafay, He should be answering this question.",
                                   "i did asked Shafay most of the time but he says its way too technical",
                                   "What can i say, perhaps is PYTHON SPEECH ON HAND ASSISTANT :p , what i "
@@ -590,10 +656,10 @@ class PYSHA_CLASS:
     # TODO: add sqlite3 database and store the input in the form of the data base
     def store_userinput(self, input_check):
         self.db.insert_into_History(str(input_check))  # this stores and creates a history
-        file_out = open("USERINPUT.txt", "a")
-        file_out.writelines("USER SAID: \t" + input_check)
-        file_out.write("\n")  # ending the line with the next line
-        file_out.close()
+        #file_out = open("USERINPUT.txt", "a")
+        #file_out.writelines("USER SAID: \t" + input_check)
+        #file_out.write("\n")  # ending the line with the next line
+        #file_out.close()  since we don't need to write in the file now 
         return
         # This function will be responsible for storing the responses so that it may able to answer in the future.pute
 
@@ -891,7 +957,12 @@ class PYSHA_CLASS:
                 self.store_userinput("searching on bing :" + self.total_saying)  # storing the texxt input in the bing
                 self.search_bing(self.total_saying)  # Calling the bing function
                 self.search_bing("Bing result have been displayed")
-
+            elif total_saying.startswith("search yahoo") or total_saying.startswith("yahoo search") or total_saying.startswith("search on yahoo"):
+                self.total_saying = total_saying.replace("search yahoo", "")
+                self.total_saying = self.total_saying.replace("yahoo search","")
+                self.total_saying = self.total_saying.replace("search on yahoo","")
+                self.search_yahoo(self.total_saying) # Calling the Yahoo search
+                print("-^-^-")
             elif total_saying.startswith('social media'):
                 self.store_userinput(total_saying)  # this stores the particular input.
                 browse_key = total_saying.replace('social media',
@@ -964,6 +1035,16 @@ class PYSHA_CLASS:
                 # this calls the text mode function, and there we can do the processing in the form of the text!
                 tm.text_mode(total_saying)  # Passes the total saying to the Class Function!
 
+            elif total_saying in ["who created you","who invented you", "who build you","who is your creator","who is your CEO"]:
+                self.total_saying = total_saying.replace("who created you","")
+                self.total_saying = self.total_saying.replace("who invented you","") # filterning
+                self.total_saying = self.total_saying.replace("who build you","")
+                self.total_saying = self.total_saying.replace("who is your ceo", "")
+                self.total_saying = self.total_saying.replace("who is your creator","")
+                required_text_list = ["Muhammad Shafay Amjad created me","Shafay is my CEO","Shafay is my creator","Well , Shafay build me from header files and his brain"]
+                selected_index = random.randint(0,len(required_text_list) - 1)
+                self.text_to_speech(required_text_list[selected_index]) # Speaking
+
             elif total_saying == "show me a comic" or total_saying == "show me the comic":
                 self.store_userinput("show me a comic")  # finding the comic from the web
                 joke_object = Joke()  # creating an object of ht Joke class !
@@ -994,7 +1075,16 @@ class PYSHA_CLASS:
                 total_saying = total_saying.replace('open ', '')  # replacing the word open with the Total_saying!
                 total_saying = total_saying.replace('run ', '')  # This is the replacement of the run with the
                 self.run_apps(total_saying)  # This is the total saying being passed to the Running apps. !
-
+            # Closing the application for the Dervied Module
+            elif total_saying.startswith("close") or self.total_saying.startswith("terminate") or self.total_saying.__contains__("close application"):
+                self.total_saying = self.total_saying.replace("close","")
+                self.total_saying = self.total_saying.replace("terminate","")
+                self.total_saying = self.total_saying.replace("close application","")
+                self.total_saying = self.total_saying.strip()
+                self.store_userinput("Closing Application: "+str(self.total_saying))
+                # print("->",self.total_saying,"<-") # Debugging
+                self.close_program(self.total_saying)  # Calling the closing function to close programs
+                # self.text_to_speech("Application has been closed") # Voice Message
             elif total_saying.startswith('parse sentence') or total_saying.startswith(
                     'parse this') or total_saying.startswith('tokenize this'):
                 self.store_userinput(total_saying)
@@ -1130,10 +1220,10 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("post twitter", "")
                 self.total_saying = self.total_saying.replace("post on twitter", "")
                 # TODO: Replace your twitter credentials here
-                # ckey = 
-                # csecret =
-                # atoken = 
-                # asecret = 
+                # ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
+                # csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
+                # atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
+                # asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
                 try:
                     credential_read = [line.strip() for line in open("E:\PYSHA\Twitter_credentials", "r").readlines()]
                     ckey, csecret = credential_read[0], credential_read[1]
