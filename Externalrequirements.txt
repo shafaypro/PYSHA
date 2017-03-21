@@ -2,6 +2,5 @@ Microsoft Speech SDK
 Google API Accesskey
 AVBin
 Python 3.3+
-Create a folder named "PYSHA" and store all the dependencies in the "PYSHA" FOLDER.
 TUTORIAL ON HOW TO USE WILL BE SOON ON YOUTUBE
 

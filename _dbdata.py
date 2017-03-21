@@ -1,6 +1,8 @@
-import sqlite3
-import random  # For generating the random numbers (for short term memory +-2)
-
+try:
+    import sqlite3
+    import random  # For generating the random numbers (for short term memory +-2)
+except Exception as E:
+    print("The module needs to be installed",E) # Debugging purpose
 class db_data:
     # setting the connection to None and the Cursor to none
     connection = None

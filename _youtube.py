@@ -1,12 +1,14 @@
-import webbrowser
-import urllib.request  # library for the importing
-from bs4 import BeautifulSoup  # --web beautify and finding
-import sqlite3
-import pafy  # This wont work in Proxy server which block youtube
-from _dbdata import *  # importing the database for storing the youtube table
-# Youtube search based on the webbrowser links
-# ToDo: Use the youtube api rather than using the the web browser
-
+try:
+    import webbrowser
+    import urllib.request  # library for the importing
+    from bs4 import BeautifulSoup  # --web beautify and finding
+    import sqlite3
+    import pafy  # This wont work in Proxy server which block youtube
+    from _dbdata import *  # importing the database for storing the youtube table
+    # Youtube search based on the webbrowser links
+    # ToDo: Use the youtube api rather than using the the web browser
+except Exception as E:
+    print("Header file (module ) needs to be installed ",E) # Debugging
 
 class YouTubeSearch:
     def __init__(self):
@@ -34,6 +36,7 @@ class YouTubeSearch:
             found_playlink_list = self.scrap_playlist(search_url)  # A list of play lists
             self.insert_into_youtube(search_text, search_url, str(found_playlink_list))
             # We are inserting the list of the found playlist.
+            print(found_playlink_list[0])
             webbrowser.open(found_playlink_list[0])  # opening the first play list as per specified
 
             return search_url  # returning the found URl , so that it can identify the stuff
@@ -66,13 +69,14 @@ class YouTubeSearch:
     ''' Inserting into database for the youtube to implement machine learning for later onwards'''
     # TODO: make the database more efficent
     def insert_into_youtube(self, Y_Requested_string="", Y_requested_url="", Y_Responce_List=""):
-        self.db.insert_into_youtube(Y_Requested_string,Y_requested_url,Y_Responce_List)
+        self.db.insert_into_youtube(Y_Requested_string, Y_requested_url, Y_Responce_List)
     ''' To Insert in to  database which will be later used to '''
 
     ''' Downloading the video description from youtube and others.'''
     @staticmethod
     def video_description_info(self, link=""):
         if link != "":
+            # If there is no linkd spedcified than the data will not be displayed
             video_required = pafy.new(link)  # getting the link from the youtube
             print(video_required.title)  # Title of the video
             print(video_required.duration)  # Duration of the video
@@ -87,6 +91,7 @@ class YouTubeSearch:
         return
 
 ''' TO CHECK THIS FILE USE THE BELOW CODE SO THAT IT CAN RUN THE VIDEOS AND GO THROUGH IT'''
-YTS = YouTubeSearch()
-YTS.insert_into_youtube('HELLO','www.youtube.com/whatthevuk ', '[WWW.youtube.com]')   # inserting the dummy databse in the data so that the data can be added .!
-# check_list = YTS.scrap_playlist("https://www.youtube.com/results?search_query=python+tutorial")
+# YTS = YouTubeSearch()
+# YTS.insert_into_youtube('HELLO','www.youtube.com/whatthevuk ', '[WWW.youtube.com]')
+# inserting the dummy databse in the data so that the data can be added .!
+# # check_list = YTS.scrap_playlist("https://www.youtube.com/results?search_query=python+tutorial")

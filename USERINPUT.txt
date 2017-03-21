@@ -208,3 +208,330 @@ USER SAID: 	tell me a joke
 USER SAID: 	show me a comic
 USER SAID: 	Question Asked : who invented facebook
 USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: search capital of pakistan on google
+USER SAID: 	PYSHA Chat outputAlthough practicality beats purity.
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	tell me a joke
+USER SAID: 	playing music
+USER SAID: 	PYSHA Chat input: couldn't
+USER SAID: 	PYSHA Chat outputSo what's your favorite color?
+USER SAID: 	PYSHA Chat input: i love you
+USER SAID: 	PYSHA Chat outputThank you.
+USER SAID: 	PYSHA Chat input: do you know i am depressed today
+USER SAID: 	PYSHA Chat outputBeautiful is better than ugly.
+USER SAID: 	Question Asked : how can you say beautiful in bed
+USER SAID: 	PYSHA Chat input: i broke up with my girlfriend
+USER SAID: 	PYSHA Chat outputNot so great.
+USER SAID: 	PYSHA Chat input: i shouldn't be saying it's not the grade which is great actually
+USER SAID: 	PYSHA Chat outputWhat else is delicious?
+USER SAID: 	PYSHA Chat input: find cake
+USER SAID: 	PYSHA Chat outputSo what's your favorite color?
+USER SAID: 	PYSHA Chat input: you could stop
+USER SAID: 	PYSHA Chat outputCould I borrow a cup of sugar?
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: hi
+USER SAID: 	PYSHA Chat outputHello
+USER SAID: 	Question Asked : how are you doing
+USER SAID: 	PYSHA Chat input: search numpy on
+USER SAID: 	PYSHA Chat outputYes I am.
+USER SAID: 	PYSHA Chat input: search number on google
+USER SAID: 	PYSHA Chat outputComplex is better than complicated.
+USER SAID: 	Searching on Browser : numpy 
+USER SAID: 	PYSHA Chat input: top 10 things
+USER SAID: 	PYSHA Chat outputOr something
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: i am working
+USER SAID: 	PYSHA Chat outputWhat are you working on?
+USER SAID: 	PYSHA Chat input: it's a program in python
+USER SAID: 	PYSHA Chat outputWhat languages do you like to use?
+USER SAID: 	Question Asked : what is the best language
+USER SAID: 	PYSHA Chat input: i like python
+USER SAID: 	PYSHA Chat outputWhat kind of movies do you like?
+USER SAID: 	PYSHA Chat input: action and horror
+USER SAID: 	PYSHA Chat outputI wish I was The Mad Hatter.
+USER SAID: 	PYSHA Chat input: i am sad
+USER SAID: 	PYSHA Chat outputDo you know all of it?
+USER SAID: 	PYSHA Chat input: i am sad
+USER SAID: 	PYSHA Chat outputDo you know all of it?
+USER SAID: 	PYSHA Chat input: no
+USER SAID: 	PYSHA Chat outputo
+USER SAID: 	Question Asked : what
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : machine gun on wikipedia
+USER SAID: 	tell me a joke
+USER SAID: 	PYSHA Chat input: datsun redi joke
+USER SAID: 	PYSHA Chat outputWhat is it that you want to know?
+USER SAID: 	Question Asked : when were you born
+USER SAID: 	Search on Youtube :youtube playlist for time table
+USER SAID: 	Search on Youtube :search youtube playlist for python tutorial
+USER SAID: 	PYSHA Chat input: stopped
+USER SAID: 	PYSHA Chat outputComplex is better than complicated.
+USER SAID: 	PYSHA Chat input: well i am already to stop by and not stopping
+USER SAID: 	PYSHA Chat outputThank you. You too.
+USER SAID: 	PYSHA Chat input: i'm not saying it is your returning me a wrong output
+USER SAID: 	PYSHA Chat outputCould I borrow a cup of sugar?
+USER SAID: 	PYSHA Chat input: yes you can
+USER SAID: 	PYSHA Chat outputsearch number on google
+USER SAID: 	Question Asked : which number you want me to search for
+USER SAID: 	Personal Question asked :what is your name
+USER SAID: 	Question Asked : how can you say that your name is fisher
+USER SAID: 	quit
+USER SAID: 	Personal Question asked :how is your name t shirt
+USER SAID: 	Personal Question asked :how is your name fisher
+USER SAID: 	Personal Question asked :how is your name fisher
+USER SAID: 	Personal Question asked :how is your name fisher
+USER SAID: 	Personal Question asked :how is your name fisher
+USER SAID: 	Personal Question asked :how is your name fisher
+USER SAID: 	quit
+USER SAID: 	Personal Question asked :how is your name please
+USER SAID: 	Personal Question asked :how is your name t shirt
+USER SAID: 	Personal Question asked :how is your name fisher
+USER SAID: 	PYSHA Chat input: hi
+USER SAID: 	PYSHA Chat outputHow are you doing?
+USER SAID: 	PYSHA Chat input: i am doing fine thank you
+USER SAID: 	PYSHA Chat outputI am also good.
+USER SAID: 	tell me a joke
+USER SAID: 	Question Asked : show me a comics
+USER SAID: 	Personal Question asked :what is your name
+USER SAID: 	Personal Question asked :how is your name t shirt
+USER SAID: 	Personal Question asked :how is your name fisher
+USER SAID: 	Personal Question asked :how is your name fisher
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	PYSHA Chat input: search machine gun on wiki pedia
+USER SAID: 	PYSHA Chat outputWhat are you working on?
+USER SAID: 	PYSHA Chat input: search machine gun wiki pedia
+USER SAID: 	PYSHA Chat outputI can see that.
+USER SAID: 	PYSHA Chat input: music videos
+USER SAID: 	PYSHA Chat outputi love you
+USER SAID: 	playing music
+USER SAID: 	PYSHA Chat input: musik
+USER SAID: 	PYSHA Chat outputa
+USER SAID: 	playing music
+USER SAID: 	PYSHA Chat input: tum
+USER SAID: 	PYSHA Chat outputp
+USER SAID: 	PYSHA Chat input: i miss you everyday in my entire life and yet you don't reply my text why is it so
+USER SAID: 	PYSHA Chat outputI heard somebody say it.
+USER SAID: 	PYSHA Chat input: i miss you everyday and everynight
+USER SAID: 	PYSHA Chat outputI use Python quite a bit myself.
+USER SAID: 	PYSHA Chat input: i luv u
+USER SAID: 	PYSHA Chat outputmusik
+USER SAID: 	PYSHA Chat input: i luv u
+USER SAID: 	PYSHA Chat outputmusik
+USER SAID: 	PYSHA Chat input: testing 123
+USER SAID: 	PYSHA Chat outputHello
+USER SAID: 	Question Asked : what is the dead
+USER SAID: 	Question Asked : what is a date
+USER SAID: 	PYSHA Chat input: top listening
+USER SAID: 	PYSHA Chat outputAnd the rest of the day to you.
+USER SAID: 	Question Asked : what is the diet
+USER SAID: 	Question Asked : what is the data
+USER SAID: 	Question Asked : what is the data
+USER SAID: 	Searching on Browser : documentation off speech recognition
+USER SAID: 	Searching on Browser : documentation of special operation in python
+USER SAID: 	PYSHA Chat input: start listening
+USER SAID: 	PYSHA Chat outputReadability counts.
+USER SAID: 	PYSHA Chat input: start listening
+USER SAID: 	PYSHA Chat outputReadability counts.
+USER SAID: 	Question Asked : what is the timing
+USER SAID: 	Question Asked : what is the diet
+USER SAID: 	Searching on Browser : machine khan wikipedia
+USER SAID: 	Search on Youtube :youtube play list python tutorials
+USER SAID: 	PYSHA Chat input: sex lady gaga song by womens
+USER SAID: 	PYSHA Chat outputI am a programmer
+USER SAID: 	Search on Youtube :search youtube lady gaga's song
+USER SAID: 	PYSHA Chat input: start listening
+USER SAID: 	PYSHA Chat outputReadability counts.
+USER SAID: 	PYSHA Chat input: stock
+USER SAID: 	PYSHA Chat outputi luv u
+USER SAID: 	PYSHA Chat input: staff
+USER SAID: 	PYSHA Chat outputt
+USER SAID: 	PYSHA Chat input: kuwait
+USER SAID: 	PYSHA Chat outputNo problem
+USER SAID: 	PYSHA Chat input: top listening
+USER SAID: 	PYSHA Chat outputThank you kindly.
+USER SAID: 	Question Asked : what is the dead
+USER SAID: 	Question Asked : what is the dead
+USER SAID: 	Question Asked : what is the diet
+USER SAID: 	PYSHA Chat input: stopped listening
+USER SAID: 	PYSHA Chat outputReadability counts.
+USER SAID: 	PYSHA Chat input: stopped listening
+USER SAID: 	PYSHA Chat outputReadability counts.
+USER SAID: 	PYSHA Chat input: stopped listening
+USER SAID: 	PYSHA Chat outputReadability counts.
+USER SAID: 	PYSHA Chat input: stopped listening
+USER SAID: 	PYSHA Chat outputReadability counts.
+USER SAID: 	PYSHA Chat input: wat
+USER SAID: 	PYSHA Chat outputo
+USER SAID: 	PYSHA Chat input: god
+USER SAID: 	PYSHA Chat outputo
+USER SAID: 	Question Asked : what is the day
+USER SAID: 	Search on Stackoverflow : python error file
+USER SAID: 	playing music
+USER SAID: 	search on github:  python android 5
+USER SAID: 	Question Asked : what is the rate
+USER SAID: 	PYSHA Chat input: wat
+USER SAID: 	PYSHA Chat outputs
+USER SAID: 	Question Asked : what is the rate
+USER SAID: 	PYSHA Chat input: so me a comic
+USER SAID: 	PYSHA Chat outputComplex is better than complicated.
+USER SAID: 	PYSHA Chat input: so me a comic
+USER SAID: 	PYSHA Chat outputComplex is better than complicated.
+USER SAID: 	PYSHA Chat input: so me a comic
+USER SAID: 	PYSHA Chat outputComplex is better than complicated.
+USER SAID: 	Question Asked : show me the comic
+USER SAID: 	PYSHA Chat input: so me a comic
+USER SAID: 	PYSHA Chat input: top
+USER SAID: 	PYSHA Chat outpute
+USER SAID: 	Question Asked : what is the dead
+USER SAID: 	Question Asked : what is the dead
+USER SAID: 	Question Asked : what is the 6
+USER SAID: 	Searching on Browser : machine gun on wiki pedia
+USER SAID: 	Search on Stackoverflow : python android 5
+USER SAID: 	search on github:  python
+USER SAID: 	playing music
+USER SAID: 	Searching on Browser : machine gun on wikipedia
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	PYSHA Chat input: music video
+USER SAID: 	PYSHA Chat outputi luv u
+USER SAID: 	playing music
+USER SAID: 	PYSHA Chat input: stop stop 600
+USER SAID: 	PYSHA Chat outputAnd the rest of the day to you.
+USER SAID: 	PYSHA Chat input: set alarm
+USER SAID: 	PYSHA Chat outputWhat is it like?
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: i miss you
+USER SAID: 	PYSHA Chat outputmusik
+USER SAID: 	Question Asked : why are used by are you saying music
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: ets2 mail
+USER SAID: 	PYSHA Chat outputsearch number on google
+USER SAID: 	PYSHA Chat input: i love you most of the time when i miss you
+USER SAID: 	PYSHA Chat outputset alarm
+USER SAID: 	Question Asked : why you want me to set an alarm
+USER SAID: 	tell me a joke
+USER SAID: 	tell me a joke
+USER SAID: 	show me a comic
+USER SAID: 	open your eyes facebook
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	PYSHA Chat input: machine gun wikipedia
+USER SAID: 	PYSHA Chat outputI wish I was The Mad Hatter.
+USER SAID: 	tell me a joke
+USER SAID: 	playing music
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: search bank python tutorial
+USER SAID: 	PYSHA Chat outputi love you most of the time when i miss you
+USER SAID: 	PYSHA Chat input: search vim python tutorial
+USER SAID: 	PYSHA Chat outputi love you most of the time when i miss you
+USER SAID: 	PYSHA Chat input: winpython tutorial
+USER SAID: 	PYSHA Chat outputi luv u
+USER SAID: 	PYSHA Chat input: i love you and i miss you
+USER SAID: 	PYSHA Chat outputsearch vim python tutorial
+USER SAID: 	quit
+USER SAID: 	searching on bing :  python tutorial
+USER SAID: 	searching on bing :  on python tutorial
+USER SAID: 	searching on bing :  on python and google relation
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: search vim python tutorial
+USER SAID: 	PYSHA Chat outputi love you most of the time when i miss you
+USER SAID: 	PYSHA Chat input: search in python tutorial
+USER SAID: 	PYSHA Chat outputi love you most of the time when i miss you
+USER SAID: 	PYSHA Chat input: search big python tutorial
+USER SAID: 	PYSHA Chat outputi love you most of the time when i miss you
+USER SAID: 	PYSHA Chat input: hello beautiful
+USER SAID: 	PYSHA Chat outputsearch numpy on
+USER SAID: 	searching on bing :  for python tutorial
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: hey how are you
+USER SAID: 	PYSHA Chat outputWho? Who is but a form following the function of what
+USER SAID: 	PYSHA Chat input: hey
+USER SAID: 	PYSHA Chat outputi
+USER SAID: 	PYSHA Chat input: hey i love you
+USER SAID: 	PYSHA Chat outputmusik
+USER SAID: 	PYSHA Chat input: star
+USER SAID: 	PYSHA Chat outputc
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: hello how are you doing
+USER SAID: 	PYSHA Chat outputI am doing well, how about you?
+USER SAID: 	PYSHA Chat input: i love you
+USER SAID: 	PYSHA Chat outputmusik
+USER SAID: 	PYSHA Chat input: top
+USER SAID: 	PYSHA Chat outputi
+USER SAID: 	quit
+USER SAID: 	Personal Question asked :what is your favourite movie character
+USER SAID: 	Question Asked : who is your favourite movie character
+USER SAID: 	PYSHA Chat input: your favourite movie character
+USER SAID: 	PYSHA Chat outputThe Joker is my favourite character. his Favourite lines are : You know where i got the scars ?? My Father Gave it to me.
+USER SAID: 	PYSHA Chat input: can i ask you a question
+USER SAID: 	PYSHA Chat outputGo ahead and ask.
+USER SAID: 	PYSHA Chat input: i love you
+USER SAID: 	PYSHA Chat outputThank you.
+USER SAID: 	PYSHA Chat input: stopped
+USER SAID: 	PYSHA Chat outputComplex is better than complicated.
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: your favourite character
+USER SAID: 	PYSHA Chat outputThe Joker is my favourite character. his Favourite lines are : You know where i got the scars ?? My Father Gave it to me.
+USER SAID: 	PYSHA Chat input: step
+USER SAID: 	PYSHA Chat outputi
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : machine gun wikipedia
+USER SAID: 	quit
+USER SAID: 	Question Asked : who status facebook
+USER SAID: 	quit
+USER SAID: 	Facebook status post:  i love fighting
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: sweet i love shopping
+USER SAID: 	PYSHA Chat outputmusik
+USER SAID: 	PYSHA Chat input: sweet i love python
+USER SAID: 	PYSHA Chat outputmusik
+USER SAID: 	PYSHA Chat input: tweet on twitter url of python
+USER SAID: 	PYSHA Chat outputI am.
+USER SAID: 	PYSHA Chat input: top
+USER SAID: 	PYSHA Chat outputv
+USER SAID: 	quit
+USER SAID: 	tweeting on twitter: i love python
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: tweet on twitter i love shopping
+USER SAID: 	PYSHA Chat outputThe Joker is my favourite character. his Favourite lines are : You know where i got the scars ?? My Father Gave it to me.
+USER SAID: 	tweeting on twitter: i love python
+USER SAID: 	tweeting on twitter:twitter i love python
+USER SAID: 	quit
+USER SAID: 	quit
+USER SAID: 	Personal Question asked :how is your name pasha
+USER SAID: 	tell me a joke
+USER SAID: 	show me a comic
+USER SAID: 	playing music
+USER SAID: 	open calculator
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	tell me a joke
+USER SAID: 	show me a comic
+USER SAID: 	playing music
+USER SAID: 	Search on Youtube :search youtube python tutorials
+USER SAID: 	quit
+USER SAID: 	PYSHA Chat input: dwarka
+USER SAID: 	PYSHA Chat outputIts complicated.
+USER SAID: 	PYSHA Chat input: your favourite movie
+USER SAID: 	PYSHA Chat outputThe Joker is my favourite character. his Favourite lines are : You know where i got the scars ?? My Father Gave it to me.
+USER SAID: 	Personal Question asked :what is your name
+USER SAID: 	Question Asked : why is your name p shirt
+USER SAID: 	Question Asked : why is your name asha
+USER SAID: 	Personal Question asked :how is your name pasha
+USER SAID: 	quit
+USER SAID: 	Searching on Browser : capital of pakistan
+USER SAID: 	PYSHA Chat input: spectre
+USER SAID: 	PYSHA Chat outputSo what's your favorite color?
+USER SAID: 	Search on Stackoverflow : python error 5
+USER SAID: 	playing music
+USER SAID: 	PYSHA Chat input: kya hua
+USER SAID: 	PYSHA Chat outputIt's not your powers of observation I doubt, but merely the paradoxical nature of asking a masked man who is. But tell me, do you like music?
+USER SAID: 	quit
+USER SAID: 	Personal Question asked :what is your name
+USER SAID: 	Question Asked : why is your name fisher
+USER SAID: 	Question Asked : what is integration of 3 x cube + 2 x square + 1 x
+USER SAID: 	Question Asked : who invented facebook
+USER SAID: 	Question Asked : when was donald trump born
+USER SAID: 	quit
