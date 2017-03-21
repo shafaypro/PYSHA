@@ -25,3 +25,4 @@ chatterbot
 google
 pocketsphinx
 facepy
+pyautogui

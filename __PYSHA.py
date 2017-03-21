@@ -5,10 +5,10 @@ try:
     import pyaudio  # importing the header file of the pyaudio
     import speech_recognition as sr  # Importing the speech recognition file for the code.!!
     import random  # importing the random module for the random Short term memory
-    
-    # from .PygletMusic.Pygletimplementation import *  # Music player GUI implemented
+
+    # from .PygletMusic.Pyglet implementation import *  # Music player GUI implemented
 except Exception as E:
-    print("Missing header file which needed to be installed",E)
+    print("Missing header file which needed to be installed", E)
     exit(0)
 try:
     from _Joke import *
@@ -17,9 +17,9 @@ try:
     from __soundcloud import *
     from __linksearch import *  # importing for the link search
     from __speakcode import *  # For speaking the code from the web scrapping .
-    from _dbdata import *  # Database function for the request and all others
-    from _stackoverflow import *  # Stackoverflow
-    from _twitter import *  # imports the twitter Pysha client which has been
+    from _dbdata import *  # Database function for the request and all others.
+    from _stackoverflow import *  # Stackoverflow code implementation of the current file.
+    from _twitter import *  # imports the twitter Pysha client which has been.
     from _youtube import *  # imports youtube created local header file , for searching on youtube
     from __github import *
     from _SocialMedia import *  # importing the social media moduel for the implementation of the social medias
@@ -27,9 +27,10 @@ try:
     from AssistantProperties import _chooseassitant  # importing the properties of the assistant being choosen.
     from __shorttermmemory import *
     from Chatdependencies._chat import *  # importing the _chat module
-    from __facebook import * # importing the facebook module for GraphAPI.
+    from __facebook import *  # importing the facebook module for GraphAPI.
+    from MouseMovments import mm  # Importing the mouse movement file, to control Mouse and keyboard
 except Exception as E:
-    print("Missing the Built in PYSHA files for the Development",E)
+    print("Missing the Built in PYSHA files for the Development", E)
     exit(0)
 # imports the short term memory code  --> for getting the last strings backs 7 +-2
 # this si the importing of the header files !
@@ -222,8 +223,77 @@ __productname__ = "PYSHA"
 # The reverse shell process is for personal use, where we will be using to ping the Updated Code, to your Home location
 # Computer Code!
 '''
-This is the personal Computer Reverse shell!
+This is the Writing to a file
 '''
+
+
+
+class Writing_to_file:
+    def __init__(self):
+        total_saying = ""
+        while True:
+            temp = self.write_by_speak
+            if (temp != "exit" or not temp.__contains__("exit")) and temp is not None:
+                total_saying += temp
+                print(temp)
+            elif temp is None:
+                continue  # Debugging
+            elif temp == "exit" or temp.__contains__("exit"):  # This is the Exiting condition
+                break  # Goes outside the loop
+                print(total_saying)
+                self.write_in_file(total_saying)
+                print("------------")
+
+    def write_in_file(self, text):
+        file_writer = open("OnSpeakType\\filedata.txt", "w")
+        file_writer.write(text)
+        file_writer.write("")
+        file_writer.close()
+
+    @property
+    def write_by_speak(self):
+        r = sr.Recognizer()
+        with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source, duration=1)
+            # print(r.energy_threshold)
+            # print("Chucking rate: ", source.CHUNK)
+            # print("format rate :", source.format)  # Debuggin purpose
+            # CHUNK = 1024
+            # FORMAT = pyaudio.paInt16  # the Format is picked up from the pyaudio
+            # CHANNELS = 2  # The Cross Channels
+            # # RATE = 44100
+            # source.CHUNK = CHUNK
+            # source.format = FORMAT  # FORMATING THE SOURCE FILE
+            # print(dir(source))
+            print("Say something!...")
+            # print(r.energy_threshold)
+            r.energy_threshold += 280
+            # # print(r.adjust_for_ambient_noise(source,duration=1))
+            audio = r.listen(source)
+
+            # Speech recognition using Google Speech Recognition
+        try:
+            print("Parsing ...")  # Debugging To
+            # for testing purposes, we're just using the default API key
+            # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
+            # instead of `r.recognize_google(audio)`
+            # print(r.energy_threshold )
+            # print(help(r.recognize_google))
+            # text = r.recognize_google(audio, language='en-US')
+            text = r.recognize_google(audio, language='en-GB')  # Recognizing the command through the google
+            # r.re
+            # r.re
+            print("You said: " + text)
+            return text
+        except sr.UnknownValueError:
+            print("Google Speech Recognition could not understand audio")
+            return
+        except sr.RequestError as e:
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            return
+        except sr.HTTPError as e:
+            print("Couldn't connect to the websites perhaps , Hyper text transfer protocol error; {0}".format(e))
+            return  # returning for the debugging
 
 
 class PYSHA_CLASS:
@@ -267,6 +337,7 @@ class PYSHA_CLASS:
     def insert_into_request(self, request_text, responce_text):
         # this is the function responsible for the writing in the history.
         self.db.insert_into_Requests(request_text, responce_text)  # this is twrite into the reposce text
+
     # For terminating the prgrams use the following code
     def close_program(self, input_string):
         if input_string == "window media player":
@@ -274,56 +345,70 @@ class PYSHA_CLASS:
                 self.text_to_speech("Closing Window Media Player")
                 os.system("TASKKILL /F /IM wmplayer.exe")
                 self.text_to_speech("Window media player has been closed")
-            except Exception as E:
-                print("Exception occured a ",E) # printing the exception
+            except Exception as ex:
+                print("Exception occured a ", ex)  # printing the exception
         elif input_string == "calculator":
             try:
                 self.text_to_speech("Closing Calculator")
                 os.system("TASKKILL /F /IM calc.exe")
                 self.text_to_speech("calculator has been closed")
-            except Exception as E:
-                print("Exception occured a ",E) # printing the exception
+            except Exception as ex:
+                print("Exception occured a ", ex)  # printing the exception
 
         elif input_string == "note pad" or input_string == "notepad":
             try:
                 os.system("TASKKILL /F /IM notepad.exe")
-            except Exception as E:
-                print("Exception occured a ",E) # printing the exception
+            except Exception as ex:
+                print("Exception occured a ", ex)  # printing the exception
         elif input_string == "performance monitor":
             try:
-                os.system("TASKKILL /F /IM perfmon.exe") # Closing the performance monitor
-            except Exception as E:
-                print("Exception occured ",E) # printing the exception
+                os.system("TASKKILL /F /IM perfmon.exe")  # Closing the performance monitor
+            except Exception as ex:
+                print("Exception occurred ", ex)  # printing the exception
         elif input_string == "smartscreen" or input_string == "smart screen":
             try:
                 os.system("TASKKILL /F /IM smartscreen.exe")
-            except Exception as E:
-                print("Exception occured ",E) # printing the exception
+            except Exception as ex:
+                print("Exception occurred ", ex)  # printing the exception
         elif input_string == "space agent" or input_string == "spaceagent":
             try:
                 os.system("TASKKILL /F /IM SpaceAgent.exe")
-            except Exception as E:
-                print("Exception occured a ",E) # printing the exception
+            except Exception as ex:
+                print("Exception occured a ", ex)  # printing the exception
         elif input_string == "network status":
             try:
                 os.system("TASKKILL /F /IM netstat.exe")
-            except Exception as E:
-                print("Exception occured a ",E) # printing the exception
+            except Exception as ex:
+                print("Exception occurred a ", ex)  # printing the exception
         elif input_string == "defragment":
             try:
                 os.system("TASKKILL /F /IM defrag.exe")
-            except Exception as E:
-                print("Exception occured a ",E) # printing the exception
+            except Exception as ex:
+                print("Exception occurred as ", ex)  # printing the exception
         elif input_string == "clean manager":
             try:
+                self.text_to_speech("")
                 os.system("TASKKILL /F /IM cleanmgr.exe")
-            except Exception as E:
-                print("Exception occured a ",E) # printing the exception
+            except Exception as ex:
+                print("Exception occurred as ", ex)  # printing the exception
         elif input_string == "command prompt":
             try:
+                self.text_to_speech("Closing Command prompt")  # Voice
                 os.system("TASKKILL /F /IM cmd.exe")
-            except Exception as E:
-                print("Exception occured a ",E) # printing the exception
+                self.text_to_speech("Command prompt has been closed")  # Voice
+            except Exception as ex:
+                print("Exception occurred as ", ex)  # printing the exception
+        elif input_string == "chrome" or input_string == "google chrome":
+            try:
+                os.system("TASKKILL /F /IM chrome.exe")
+                self.text_to_speech("Chrome has been closed")  # Closed the chrome
+            except Exception as ex:
+                print("Exception occurred as ", ex)  # printing the exception
+        else:
+            print("I found something new to close , I cannot locate the thing")
+            self.text_to_speech("I found something new to close, i cannot locate the location")
+            # Debugging
+
     # TODO: For running the apps
     def run_apps(self, text_input=""):
         text_input = text_input.strip()
@@ -332,61 +417,91 @@ class PYSHA_CLASS:
                 self.text_to_speech("Launching Calculator")
                 os.startfile('calc.exe')  # Running the calculator in the Operating system
                 self.text_to_speech("Calculator launched")
+                return
             elif text_input == "notepad":
                 self.text_to_speech("Launching Notepad")
                 os.startfile('notepad.exe')  # Running the notepad using the Os module for the specified Attrirbute !
                 self.text_to_speech("notepad launched")
+                return
             elif text_input == "performance monitor":
                 os.startfile('perfmon.exe')  # Launchign the Performance monitor from the exe
                 self.text_to_speech("Performance monitor has been launched")
+                return
             elif text_input == "smart screen":
                 os.startfile('smartscreen.exe')  # Working on the smart screen and running the Exe !
                 self.text_to_speech("smart screen launched ")
+                return
             elif text_input == "space agent":
                 os.startfile('SpaceAgent.exe')  # Running the space agent for the
                 self.text_to_speech("space agent has been launched")
+                return
             elif text_input == "network status":
                 os.startfile('netstat.exe')  # you are working ehre !
                 self.text_to_speech("Network status for today have been shown on the screen")
                 self.text_to_speech("somethings seems to be off")
+                return
             elif text_input == "bluetooth setting":
-                os.startfile('fsquirt.exe')  # you are working ehre !
+                os.startfile('fsquirt.exe')  # you are working here !
+                return
             elif text_input == "defragment":
-                os.startfile('Defrag.exe')  # you are working ehre !
+                os.startfile('Defrag.exe')  # you are working here !
+                return
             elif text_input == 'clean manager':
                 os.startfile("cleanmgr.exe")
+                return
             elif text_input == "command prompt":
                 os.startfile("cmd.exe")
+                return
             elif text_input == 'direct ex' or text_input == 'direct setting':
                 os.startfile("dxdiag.exe")
+                return
             elif text_input == "control panel":
                 os.startfile('control.exe')
+                return
             elif text_input == 'resource monitor':
                 os.startfile('resmon.exe')
+                return
                 # this launched the resource monitor to monitor the resource!
             elif text_input == "game panel":
                 os.startfile('GamePanel.exe')
+                return
             elif text_input == 'graphic settings':
                 os.startfile('Gfxv4_0.exe')  # this access the graphic cards
+                return
             elif text_input == 'dpi scaling':
-                os.startfile('DipScaling.exe')  # this truns the dpi scalling for the partu
+                os.startfile('DipScaling.exe')  # this truns the dpi scalling for the
+                return
             elif text_input == 'disk partition':
                 os.startfile('diskpart.exe')
+                return
             elif text_input == 'python' or text_input == "python interpreter":
-                os.startfile("C:\\Program Files\\Python35\\pythonw.exe")
-                # this calls the file location and then run the program of the python.
-                # There you should run the pyton programming language
-                # so that the language will be specified by the face of the
+                try:
+                    os.startfile("C:\\Program Files\\Python35\\pythonw.exe")
+                    # this calls the file location and then run the program of the python.
+                    # There you should run the pyton programming language
+                    # so that the language will be specified by the face of the
+                    return
+                except Exception as Ex:  # printing the exception of the assistant
+                    print("Pycharm not found in the specificied location in the operating system", Ex)
             elif text_input == "pycharm" or text_input == "python best interpreter":
-                os.startfile("C:\\Program Files\\Python35\\Lib\\idlelib\\idle.pyw")
-                # --- This runs the pycharm Compiler which can be used for the Html or the python programming
-                # The Below function will be used to search on the browser and then show the desire result
+                try:
+                    os.startfile("C:\\Program Files\\Python35\\Lib\\idlelib\\idle.pyw")
+                    # --- This runs the pycharm Compiler which can be used for the Html or the python programming
+                    # The Below function will be used to search on the browser and then show the desire result
+                    return
+                except Exception as Ex:
+                    print(
+                        "Sorry i was unable to open the IDle of python perhaps , its not found in the specified location",
+                        Ex)
             elif text_input == "movie player":
                 print("started movie player!!!")
                 os.startfile("wmplayer.exe")  # window media player execution!
+                return
             else:
-                print("What you want to open or run ?") # Debuggin
-                self.text_to_speech("What do you want to open or run ") # Debuggin
+                print("What you want to open or run ?")  # Debuggin
+                self.text_to_speech("What do you want to open or run ")  # Debuggin
+                return
+
     # TODO : Exact Searching
     def search_browser(self, text_input):
         print('-searching on browser-')
@@ -401,18 +516,21 @@ class PYSHA_CLASS:
                 "I'm sorry, I couldn't reach google")
             # Calling the Function so that it can be identified that ,machine can speaks for itself
             return
+
     # Below is the code for searching on yahoo.
-    def search_yahoo(self,text_input):
+    def search_yahoo(self, text_input):
         try:
-            self.text_to_speech("Searching on yahoo") # Voice Message
-            url = "https://search.yahoo.com/search;_ylc=X3oDMTFiN25laTRvBF9TAzIwMjM1MzgwNzUEaXRjAzEEc2VjA3NyY2hfcWEEc2xrA3NyY2h3ZWI-?p="+text_input.replace(" ", "+")+"&fr=yfp-t&fp=1&toggle=1&cop=mss&ei=UTF-8"
-            webbrowser.open(url) # opens the search query
+            self.text_to_speech("Searching on yahoo")  # Voice Message
+            url = "https://search.yahoo.com/search;_ylc=X3oDMTFiN25laTRvBF9TAzIwMjM1MzgwNzUEaXRjAzEEc2VjA3NyY2hfcWEEc2xrA3NyY2h3ZWI-?p=" + text_input.replace(
+                " ", "+") + "&fr=yfp-t&fp=1&toggle=1&cop=mss&ei=UTF-8"
+            webbrowser.open(url)  # opens the search query
             self.text_to_speech("Yahoo search has been displayed ")
         except Exception as E:
             print("Problem reaching to yahoo, perhaps you have no internet connection")
             self.text_to_speech("Connecting to yahoo failed, there must be a connection problem")
+
     # Below is the code to search on the bing website
-    def search_bing(self,text_input):
+    def search_bing(self, text_input):
         print('-searching on browser-')
         try:
             url = 'http://www.bing.com/search?q=' + text_input.replace(" ", "+") + "&qs=n&form=QBLH"
@@ -425,6 +543,12 @@ class PYSHA_CLASS:
                 "I'm sorry, I couldn't reach bing")
             # Calling the Function so that it can be identified that ,machine can speaks for itself
             return
+
+    # Below is the function responsible for the searching of the wallpaper on the web
+    def search_wallpaper(self, search_input):
+        link = "http://www.wallpaperup.com/search/results/" + search_input.replace(" ", "+")
+        webbrowser.open(link)  # Opens the links for the wallpaper
+        self.text_to_speech("Found some of the wallpapers regarding to" + search_input)
 
     # The below function is responsible for the search on the Wikipedia
 
@@ -458,14 +582,19 @@ class PYSHA_CLASS:
 
     # TODO: Frontend HCI needs to be created !
     def frontend_hci(self, label_text):
-        root = Tk()  # This created the tkinter , face.!
-        root.title("PYSHA 1.0")  # Making the Title for the Py Sha 1.0 ,
-        root.geometry("300x300")  # specifying the x and the y axis in the scenario
-        label1 = Label(root, text=label_text, font='size,25')  # This is the label insertion for the Tkinter module
-        print(label1)  # Showing in the console for the debuggin purposes
-        label1.pack()  # Packing up the label1 module in the GUI
-        root.after(10000, lambda: root.destroy())  # Destroying after 10 seconds
-        root.mainloop()  # Executing the main loop for the Gui Till it gets exited
+        try:
+            root = Tk()  # This created the tkinter , face.!
+            root.title("PYSHA 1.0")  # Making the Title for the Py Sha 1.0 ,
+            root.geometry("300x300")  # specifying the x and the y axis in the scenario
+            label1 = Label(root, text=label_text, font='size,25')  # This is the label insertion for the Tkinter module
+            print(label1)  # Showing in the console for the debuggin purposes
+            label1.pack()  # Packing up the label1 module in the GUI
+            root.after(10000, lambda: root.destroy())  # Destroying after 10 seconds
+            root.mainloop()  # Executing the main loop for the Gui Till it gets exited
+            return
+        except:
+            print("unable to create the front end for the User interface . ")
+            return
 
     # TODO : make the Chat intelligent , using the Natural language processing and AIML (artifical intelligence markup)
     #  language)
@@ -611,9 +740,11 @@ class PYSHA_CLASS:
             hobbies = ["Playing a Game", "Collecting your History", "Watching Football"]
             for each_hobby in hobbies:  # Iterating to each of the loops
                 self.text_to_speech(str(each_hobby))  # Sending the each string to the Hobbies.
+                return
                 # This will send all the related hobbies to the specified Place.
         elif text_input == "gender":
             self.text_to_speech("Female")
+            return
         elif text_input.__contains__("how is your name") or text_input.startswith("why is your name"):
             list_responces_how = ["because my creator is Shafay, He should be answering this question.",
                                   "i did asked Shafay most of the time but he says its way too technical",
@@ -656,10 +787,10 @@ class PYSHA_CLASS:
     # TODO: add sqlite3 database and store the input in the form of the data base
     def store_userinput(self, input_check):
         self.db.insert_into_History(str(input_check))  # this stores and creates a history
-        #file_out = open("USERINPUT.txt", "a")
-        #file_out.writelines("USER SAID: \t" + input_check)
-        #file_out.write("\n")  # ending the line with the next line
-        #file_out.close()  since we don't need to write in the file now 
+        # file_out = open("USERINPUT.txt", "a")
+        # file_out.writelines("USER SAID: \t" + input_check)
+        # file_out.write("\n")  # ending the line with the next line
+        # file_out.close()  since we don't need to write in the file now
         return
         # This function will be responsible for storing the responses so that it may able to answer in the future.pute
 
@@ -695,9 +826,7 @@ class PYSHA_CLASS:
             # print(r.energy_threshold )
             # print(help(r.recognize_google))
             # text = r.recognize_google(audio, language='en-US')
-
-            text = r.recognize_google(audio, language='en-GB')
-
+            text = r.recognize_google(audio, language='en-GB')  # Recognizing the command through the google
             # r.re
             # r.re
             print("You said: " + text)
@@ -706,14 +835,16 @@ class PYSHA_CLASS:
             return text  # returning the text which has been inputed.
         except sr.UnknownValueError:
             print("Google Speech Recognition could not understand audio")
-
+            return
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            return
         except sr.HTTPError as e:
-            print("Couldn't connect to the websites perhaps , Hyper text transfer protocol error",e)
-
+            print("Couldn't connect to the websites perhaps , Hyper text transfer protocol error; {0}".format(e))
+            return  # returning for the debugging 
 
     '''Optional Other methods for the recognition of the voice texts using the other api's'''
+
     # with sr.Microphone() as source:
     #     print("Say something!")
     #     audio = r.listen(source)
@@ -876,7 +1007,11 @@ class PYSHA_CLASS:
     def volumeupdate(self, status_value=''):
         assert status_value != '', 'Value should have been not emptied'  # Debugging purpose
         if status_value != '':
-            self.engine = _chooseassitant.volume_update(status_value)  # Updating the status of the engine
+            try:
+                self.engine = _chooseassitant.volume_update(status_value)  # Updating the status of the engine
+            except Exception as Ex:
+                print("There was an error while updating the assistant  Volume", Ex)
+                self.text_to_speech("Unable to change the status of volumne")
         else:
             print("--------Volume status---------")  # just for debugging purpose
         return  # returning
@@ -952,16 +1087,17 @@ class PYSHA_CLASS:
                 self.text_to_speech("Searching on bing")
                 self.total_saying = total_saying.replace("search for", "")
                 self.total_saying = self.total_saying.replace("bing", "")
-                self.total_saying = self.total_saying.replace("search bing", "") # Texts filtering
+                self.total_saying = self.total_saying.replace("search bing", "")  # Texts filtering
                 self.total_saying = self.total_saying.replace("search", "")
                 self.store_userinput("searching on bing :" + self.total_saying)  # storing the texxt input in the bing
                 self.search_bing(self.total_saying)  # Calling the bing function
                 self.search_bing("Bing result have been displayed")
-            elif total_saying.startswith("search yahoo") or total_saying.startswith("yahoo search") or total_saying.startswith("search on yahoo"):
+            elif total_saying.startswith("search yahoo") or total_saying.startswith(
+                    "yahoo search") or total_saying.startswith("search on yahoo"):
                 self.total_saying = total_saying.replace("search yahoo", "")
-                self.total_saying = self.total_saying.replace("yahoo search","")
-                self.total_saying = self.total_saying.replace("search on yahoo","")
-                self.search_yahoo(self.total_saying) # Calling the Yahoo search
+                self.total_saying = self.total_saying.replace("yahoo search", "")
+                self.total_saying = self.total_saying.replace("search on yahoo", "")
+                self.search_yahoo(self.total_saying)  # Calling the Yahoo search
                 print("-^-^-")
             elif total_saying.startswith('social media'):
                 self.store_userinput(total_saying)  # this stores the particular input.
@@ -1018,13 +1154,14 @@ class PYSHA_CLASS:
                 else:
                     self.text_to_speech("Who you want to switch to")
 
-            elif self.total_saying.startswith("what is your") or self.total_saying.startswith("your name") or self.total_saying.startswith("how is your name"):
+            elif self.total_saying.startswith("what is your") or self.total_saying.startswith(
+                    "your name") or self.total_saying.startswith("how is your name") or total_saying.startswith("why is your name"):
                 # here you need to create the question saying file so that the file is readable.
                 '''
                     Write the Respectable question in this format so that, the Agent learns from the file.
 
                     '''
-                self.store_userinput("Personal Question asked :"+self.total_saying)  # Asking the personal question.
+                self.store_userinput("Personal Question asked :" + self.total_saying)  # Asking the personal question.
                 self.total_saying = total_saying.replace("what is your ", "")
                 # self.total_saying = self.total_saying.replace("how is your name ", "")
                 # replacing the words so that it will be easier for the program to Check the last thing
@@ -1035,15 +1172,17 @@ class PYSHA_CLASS:
                 # this calls the text mode function, and there we can do the processing in the form of the text!
                 tm.text_mode(total_saying)  # Passes the total saying to the Class Function!
 
-            elif total_saying in ["who created you","who invented you", "who build you","who is your creator","who is your CEO"]:
-                self.total_saying = total_saying.replace("who created you","")
-                self.total_saying = self.total_saying.replace("who invented you","") # filterning
-                self.total_saying = self.total_saying.replace("who build you","")
+            elif total_saying in ["who created you", "who invented you", "who build you", "who is your creator",
+                                  "who is your CEO"]:
+                self.total_saying = total_saying.replace("who created you", "")
+                self.total_saying = self.total_saying.replace("who invented you", "")  # filterning
+                self.total_saying = self.total_saying.replace("who build you", "")
                 self.total_saying = self.total_saying.replace("who is your ceo", "")
-                self.total_saying = self.total_saying.replace("who is your creator","")
-                required_text_list = ["Muhammad Shafay Amjad created me","Shafay is my CEO","Shafay is my creator","Well , Shafay build me from header files and his brain"]
-                selected_index = random.randint(0,len(required_text_list) - 1)
-                self.text_to_speech(required_text_list[selected_index]) # Speaking
+                self.total_saying = self.total_saying.replace("who is your creator", "")
+                required_text_list = ["Muhammad Shafay Amjad created me", "Shafay is my CEO", "Shafay is my creator",
+                                      "Well , Shafay build me from header files and his brain"]
+                selected_index = random.randint(0, len(required_text_list) - 1)
+                self.text_to_speech(required_text_list[selected_index])  # Speaking
 
             elif total_saying == "show me a comic" or total_saying == "show me the comic":
                 self.store_userinput("show me a comic")  # finding the comic from the web
@@ -1076,12 +1215,13 @@ class PYSHA_CLASS:
                 total_saying = total_saying.replace('run ', '')  # This is the replacement of the run with the
                 self.run_apps(total_saying)  # This is the total saying being passed to the Running apps. !
             # Closing the application for the Dervied Module
-            elif total_saying.startswith("close") or self.total_saying.startswith("terminate") or self.total_saying.__contains__("close application"):
-                self.total_saying = self.total_saying.replace("close","")
-                self.total_saying = self.total_saying.replace("terminate","")
-                self.total_saying = self.total_saying.replace("close application","")
+            elif total_saying.startswith("close") or self.total_saying.startswith(
+                    "terminate") or self.total_saying.__contains__("close application"):
+                self.total_saying = self.total_saying.replace("close", "")
+                self.total_saying = self.total_saying.replace("terminate", "")
+                self.total_saying = self.total_saying.replace("close application", "")
                 self.total_saying = self.total_saying.strip()
-                self.store_userinput("Closing Application: "+str(self.total_saying))
+                self.store_userinput("Closing Application: " + str(self.total_saying))
                 # print("->",self.total_saying,"<-") # Debugging
                 self.close_program(self.total_saying)  # Calling the closing function to close programs
                 # self.text_to_speech("Application has been closed") # Voice Message
@@ -1100,7 +1240,7 @@ class PYSHA_CLASS:
                 print(tokenized_sentences_return)  # this prints the Tokenize the words
             elif total_saying.startswith("youtube") or total_saying.startswith(
                     "search on youtube") or total_saying.startswith("search youtube") or total_saying.startswith(
-                    "youtube search"):
+                "youtube search"):
                 self.total_saying = total_saying.replace("search", '')
                 self.total_saying = self.total_saying.replace("search on youtube", "")
                 self.total_saying = self.total_saying.replace("youtube", "")
@@ -1114,11 +1254,18 @@ class PYSHA_CLASS:
 
                 if self.total_saying.__contains__("playlist") or self.total_saying.__contains__(
                         "play list") or self.total_saying.__contains__("playlists"):
-                    self.total_saying = self.total_saying.replace("playlist", '')
-                    self.total_saying = self.total_saying.replace("play list", '')
-                    self.text_to_speech("Finding the playlist from youtube.")
-                    self.lastlink = Y.search(search_text=self.total_saying, play_list=True)  # Searched for the playlist
-                    self.text_to_speech("I Guess i found some , have a look at these.")
+                    try:
+                        self.total_saying = self.total_saying.replace("playlist", '')
+                        self.total_saying = self.total_saying.replace("play list", '')
+                        self.text_to_speech("Finding the playlist from youtube.")
+                        self.lastlink = Y.search(search_text=self.total_saying,
+                                                 play_list=True)  # Searched for the playlist
+                        self.text_to_speech("I Guess i found some , have a look at these.")
+                        return
+                    except Exception as Ex:
+                        print("EXCEPTION occurred as :", Ex)  # Printing the exception
+                        self.text_to_speech("Sorry i was unable to find the playlist on youtube")
+                        return
                 # If we search for a single link rather than a play list ,
 
                 else:
@@ -1127,61 +1274,102 @@ class PYSHA_CLASS:
                     self.text_to_speech('Youtube Result , Best match found')
             elif total_saying.startswith('stack over flow') or total_saying.startswith(
                     'stackoverflow') or total_saying.startswith("stack overflow") or total_saying.startswith(
-                    'search stack over flow') or total_saying.startswith('stack search') or total_saying.startswith(
-                    'search stackoverflow'):
-                self.total_saying = total_saying.replace('stackoverflow', '')
-                self.total_saying = self.total_saying.replace('stack overflow', '')
-                self.total_saying = self.total_saying.replace('stack over flow', '')
-                self.total_saying = self.total_saying.replace('search stack over flow', '')
-                self.total_saying = self.total_saying.replace('stack', '')
-                self.total_saying = self.total_saying.replace('stack search', '')
-                self.total_saying = self.total_saying.replace('search stackoverflow', '')
-                self.text_to_speech('Search on Stackoverflow' + self.total_saying)
-                self.store_userinput('Search on Stackoverflow :' + self.total_saying)
-                SOF = StackoverFlow()  # -- Creates the Object Stack over flow class and calls the search function
-                self.lastlink = SOF.search(
-                    self.total_saying)  # replacing the last link so that we can read it out later
-                # self.db.insert_into_History("searching on stackoverflow : " + self.lastlink)
-                self.text_to_speech("Stack over flow Results Shown")
+                'search stack over flow') or total_saying.startswith('stack search') or total_saying.startswith(
+                'search stackoverflow'):
+                try:
+                    self.total_saying = total_saying.replace('stackoverflow', '')
+                    self.total_saying = self.total_saying.replace('stack overflow', '')
+                    self.total_saying = self.total_saying.replace('stack over flow', '')
+                    self.total_saying = self.total_saying.replace('search stack over flow', '')
+                    self.total_saying = self.total_saying.replace('stack', '')
+                    self.total_saying = self.total_saying.replace('stack search', '')
+                    self.total_saying = self.total_saying.replace('search stackoverflow', '')
+                    self.text_to_speech('Search on Stackoverflow' + self.total_saying)
+                    self.store_userinput('Search on Stackoverflow :' + self.total_saying)
+                    SOF = StackoverFlow()  # -- Creates the Object Stack over flow class and calls the search function
+                    self.lastlink = SOF.search(
+                        self.total_saying)  # replacing the last link so that we can read it out later
+                    # self.db.insert_into_History("searching on stackoverflow : " + self.lastlink)
+                    self.text_to_speech("Stack over flow Results Shown")
+                    return
+                except Exception as Ex:
+                    print("Unable to connect to the stackoverflow :", Ex)
+                    self.text_to_speech("Sorry i was unable to connect to stackoverflow")
+                    return
             elif total_saying.startswith("search music") or total_saying.__contains__(
                     "search music") or total_saying.__contains__("find music") or \
                     total_saying.__contains__("search soundcloud"):
-                self.total_saying = total_saying.replace('search music', "")  # replacing the search music with empty
-                self.total_saying = self.total_saying.replace("search music", '')
-                self.total_saying = self.total_saying.replace("search soundcloud", '')
-                self.total_saying = self.total_saying.replace("find music", '')
-                self.total_saying = self.total_saying.replace("music", '')
-                SoundCloudSearch(self.total_saying)
+                try:
+                    self.total_saying = total_saying.replace('search music',
+                                                             "")  # replacing the search music with empty
+                    self.total_saying = self.total_saying.replace("search music", '')
+                    self.total_saying = self.total_saying.replace("search soundcloud", '')
+                    self.total_saying = self.total_saying.replace("find music", '')
+                    self.total_saying = self.total_saying.replace("music", '')
+                    SoundCloudSearch(self.total_saying)
+                except Exception as Ex:
+                    print("Unable to Connect to soundcloud perhaps there is a connection problem", Ex)  #
+                    # Printing the exception
+                    self.text_to_speech("Sorry i was unable to connect to the soundcloud")  # Text to speech
 
+            elif self.total_saying.startswith("search wallpaper") or self.total_saying.startswith("find wallpaper")\
+                    or self.total_saying.startswith("find wallpapers for me") or self.total_saying.startswith("find a wallpaper for me"):
+
+                try:
+                    self.total_saying = self.total_saying.replace("search wallpaper", "")
+                    self.total_saying = self.total_saying.replace("find wallpaper", "")
+                    self.total_saying = self.total_saying.replace("find wallpapers for me", "")
+                    self.total_saying = self.total_saying.replace("find a wallpaper for me ", "")   # Replacing the Sentence
+                    self.total_saying = self.total_saying.strip()  # Striping the white spaces from the both of the side.
+                    self.text_to_speech("Finding the wallpaper for you !")  # Voice
+                    self.search_wallpaper(self.total_saying)  # Finds the Wallpaper from the website
+                except Exception as Ex:  #
+                    print("Sorry i wasn't able to find the specified wallpaper for you because there was a connection problem",Ex)
+                    self.text_to_speech("Sorry i wasn't able to find")
+
+                self.text_to_speech("Found Wallpapers for : ", self.total_saying)  # Text to speech -->
             elif self.total_saying.startswith("github search") or self.total_saying.__contains__("github") or \
                     self.total_saying.startswith("search on github"):
-                self.total_saying = self.total_saying.replace("github search", "")
-                self.total_saying = self.total_saying.replace("github", "")
-                self.total_saying = self.total_saying.replace("search on github","")
-                self.store_userinput("search on github: "+self.total_saying)
-                GS = GitHubSearch()  # Creating the class for the github search
-                self.text_to_speech("Searching on github")
-                GS.search(self.total_saying)  # searching on the Github
-                self.text_to_speech("Found somethings on github")
-                pass
+                try:
+                    self.total_saying = self.total_saying.replace("github search", "")
+                    self.total_saying = self.total_saying.replace("github", "")
+                    self.total_saying = self.total_saying.replace("search on github", "")
+                    self.store_userinput("search on github: " + self.total_saying)
+                    GS = GitHubSearch()  # Creating the class for the github search
+                    self.text_to_speech("Searching on github")
+                    GS.search(self.total_saying)  # searching on the Github
+                    self.text_to_speech("Found somethings on github")
+                    return
+                except Exception as Ex:
+                    print("Sorry I was unable to connect to github", Ex)
+                    self.text_to_speech("Sorry I was unable to connect to GitHub")  # text to speech conversion
+
                 """Playing the music below"""
             elif total_saying.startswith("play music") or total_saying.__contains__("music please"):
-                self.total_saying = total_saying.replace("play music", "")
-                self.total_saying = self.total_saying.replace("music please", "")  # replacing the string !
-                self.text_to_speech("Playing Music")
-                self.play_video()  # plays the video
-                self.text_to_speech("Music Video has been played")
-                # MP_gui = main()
-                # MP_gui.run()
-                time.sleep(4)  # Sleeps the computer for 4 seconds. so that the user can listen to the Sound
-                self.store_userinput("playing music")
+                try:
+                    self.total_saying = total_saying.replace("play music", "")
+                    self.total_saying = self.total_saying.replace("music please", "")  # replacing the string !
+                    self.text_to_speech("Playing Music")
+                    self.play_video()  # plays the video
+                    self.text_to_speech("Music Video has been played")
+                    # MP_gui = main()
+                    # MP_gui.run()
+                    time.sleep(4)  # Sleeps the computer for 4 seconds. so that the user can listen to the Sound
+                    self.store_userinput("playing music")
+                except Exception as Ex:
+                    print("Unable to play the music", Ex)
             # last link being read
             # This calls the Web scrap class in the __speakcode.py
             # TODO : Add the links to be dynamically updated from the last scrapped page
             elif total_saying.startswith("play video"):
-                self.text_to_speech("Playing Music Video for you")
-                self.play_video()
-                self.text_to_speech("Music Video played")
+
+                try:
+                    self.text_to_speech("Playing Music Video for you")
+                    self.play_video()
+                    self.text_to_speech("Music Video played")
+                except Exception as Ex:
+                    print("Unable to play the music video because of :", Ex)  # printing the exception as
+
             elif total_saying.startswith("read it out to me") or total_saying.startswith("read it out for me"):
                 # self.db.insert_into_History(total_saying + ":" + self.lastlink)
                 self.store_userinput(total_saying + ":" + self.lastlink)
@@ -1196,21 +1384,25 @@ class PYSHA_CLASS:
                 self.text_to_speech("opening the website for : ", self.total_saying)
                 webbrowser.open(self.total_saying)
 
-            elif total_saying.__contains__("facebook status") or total_saying.startswith("post status on facebook") or total_saying.startswith("facebook post"):
-                        self.text_to_speech("posting the status on facebook") # posting the status on facebook
-                        self.total_saying = total_saying.replace("facebook status ","") # replacing the spaces with the non space typed.
-                        self.total_saying = self.total_saying.replace("post status on facebook", "")
-                        self.total_saying = self.total_saying.replace("facebook post ","") # replacing cleaning the data
-                        self.store_userinput("Facebook status post: "+ self.total_saying)  # storing the input for the Facebook in the history
-                        FB_class = FB() # Creating the facebook class for the pysha
-                        # Calling in the class which will return the boolean experession on the basis ofthe ate that is being returned 
-                        boolean_condition = FB_class.post_status("ANOTHER TESTING OF POSTING STATUS")  #  posting the message on facebook
-                        if boolean_condition == True:  # this is the boolean condition which is set true
-                            self.text_to_speech("Status on facebook have been posted")
-                        else:
-                            self.text_to_speech("Status posting was not possible, there is a problem reaching the facebook")
-                            return
-                    
+            elif total_saying.__contains__("facebook status") or total_saying.startswith(
+                    "post status on facebook") or total_saying.startswith("facebook post"):
+                self.text_to_speech("posting the status on facebook")  # posting the status on facebook
+                self.total_saying = total_saying.replace("facebook status ",
+                                                         "")  # replacing the spaces with the non space typed.
+                self.total_saying = self.total_saying.replace("post status on facebook", "")
+                self.total_saying = self.total_saying.replace("facebook post ", "")  # replacing cleaning the data
+                self.store_userinput(
+                    "Facebook status post: " + self.total_saying)  # storing the input for the Facebook in the history
+                FB_class = FB()  # Creating the facebook class for the pysha
+                # Calling in the class which will return the boolean experession on the basis ofthe ate that is being returned
+                boolean_condition = FB_class.post_status(
+                    "ANOTHER TESTING OF POSTING STATUS")  # posting the message on facebook
+                if boolean_condition == True:  # this is the boolean condition which is set true
+                    self.text_to_speech("Status on facebook have been posted")
+                else:
+                    self.text_to_speech("Status posting was not possible, there is a problem reaching the facebook")
+                    return
+
             elif total_saying.startswith("twitter status") or total_saying.startswith("post on twitter") \
                     or total_saying.startswith("status") or total_saying.startswith("post twitter"):
                 self.total_saying = total_saying.replace("tweet ", "")  # text filterning
@@ -1220,10 +1412,10 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("post twitter", "")
                 self.total_saying = self.total_saying.replace("post on twitter", "")
                 # TODO: Replace your twitter credentials here
-                # ckey = 'MzaXuqZ6SDL9WTvYpQuSldfQ7'
-                # csecret = '6erIkd8q9eYfsuBAaFpSs7WFGg8ClTiKszaDjMscZsJxkv7JMR'
-                # atoken = '558084273-43R4qZg8jfAMKRVhlxruiHp1m1No1pbLMFjqIXwN'
-                # asecret = 'I5UIacTCLHAq7qwGhfTdoFxph3BLBSUhoZTHa9Ktz6sOU'
+                # ckey = ''
+                # csecret = ''
+                # atoken = ''
+                # asecret = ''
                 try:
                     credential_read = [line.strip() for line in open("E:\PYSHA\Twitter_credentials", "r").readlines()]
                     ckey, csecret = credential_read[0], credential_read[1]
@@ -1235,11 +1427,27 @@ class PYSHA_CLASS:
                     self.text_to_speech("tweeting on twitter :" + self.total_saying)
                     api.update_status(status)  # Posts the status om the twitter.
                 except Exception as E:
-                    print("your forgot to check the File destination please reconfigure the file",E)
+                    print("your forgot to check the File destination please reconfigure the file", E)
                     self.text_to_speech("PYSHA sees twitter failure, shafay")
 
                 self.text_to_speech("Tweet have been posted in your twitter account")
-
+            elif self.total_saying.startswith("Write to a file") or self.total_saying.startswith("can you help me write to a file")\
+                    or self.total_saying.startswith("Write to a Document") or self.total_saying.startswith("file write"):
+                self.store_userinput("COMMAND : Write to a File")
+                self.text_to_speech("Sure i can write to a file though, Start speaking after i say GO")
+                time.sleep(1)  # Just for the notification of the Current time work
+                self.text_to_speech("GO")
+                WTF = Writing_to_file()  # This calls the Writing to the file
+            elif self.total_saying.startswith("mouse") or self.total_saying.startswith("move mouse") or self.total_saying.startswith("move"):
+                M_obj = mm.MouseMove()
+                self.total_saying = self.total_saying.replace("mouse ", "")
+                self.total_saying = self.total_saying.replace("move mouse", "")  # Data Filtering
+                self.total_saying = self.total_saying.replace("move", "")  # Data filtering
+                self.total_saying = self.total_saying.strip()   # Now there is a command
+                self.store_userinput("COMMAND: Mouse Movement: " + self.total_saying)
+                self.text_to_speech("Moving Mouse:" + self.total_saying)  # Debugging purpose
+                M_obj.on_command_move(self.total_saying)  # Passing Command
+                self.text_to_speech("Moved")  # Debugging purpose
             elif total_saying.startswith("mail") or total_saying.startswith("check email") or total_saying.startswith(
                     "check mail"):
                 self.text_to_speech("Checking email")
@@ -1278,7 +1486,7 @@ class PYSHA_CLASS:
                         # if the input returned from the Wolframalpha turns out to be null then leave it .
                         self.text_to_speech(WFM_backstring)  # this converts text to speech
                 except Exception as E:
-                    print("Unable to connect and Compute the required problem",E)
+                    print("Unable to connect and Compute the required problem", E)
                     self.text_to_speech("Unable to connect and compute the requiredd problem")
             else:
                 try:
@@ -1289,8 +1497,8 @@ class PYSHA_CLASS:
                     # Storing the input value in the db
                     # if not self.total_saying.__contains__('search'):
                     #     print("training ") # just for debugging
-                        #self.py_chat_bot.train_text(list(self.total_saying))
-                        # trains on the basis of the user specified
+                    # self.py_chat_bot.train_text(list(self.total_saying))
+                    # trains on the basis of the user specified
                     # input
                     self.store_userinput("PYSHA Chat output" + str(retrieved_output))
                     # Storing the received value in db
