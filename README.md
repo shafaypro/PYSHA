@@ -1,3 +1,5 @@
+© Copyrights and all other rights are reserved to Muhammad Shafay Amjad.
+
 # PYSHA
 A Simple Virtual Assistant Build in Python
 ##############INSTALL THE PACKAGAES FROM THE REQUIREMENTS.txt##############
