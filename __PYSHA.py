@@ -287,9 +287,11 @@ class Writing_to_file:
 
     def write_in_file(self, text):
         current_directory = os.path.dirname(os.path.realpath(__file__))  # Getting the current directory from the file
-        specified_file = current_directory + "OnSpeakType\\filedata.txt"  # Creating the specified file
+        print("Writing to a file")
+        specified_file = current_directory + "OnSpeakType\\datain.txt"  # Creating the specified file
         file_writer = open(specified_file, "w+")  # Opening the specified file
         file_writer.write(text)
+        print("Writte to the file data .txt ! ")
         file_writer.write(" ")
         file_writer.close()
 
@@ -459,8 +461,15 @@ class FilestoTextFiles:
                 continue
         return file_list  # this returns the file list
 
-    def get_pdf_files(self, file_list=get_all_running_files()):
+    def get_pdf_files(self):
         pdf_files_location = []
+        file_list = []  # This gets the list of the files
+        for proc in psutil.process_iter():  # going through all of the processes to get the list of the running processes
+            try:
+                if len(proc.open_files()) != 0:  # If there is a process running
+                    file_list.append(proc.open_files())  # adding in the file so that the data can be used.
+            except:
+                continue
         for list in file_list:
             for inner_list in list:
                 if str(inner_list).split(',')[0].__contains__(
@@ -529,6 +538,8 @@ class PYSHA_CLASS:
     newscheck = NEWS()  # Creates an object for news
     music_player = MUSIC_PLAYER()  # This creates the music player object class
     image_shower = IMAGE_CHECK()  # This creates the object for the images , this can be accessible locally
+    pdf_file = None # Specifing the pdf file to be none !
+    fttf = FilestoTextFiles()  # Creating the class of the text filtering , whic hwill be used to convert to pdf
     music_check_indicator = 0  # This will be used to check the music of the
     image_check_indicator = 0  # This will be used to check if the image is already there or not
 
@@ -1776,7 +1787,7 @@ class PYSHA_CLASS:
                     self.text_to_speech("Music Video has been played")
                     # MP_gui = main()
                     # MP_gui.run()
-                    time.sleep(1)  # Sleeps the computer for 4 seconds. so that the user can listen to the Sound
+                    # ime.sleep(1)  # Sleeps the computer for 4 seconds. so that the user can listen to the Sound
                     self.store_userinput("playing music")
                 except Exception as Ex:
                     print("Unable to play the music", Ex)  # Unable to play the music .!
@@ -1856,8 +1867,18 @@ class PYSHA_CLASS:
                 WS.scrap_link(self.lastlink)
                 self.store_userinput(total_saying + ":" + self.lastlink)
             # This will call in the process to read the current pdf data ,
-            elif total_saying.startwith("read pdf for me"):
-                pass # You are working here ! ! !
+            elif total_saying.startswith("read pdf for me"):
+                try:
+                    pdf_file = self.fttf.get_pdf_files()
+                    if len(pdf_file) != 0:
+                        file_read = open(str(pdf_file[0]).replace("\\\\\\\\", "/"), "rb")  # specifying the pdf file to be read!
+                        data = self.fttf.readPDF(file_read)  # Passing in the file buffer to the pdf file
+                        self.text_to_speech(data)  # Reading the specific data. !
+                except Exception as Ex:
+                    print("There was an error in reading the pdf out.")
+                    self.text_to_speech("line ")
+                # Calling in the fttf to get all the pdf files from the psutill class.
+                pass  # You are working here ! ! !
 
             elif total_saying.startswith("web"):
                 self.total_saying = total_saying
@@ -1935,13 +1956,13 @@ class PYSHA_CLASS:
                         start_working()  # performs the sentimental analysis
                     except Exception as Ex:
                         print("Unable to perform the sentimental analysis on the specified string", Ex)
-            elif self.total_saying.startswith("Write to a file") or self.total_saying.startswith(
+            elif self.total_saying.startswith("write to a file") or self.total_saying.startswith(
                     "can you help me write to a file") \
-                    or self.total_saying.startswith("Write to a Document") or self.total_saying.startswith(
+                    or self.total_saying.startswith("write to a document") or self.total_saying.startswith(
                 "file write"):
                 self.store_userinput("COMMAND : Write to a File")
                 self.text_to_speech("Sure i can write to a file though, Start speaking after i say GO")
-                time.sleep(1)  # Just for the notification of the Current time work
+                # time.sleep(1)  # Just for the notification of the Current time work
                 self.text_to_speech("GO")
                 WTF = Writing_to_file()  # This calls the Writing to the file
             elif self.total_saying.startswith("mouse") or self.total_saying.startswith(
@@ -1975,14 +1996,17 @@ class PYSHA_CLASS:
                     self.shortterm_check()  # this calls the current Short term memory shuffled.
                 except Exception as Ex:
                     print("The exception is :", Ex)  # This prints the specified exception
+            # Checking in the last statment read by the assistant
             elif total_saying.__contains__("what did i just said to you") or total_saying.__contains__(
                     "what did i just said"):
                 self.shortterm_check(limit=1)  # specifying the limit to 1 so that the last statements is returned
+            # Going on line streaming !
             elif total_saying.startswith("live stream"):
                 total_saying = total_saying.replace("live stream", "")  # Replacing the string of live stream with empty
                 self.db.insert_into_History('live sports stream ::' + total_saying)
                 self.text_to_speech("Finding the live stream for ", total_saying)  # This searches for the live stream
                 watch_live_sports_stream(total_saying)  # Passing in the function !
+            # Checking out the pc part picker list
             elif total_saying.startswith("pc part pick search") or total_saying.startswith(
                     "pc part search") or total_saying.startswith("pc part"):
                 total_saying = total_saying.replace("pc part search", "")
@@ -1990,16 +2014,16 @@ class PYSHA_CLASS:
                 total_saying = total_saying.replace("pc part", "")
                 self.text_to_speech("Searching on the pc part picker")
                 self.search_pc_part_picker(total_saying)  # Calls in the function for
-
-            elif total_saying.startswith("read the pdf out for me") or self.total_saying("read the pdf") or self.total_saying("read pdf for me"):
+            # Reading the current pdf out for the specified user
+            elif self.total_saying.startswith("read the pdf out for me") or self.total_saying.startswith("read the pdf") or self.total_saying.startswith("read pdf for me"):
                 M = FilestoTextFiles()
                 returned_data = M.get_pdf_files()  # This calls in the function to get all the pdf files from the stuff
                 if len(returned_data) != 0:
                     returned_text = M.readPDF(returned_data[0])  # This will pass in the pdf file data to be read
-                    self.text_to_speech(str(returned_text))
+                    self.text_to_speech(str(returned_text))  #
                     # This converts the text to speech of the specific co
                 else:
-                    self.text_to_speech("I Couldn't see any pdf file")
+                    self.text_to_speech("I Couldn't see any pdf file shafay")
             elif total_saying.startswith('what') or total_saying.startswith("when") or total_saying.startswith(
                     "how") or total_saying.startswith("where") or total_saying.startswith(
                 "solve") or total_saying.startswith("who") or total_saying.startswith(
