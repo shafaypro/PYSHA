@@ -27,29 +27,21 @@ Social Media Addition will be added soon , with messaging and emailing compatibi
 # EXAMPLES:
  -!!!!!!!!!!!!!!!!!!!!!!!EXAMPLE QUESTIONS !!!!!!!!!!!!!!!!!!!!!!!!
  -Who won the Election of 2016 in United states ?
- -
 
  -Who wrote the book The lord of the Flies ?
- -
-
+ 
  -What is the meaning of life ?
- -
 
  -What is the meaning of Nostalgia?
 
- -
+ 
  -bread <-- This will return the Other Requirements
-
- -
- -
+ 
  # --------------------------Example Programming Solution-----------------------
  -ask --> what is the date / what is the time
 
- -
- -
  -ask --> What is the integeration of 2 x squared + 3 x + 7
 
- -
  -
  -ask --> which is greater in quantity 1 liter of water or 1 liter of milk
 
