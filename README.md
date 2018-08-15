@@ -1,4 +1,4 @@
-© Copyrights and all other rights are reserved to Muhammad Shafay Amjad.
+OPENSOURCE
 
 # PYSHA
 A Simple Virtual Assistant Build in Python
