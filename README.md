@@ -1,4 +1,6 @@
 OPENSOURCE
+Refined code and Corrected along with tests and examples will be uploaded in another repository.
+The source code is at https://github.com/shafaypro/PYSHAv2 (refining source code will take a month or two : started in 08/18/2018)
 
 # PYSHA
 A Simple Virtual Assistant Build in Python
