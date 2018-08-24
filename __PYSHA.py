@@ -42,7 +42,7 @@ try:
     from AssistantProperties import _chooseassitant  # importing the properties of the assistant being choosen.
     from __shorttermmemory import *  # Short term memory
     from Chatdependencies._chat import *  # importing the _chat module
-    from SentimentalAnalysis.Basic_sentimentanalysis import *  # imports to download tweets
+    # from SentimentalAnalysis.Basic_sentimentanalysis import *  # imports to download tweets
     from __newsupdates import *  # imports the news class for the news updates.
     from SentimentalAnalysis.downloadTweets import *  # imports for performing the sentimetn analysis
     from __facebook import *  # importing the facebook module for GraphAPI.
@@ -57,7 +57,7 @@ except Exception as E:  # Taking the Exception as E
 # this si the importing of the header files !
 # Pre requirements : You need to Install Microsoft SDK fo Speech and all the available Tools
 # Keep in mind that This is Under Heavy Construction and will be used in the later increments and
-
+# TODO : YOU NEED TO ADD IN THE ARTIFICIAL FAST INTELLGIENCE AND THE FAST PROCESSING. !
 '''
 // This build is heavily under progress by Muhammad Shafay Amjad, If you want to check all the dependencies,
 and want to contribute to improve the particular algorithm, check Repository.
@@ -250,7 +250,8 @@ And all the other things given to the Assistant so that it can work in there.
 # TODO : USE THE Natural Language processing TOO, To improve the Virtual Assistant
 __author__ = "M Shafay Amjad"
 __QA__ = "mshafayamjad@gmail.com"
-__supervisor__ = "Dr. Fareeha Zafar"
+__copyrights__ = "© to Muhammad Shafay Amjad , No changes should be made prior to his permission"
+__supervisor__ = ""
 __version__ = 1.0
 __productname__ = "PYSHA"
 __university__ = "Government College University Lahore"
@@ -626,6 +627,12 @@ class PYSHA_CLASS:
                 self.text_to_speech("Window media player has been closed")
             except Exception as ex:
                 print("Exception occured a ", ex)  # printing the exception
+        elif input_string == "music":
+            try:
+                os.system("TASKKILL /F /IM wmplayer.exe")
+                self.text_to_speech("Music stopped")
+            except Exception as Ex:
+                print("close program input string debugging requires")
         elif input_string == "calculator":
             try:
                 self.text_to_speech("Closing Calculator")
@@ -1889,7 +1896,12 @@ class PYSHA_CLASS:
             elif self.total_saying.startswith("schedule update") or self.total_saying.startswith("schedule"):
                 self.text_to_speech("Checking Schedule")
                 self.schedule_check()  # calls the Schedule function to check the schedule
-
+            elif total_saying.startswith("pause"):
+                total_saying = total_saying.replace("pause").strip()
+                if total_saying.strip() =="ten":
+                    time.sleep(10) # Sleeps for ten seconds
+                elif total_saying.strip() == "twenty":
+                    time.sleep(20) # Waits for 20 seconds
             elif total_saying.__contains__("facebook status") or total_saying.startswith(
                     "post status on facebook") or total_saying.startswith("facebook post"):
                 self.text_to_speech("posting the status on facebook")  # posting the status on facebook
@@ -1940,22 +1952,22 @@ class PYSHA_CLASS:
 
                 # The below function is responsible for the sentimental analysis of the specified input
                 # Keep in mind that hte dependencies are int the Sentimental analysis folder.
-            elif self.total_saying.startswith("sentimental analysis") or self.total_saying.startswith(
-                    "do sentimental analysis"):
-                if self.total_saying == "sentimental analysis only":
-                    try:
-                        start_working()  # starts working on the specified stirng
-                    except Exception as Ex:
-                        print("There was an exception in the specified Sentimental analysis only", Ex)
-                else:
-                    self.total_saying = self.total_saying.replace("sentimental analysis", "")
-                    self.total_saying = self.total_saying.replace("do sentimental analysis", "")
-                    self.store_userinput("SENTIMENTAL ANALYSIS ON: " + self.total_saying)
-                    try:
-                        download_tweets_call(self.total_saying)  # Passes the total saying for downloading the tweet
-                        start_working()  # performs the sentimental analysis
-                    except Exception as Ex:
-                        print("Unable to perform the sentimental analysis on the specified string", Ex)
+            # elif self.total_saying.startswith("sentimental analysis") or self.total_saying.startswith(
+            #         "do sentimental analysis"):
+            #     if self.total_saying == "sentimental analysis only":
+            #         try:
+            #             start_working()  # starts working on the specified stirng
+            #         except Exception as Ex:
+            #             print("There was an exception in the specified Sentimental analysis only", Ex)
+            #     else:
+            #         self.total_saying = self.total_saying.replace("sentimental analysis", "")
+            #         self.total_saying = self.total_saying.replace("do sentimental analysis", "")
+            #         self.store_userinput("SENTIMENTAL ANALYSIS ON: " + self.total_saying)
+            #         try:
+            #             download_tweets_call(self.total_saying)  # Passes the total saying for downloading the tweet
+            #             start_working()  # performs the sentimental analysis
+            #         except Exception as Ex:
+            #             print("Unable to perform the sentimental analysis on the specified string", Ex)
             elif self.total_saying.startswith("write to a file") or self.total_saying.startswith(
                     "can you help me write to a file") \
                     or self.total_saying.startswith("write to a document") or self.total_saying.startswith(
@@ -2024,6 +2036,14 @@ class PYSHA_CLASS:
                     # This converts the text to speech of the specific co
                 else:
                     self.text_to_speech("I Couldn't see any pdf file shafay")
+            elif total_saying.startswith("How you doing") or total_saying.startswith("how are you doing"):
+                try:
+                    random_answers = ["quite fine", "almost fine you should ask david", "interesting you never ask this",
+                                      "may be you should switch me"]
+                    random_answer = random_answers[random.randint(0, len(random_answers) - 1)]
+                    self.text_to_speech(random_answer)
+                except Exception as Ex:
+                    print(Ex)
             elif total_saying.startswith('what') or total_saying.startswith("when") or total_saying.startswith(
                     "how") or total_saying.startswith("where") or total_saying.startswith(
                 "solve") or total_saying.startswith("who") or total_saying.startswith(

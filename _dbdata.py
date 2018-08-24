@@ -2,7 +2,9 @@ try:
     import sqlite3
     import random  # For generating the random numbers (for short term memory +-2)
 except Exception as E:
-    print("The module needs to be installed",E) # Debugging purpose
+    print("The module needs to be installed", E)  # Debugging purpose
+
+
 class db_data:
     # setting the connection to None and the Cursor to none
     connection = None
@@ -12,7 +14,7 @@ class db_data:
     # intializing the database
     def __init__(self):
         print("This is the Instantiation Function of the Class dbdata")
-        self.connection = sqlite3.connect("Localdb/DBPYSHA.sqlite3")  # Creating the SQLITE3 database PYSHA
+        self.connection = sqlite3.connect("DBPYSHA.sqlite3")  # Creating the SQLITE3 database PYSHA
         self.cur = self.connection.cursor()  # Creting the cursor for the attachment of the database
         try:  # if the database doen't exists than create the database
             self.create_database()
@@ -40,6 +42,11 @@ class db_data:
         self.cur.execute('''INSERT INTO Requests(r_Text,r_responce) VALUES (?,?)''', (r_Text, r_Responce))
         self.connection.commit()  # this commits all the changes
         return
+
+    def insert_into_Reminders(self, Rem_name, Rem_date):
+        self.cur.execute('''INSERT INTO REMINDERS(Rem_name,Rem_Date) VALUES (?,?)''', (Rem_name, Rem_date))
+        self.connection.commit()  # Commits in to the reminder table , as the values are inserted in
+        return # Returns to the main function , as the data is inserted in the database
 
     # inserting in to history of the database
     def insert_into_History(self, h_text):

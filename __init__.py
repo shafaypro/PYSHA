@@ -2,9 +2,11 @@ from __PYSHA import *
 import logging
 from tkinter import *  # imports the Gui feature for the specified stuff
 
+# TODO : http://scipy.github.io/old-wiki/pages/Tentative_NumPy_Tutorial   , Specific NUMPY TUTORIALS
+# TODO : http://scipy.github.io/old-wiki/pages/Numpy_Example_List   , These are the numpy examples.
 
 # Instructions are written in the readme.md
-
+# Was not expecting errors from there. 
 def About():
     pass
 

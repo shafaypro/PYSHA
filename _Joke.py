@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup  # importing the beautiful soup for the web scrapi
 import requests
 from tkinter import *
 import urllib
+import os
 # This Joke Class is created By Muhammad Shafay Amjad for the showing of the comic and comic from the internet
 '''
     The joke class was created by M Shafay Amjad ,for the purpose of building the Joke Regerding to the Specified Things or categories ,
@@ -70,15 +71,19 @@ class Joke(object):
                 Label_img.pack()  # This packs this image in the Loop
                 root.mainloop()  # run the loop to show the gui image for the specified !
             except:
-                print(location)  # this is just for the debugging purposes!
-                root = Tk()  # this is the tkinter module!
-                root.geometry('1000x1000')
-                canvas = Canvas(root, width=999, height=999)
-                canvas.pack()
-                photo = Image.open(location)
-                label_image = ImageTk.PhotoImage(photo)  # this adds up the photo image to the Label image
-                imagesprite = canvas.create_image(400, 400, image=label_image)
-                root.mainloop()
+                try:
+                    print(location)  # this is just for the debugging purposes!
+                    root = Tk()  # this is the tkinter module!
+                    root.geometry('1000x1000')
+                    canvas = Canvas(root, width=999, height=999)
+                    canvas.pack()
+                    photo = Image.open(location)
+                    label_image = ImageTk.PhotoImage(photo)  # this adds up the photo image to the Label image
+                    imagesprite = canvas.create_image(400, 400, image=label_image)
+                    root.mainloop()
+                except:
+                    os.system('start '+location)
+                    print("Opening the image ! ")
 
     # There are some certain sites for the scrapping for the particular page and an api , which is
     # http://api.icndb.com/jokes/random/

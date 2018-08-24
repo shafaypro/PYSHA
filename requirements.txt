@@ -26,3 +26,5 @@ google
 pocketsphinx
 facepy
 pyautogui
+docx
+pdfminer3x
