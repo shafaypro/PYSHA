@@ -2,7 +2,9 @@ OPENSOURCE
 
 # PYSHA
 * A Simple Virtual Assistant Build in Python
-##############INSTALL THE PACKAGAES FROM THE REQUIREMENTS.txt##############
+
+
+### INSTALL THE PACKAGAES FROM THE REQUIREMENTS.txt
 
     pip install [PackageNAME]
 
