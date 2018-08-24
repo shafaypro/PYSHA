@@ -5,6 +5,9 @@ OPENSOURCE
 
 ** A video tutorial will be uploaded on using PYSHA on local machines.
 
+# General Architecture 
+
+https://raw.githubusercontent.com/shafaypro/PYSHA/master/PyshaGA.png
 
 ### INSTALL THE PACKAGAES FROM THE REQUIREMENTS.txt
     pip install -r requirements.txt
