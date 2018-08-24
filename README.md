@@ -1,28 +1,31 @@
 OPENSOURCE
 
 # PYSHA
-A Simple Virtual Assistant Build in Python
+* A Simple Virtual Assistant Build in Python
 ##############INSTALL THE PACKAGAES FROM THE REQUIREMENTS.txt##############
-pip install [PackageNAME]
+
+    pip install [PackageNAME]
+
 if you are familar with virtualenv <-- use the virtualenvirenoment to create a local python duplicate to work with this project.
 # Installing
-pip install -r requirements.txt
+    pip install -r requirements.txt
 # Predependencies:
-  install Microsoft Speech SDK(120 MB+)
-  AVBIN(10 MB+)
-DEPENDENCIES: Microsoft SDK 5.1 download and install in the local machine.
+    install Microsoft Speech SDK(120 MB+)
+    AVBIN(10 MB+)
+    DEPENDENCIES: Microsoft SDK 5.1 download and install in the local machine.
 ############## TO optimize the code , you can just download the required module for the Natural language processing ############
 # RUNNING
-Run the __init__.py file, this will automatically Start the VirtualAssistant, There is no user interface which has been developed but it will be soon in the upcomming pings.
+
+    Run the __init__.py file, this will automatically Start the VirtualAssistant, There is no user interface which has been developed but it will be soon in the upcomming pings.
 --> #IT IS UNDER HEAVY DEVELOPMENT, SINCE Its been a month i started working on it.
 # #######################TODO##################################
 Later on the code will be using different terminologies for accessing the social media, after configuring the search engine and then it will be having Artifical Intelligence , Machine Learning Modules while aiml to record the markupform of the intelligence asked question.
 
 # TIPS:
-You should speak anything or any command listed below , it will work as its supposed to, if the command is not found , it will be sent for chatting, and will be used to chat.
+    You should speak anything or any command listed below , it will work as its supposed to, if the command is not found , it will be sent for chatting, and will be used to chat.
 
 # GOOD NEWS:
-Social Media Addition will be added soon , with messaging and emailing compatibilites
+    Social Media Addition will be added soon , with messaging and emailing compatibilites
 
 ## EXAMPLES:
     !!!!!!!!!!!!!!!!!!!!!!!EXAMPLE QUESTIONS !!!!!!!!!!!!!!!!!!!!!!!!
