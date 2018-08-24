@@ -7,7 +7,7 @@ OPENSOURCE
 
 # General Architecture 
 
-https://raw.githubusercontent.com/shafaypro/PYSHA/master/PyshaGA.png
+![](https://raw.githubusercontent.com/shafaypro/PYSHA/master/PyshaGA.png)
 
 ### INSTALL THE PACKAGAES FROM THE REQUIREMENTS.txt
     pip install -r requirements.txt
