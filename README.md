@@ -3,15 +3,18 @@ OPENSOURCE
 # PYSHA
 * A Simple Virtual Assistant Build in Python
 
+** A video tutorial will be uploaded on using PYSHA on local machines.
+
 
 ### INSTALL THE PACKAGAES FROM THE REQUIREMENTS.txt
-
-    pip install [PackageNAME]
+    pip install -r requirements.txt
+    
 
 if you are familar with virtualenv <-- use the virtualenvirenoment to create a local python duplicate to work with this project.
 # Installing
     pip install -r requirements.txt
 # Predependencies:
+    Install the following dependencies as well.
     install Microsoft Speech SDK(120 MB+)
     AVBIN(10 MB+)
     DEPENDENCIES: Microsoft SDK 5.1 download and install in the local machine.
