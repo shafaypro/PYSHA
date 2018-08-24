@@ -15,8 +15,8 @@ if you are familar with virtualenv <-- use the virtualenvirenoment to create a l
     pip install -r requirements.txt
 # Predependencies:
     Install the following dependencies as well.
-    install Microsoft Speech SDK(120 MB+) <a href="http://www.microsoft.com/en-pk/download/details.aspx?id=10121">Download from here</a>
-    AVBIN(10 MB+) <a href="https://avbin.github.io/AVbin/Download.html">Download from here </a>
+    install [Microsoft Speech SDK](http://www.microsoft.com/en-pk/download/details.aspx?id=10121)
+    install [AVBIN(10 MB+)](https://avbin.github.io/AVbin/Download.html)
     DEPENDENCIES: Microsoft SDK 5.1 download and install in the local machine.
 ############## TO optimize the code , you can just download the required module for the Natural language processing ############
 # RUNNING
