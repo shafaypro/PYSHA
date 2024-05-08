@@ -59,7 +59,7 @@ except Exception as E:  # Taking the Exception as E
 # Keep in mind that This is Under Heavy Construction and will be used in the later increments and
 # TODO : YOU NEED TO ADD IN THE ARTIFICIAL FAST INTELLGIENCE AND THE FAST PROCESSING. !
 '''
-// This build is heavily under progress by Muhammad Shafay Amjad, If you want to check all the dependencies,
+// This build is heavily under progress by , If you want to check all the dependencies,
 and want to contribute to improve the particular algorithm, check Repository.
 https://github.com/shafaypro/PYSHA1.0
 Info Dated: 2/3/2016  , WaterFall method is being Followed
@@ -250,7 +250,7 @@ And all the other things given to the Assistant so that it can work in there.
 # TODO : USE THE Natural Language processing TOO, To improve the Virtual Assistant
 __author__ = "M Shafay Amjad"
 __QA__ = "mshafayamjad@gmail.com"
-__copyrights__ = "© to Muhammad Shafay Amjad , No changes should be made prior to his permission"
+__copyrights__ = "© to  , No changes should be made prior to his permission"
 __supervisor__ = ""
 __version__ = 1.0
 __productname__ = "PYSHA"
@@ -1595,7 +1595,7 @@ class PYSHA_CLASS:
                 self.total_saying = self.total_saying.replace("who build you", "")
                 self.total_saying = self.total_saying.replace("who is your ceo", "")
                 self.total_saying = self.total_saying.replace("who is your creator", "")
-                required_text_list = ["Muhammad Shafay Amjad created me", "Shafay is my CEO", "Shafay is my creator",
+                required_text_list = [" created me", "Shafay is my CEO", "Shafay is my creator",
                                       "Well , Shafay build me from header files and his brain"]
                 selected_index = random.randint(0, len(required_text_list) - 1)
                 self.text_to_speech(required_text_list[selected_index])  # Speaking
