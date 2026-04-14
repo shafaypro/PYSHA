@@ -6,11 +6,14 @@ Install with: ``pip install 'pysha[llm-ollama]'``
 
 from __future__ import annotations
 
-from typing import AsyncIterator
+from typing import TYPE_CHECKING
 
 import structlog
 
 from pysha.core.engine import LLMMessage, LLMResponse
+
+if TYPE_CHECKING:
+    from collections.abc import AsyncIterator
 
 logger = structlog.get_logger(__name__)
 

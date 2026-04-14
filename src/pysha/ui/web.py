@@ -6,9 +6,10 @@ Run via: ``pysha web``
 
 from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from pysha.app import Assistant
+if TYPE_CHECKING:
+    from pysha.app import Assistant
 
 
 def build_app(assistant: Assistant) -> Any:
@@ -77,30 +78,73 @@ _INDEX_HTML = """<!doctype html>
   <meta charset="utf-8" />
   <title>__NAME__</title>
   <style>
-    body { font: 16px system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; background:#0f172a; color:#e2e8f0; }
+    body {
+      font: 16px system-ui, sans-serif;
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      background:#0f172a;
+      color:#e2e8f0;
+    }
     h1 { color:#38bdf8; }
-    #log { border:1px solid #334155; border-radius:8px; padding:1rem; height:60vh; overflow:auto; background:#1e293b; }
+    #log {
+      border:1px solid #334155;
+      border-radius:8px;
+      padding:1rem;
+      height:60vh;
+      overflow:auto;
+      background:#1e293b;
+    }
     .msg { margin: .5rem 0; }
     .user { color:#fde68a; }
     .assistant { color:#a7f3d0; white-space: pre-wrap; }
     form { display:flex; gap:.5rem; margin-top:1rem; }
-    input { flex:1; padding:.5rem; border-radius:6px; border:1px solid #334155; background:#0f172a; color:#e2e8f0; }
-    button { padding:.5rem 1rem; border-radius:6px; border:none; background:#38bdf8; color:#0f172a; font-weight:600; }
+    input {
+      flex:1;
+      padding:.5rem;
+      border-radius:6px;
+      border:1px solid #334155;
+      background:#0f172a;
+      color:#e2e8f0;
+    }
+    button {
+      padding:.5rem 1rem;
+      border-radius:6px;
+      border:none;
+      background:#38bdf8;
+      color:#0f172a;
+      font-weight:600;
+    }
   </style>
 </head>
 <body>
   <h1>__NAME__</h1>
   <div id="log"></div>
-  <form id="f"><input id="i" autocomplete="off" placeholder="Ask me anything..." /><button>Send</button></form>
+  <form id="f">
+    <input id="i" autocomplete="off" placeholder="Ask me anything..." />
+    <button>Send</button>
+  </form>
   <script>
     const log = document.getElementById('log');
-    const ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/ws');
-    function add(role, text){ const d=document.createElement('div'); d.className='msg '+role; d.textContent=(role==='user'?'you: ':'assistant: ')+text; log.appendChild(d); log.scrollTop=log.scrollHeight; }
+    const ws = new WebSocket(
+      (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/ws'
+    );
+    function add(role, text){
+      const d = document.createElement('div');
+      d.className = 'msg ' + role;
+      d.textContent = (role === 'user' ? 'you: ' : 'assistant: ') + text;
+      log.appendChild(d);
+      log.scrollTop = log.scrollHeight;
+    }
     ws.onmessage = e => { const m = JSON.parse(e.data); add(m.role, m.content); };
     document.getElementById('f').addEventListener('submit', e => {
       e.preventDefault();
-      const v = document.getElementById('i').value.trim();
-      if(!v) return; add('user', v); ws.send(v); document.getElementById('i').value='';
+      const input = document.getElementById('i');
+      const v = input.value.trim();
+      if (!v) return;
+      add('user', v);
+      ws.send(v);
+      input.value = '';
     });
   </script>
 </body>

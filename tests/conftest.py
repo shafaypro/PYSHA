@@ -3,13 +3,16 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import AsyncIterator
+from typing import TYPE_CHECKING
 
 import pytest
 
 from pysha.app import Assistant
 from pysha.config import Settings
 from pysha.core.engine import LLMMessage, LLMResponse, Transcript
+
+if TYPE_CHECKING:
+    from collections.abc import AsyncIterator
 
 
 @pytest.fixture

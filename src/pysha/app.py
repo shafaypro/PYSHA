@@ -15,16 +15,18 @@ from __future__ import annotations
 
 import re
 import uuid
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import structlog
 
-from pysha.config import Settings
-from pysha.core.engine import LLMEngine, STTEngine, TTSEngine
 from pysha.core.events import Event, EventBus
 from pysha.core.memory import ConversationMemory, MemoryStore
 from pysha.core.plugin import PluginLoader
 from pysha.skills.base import Skill, SkillContext
+
+if TYPE_CHECKING:
+    from pysha.config import Settings
+    from pysha.core.engine import LLMEngine, STTEngine, TTSEngine
 
 logger = structlog.get_logger(__name__)
 
