@@ -1,174 +1,242 @@
-OPENSOURCE
+# PYSHA v2
+
+> **A modular, AI-powered virtual assistant with pluggable engines for speech, language, and automation.**
+
+[![CI](https://github.com/shafaypro/pysha/actions/workflows/ci.yml/badge.svg)](https://github.com/shafaypro/pysha/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+PYSHA started in 2017 as a student project stitched together around Google STT,
+`pyttsx`, ChatterBot, and a hundred small HTML-scraping hacks.  Version 2 is a
+ground-up rewrite that keeps the original spirit — a voice-first, pluggable,
+"do-stuff-for-me" assistant — but modernises every layer: async Python 3.11+,
+LLM-powered conversation, neural TTS, Whisper STT, a typed plugin system, a
+FastAPI web UI, a Rich terminal UI, and Docker packaging.
+
+---
+
+## Highlights
+
+- **LLM-powered** — drop-in support for **Anthropic Claude**, **OpenAI GPT**,
+  or local models via **Ollama**.
+- **Modular engines** — every STT, TTS, and LLM backend is a plugin.
+- **Open core, closed extensions** — third-party engines can ship under any
+  license via Python entry-points. No fork required.
+- **Skill-based commands** — weather, Wikipedia, Wolfram Alpha, web search,
+  news, system control, date/time. Add your own with ~30 lines of code.
+- **Voice or text** — speak to it, type to it, or call it from HTTP / WebSocket.
+- **Persistent + short-term memory** — async SQLite long-term store plus a
+  7-item sliding context window (a nod to Miller's Law, carried over from v1).
+- **First-class observability** — structured logging (`structlog`) and an
+  async event bus for UIs and telemetry.
+- **Typed, tested, packaged** — Pydantic settings, `pyproject.toml`,
+  `pytest`/`ruff`/`mypy`, Docker, GitHub Actions.
+
+---
+
+## Architecture
+
+```
+┌────────────────┐   text / voice   ┌────────────────────────────────────┐
+│  CLI / Web UI  │ ────────────────▶│            Assistant               │
+└────────────────┘                  │  (orchestrator + EventBus + memory)│
+                                    └──────┬──────────────┬──────────────┘
+                                           │              │
+                 ┌─────────────────────────┤              ├─────────────────┐
+                 ▼                         ▼              ▼                 ▼
+          ┌────────────┐           ┌──────────────┐ ┌───────────┐   ┌───────────────┐
+          │ STT Engine │           │  TTS Engine  │ │ LLM Engine│   │    Skills     │
+          │ (protocol) │           │  (protocol)  │ │ (protocol)│   │  (protocol)   │
+          └────────────┘           └──────────────┘ └───────────┘   └───────────────┘
+          whisper · google           edge · pyttsx   anthropic        weather · news
+          *your-engine*              *your-engine*   openai · ollama  wikipedia · …
+                                                     *your-engine*    *your-skill*
+```
+
+Everything below the protocol line is a **plugin** discovered at runtime via
+entry-point groups. The assistant itself never imports a specific engine.
+
+---
 
-# PYSHA
-* A Simple Virtual Assistant Build in Python
+## Quickstart
+
+### 1. Install
+
+```bash
+# Clone, create a venv, install the open-source defaults + a Claude backend:
+git clone https://github.com/shafaypro/pysha && cd pysha
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[llm-anthropic,tts-edge,skills-web,skills-wikipedia,skills-news]"
+```
+
+### 2. Configure
+
+```bash
+cp .env.example .env
+# edit .env — set PYSHA_ANTHROPIC_API_KEY at minimum.
+```
+
+### 3. Run
+
+```bash
+pysha chat          # text chat in your terminal
+pysha chat --speak  # also speaks replies aloud
+pysha listen        # voice conversation via microphone
+pysha web           # FastAPI + WebSocket UI at http://127.0.0.1:8000
+pysha plugins       # show every discovered engine / skill
+```
 
-** A video tutorial will be uploaded on using PYSHA on local machines.
+---
+
+## Configuration
+
+All settings are environment variables with the `PYSHA_` prefix, or in a
+`.env` file in the working directory.
+
+| Key | Default | Description |
+|---|---|---|
+| `PYSHA_STT_ENGINE` | `google` | STT plugin name |
+| `PYSHA_TTS_ENGINE` | `edge` | TTS plugin name |
+| `PYSHA_LLM_ENGINE` | `anthropic` | LLM plugin name |
+| `PYSHA_ANTHROPIC_API_KEY` | — | Claude API key |
+| `PYSHA_OPENAI_API_KEY` | — | OpenAI API key |
+| `PYSHA_OLLAMA_BASE_URL` | `http://localhost:11434` | Local Ollama host |
+| `PYSHA_TTS_VOICE` | `en-US-AriaNeural` | Edge TTS voice |
+| `PYSHA_WOLFRAM_APP_ID` | — | Wolfram Alpha key |
+| `PYSHA_WEB_HOST` / `PYSHA_WEB_PORT` | `127.0.0.1:8000` | Web UI bind |
+
+See `src/pysha/config.py` for the full list.
 
-# General Architecture 
+---
 
-![](https://raw.githubusercontent.com/shafaypro/PYSHA/master/PyshaGA.png)
+## Writing a plugin (open or closed source)
 
-### INSTALL THE PACKAGAES FROM THE REQUIREMENTS.txt
-    pip install -r requirements.txt
-    
+PYSHA's core is MIT-licensed. **Your plugin is not.**  You can ship it under any
+license you like — GPL, Apache, proprietary, commercial — and PYSHA will discover
+it automatically if you declare an entry-point.
 
-if you are familar with virtualenv <-- use the virtualenvirenoment to create a local python duplicate to work with this project.
-# Installing
-    pip install -r requirements.txt
-# Predependencies:
-    Install the following dependencies as well.
-    install [Microsoft Speech SDK](http://www.microsoft.com/en-pk/download/details.aspx?id=10121)
-    install [AVBIN(10 MB+)](https://avbin.github.io/AVbin/Download.html)
-    DEPENDENCIES: Microsoft SDK 5.1 download and install in the local machine.
-############## TO optimize the code , you can just download the required module for the Natural language processing ############
-# RUNNING
+### Example: a custom STT engine
 
-    Run the __init__.py file, this will automatically Start the VirtualAssistant, There is no user interface which has been developed but it will be soon in the upcomming pings.
---> #IT IS UNDER HEAVY DEVELOPMENT, SINCE Its been a month i started working on it.
-### TODO:
-Later on the code will be using different terminologies for accessing the social media, after configuring the search engine and then it will be having Artifical Intelligence , Machine Learning Modules while aiml to record the markupform of the intelligence asked question.
+```python
+# my_package/stt.py
+from pysha.core.engine import STTEngine, Transcript
+
+class MyCompanySTT:
+    name = "my-company-stt"
+
+    async def start(self):  ...
+    async def stop(self):   ...
 
-# TIPS:
-    You should speak anything or any command listed below , it will work as its supposed to, if the command is not found , it will be sent for chatting, and will be used to chat.
+    async def transcribe(self, audio_bytes, *, language="en") -> Transcript:
+        # call your proprietary service here
+        return Transcript(text="hello world")
 
-# GOOD NEWS:
-    Social Media Addition will be added soon , with messaging and emailing compatibilites
+    async def stream(self, *, language="en"):
+        yield Transcript(text="streamed chunk")
+```
 
-## EXAMPLES:
-    !!!!!!!!!!!!!!!!!!!!!!!EXAMPLE QUESTIONS !!!!!!!!!!!!!!!!!!!!!!!!
-    Who won the Election of 2016 in United states ?
+```toml
+# my_package/pyproject.toml
+[project.entry-points."pysha.engines.stt"]
+my-company-stt = "my_package.stt:MyCompanySTT"
+```
 
-    Who wrote the book The lord of the Flies ?
+Then:
 
-    What is the meaning of life ?
+```bash
+pip install my-package                 # your proprietary wheel
+PYSHA_STT_ENGINE=my-company-stt pysha chat
+```
 
-    What is the meaning of Nostalgia?
+The same pattern works for `pysha.engines.tts`, `pysha.engines.llm`, and
+`pysha.skills`.  See `docs/PLUGINS.md` for a full authoring guide.
 
+---
 
-    bread < This will return the Other Requirements
+## Skills
 
-## Example Programming Solution-
-        ask > what is the date / what is the time
+Built-in skills (all optional, installed with extras):
 
-        ask > What is the integeration of 2 x squared + 3 x + 7
+| Skill | Trigger examples | Extra |
+|---|---|---|
+| `datetime_skill` | *"what's the time?"* · *"today's date"* | — |
+| `weather` | *"weather in Paris"* · *"temperature in Tokyo"* | — (uses Open-Meteo) |
+| `wikipedia` | *"tell me about quantum physics"* | `skills-wikipedia` |
+| `web_search` | *"search for site reliability engineering"* | `skills-web` |
+| `news` | *"what's in the news?"* · *"headlines"* | `skills-news` |
+| `wolfram` | *"compute integral of sin(x) dx"* | `skills-wolfram` |
+| `system_control` | *"open calculator"* · *"close chrome"* | `skills-system` |
 
+Unmatched utterances fall through to the configured LLM.
 
-        ask > which is greater in quantity 1 liter of water or 1 liter of milk
+---
 
-        ask > Stack over flow search _____________
+## Docker
 
+```bash
+docker build -t pysha .
+docker run --rm -it --env-file .env -p 8000:8000 pysha
+# or
+docker compose up
+```
 
+---
 
-    ______ replace this with your query
+## Development
 
+```bash
+pip install -e ".[dev]"
+ruff check src tests
+pytest -q
+```
 
+```
+src/pysha/
+├── __main__.py          # CLI entry
+├── app.py               # Assistant orchestrator
+├── config.py            # Pydantic settings
+├── core/                # Protocols, plugin loader, event bus, memory
+├── engines/
+│   ├── stt/             # whisper, google, (your-engine)
+│   ├── tts/             # edge, pyttsx, (your-engine)
+│   └── llm/             # anthropic, openai, ollama, (your-engine)
+├── skills/              # datetime, weather, wikipedia, wolfram, …
+├── ui/                  # cli.py (Rich), web.py (FastAPI)
+└── utils/
+```
 
-    ask> search youtube ____________ or youtube _________________
+---
 
-    ask> searh youtube playlist _________ : ___ is the query of yours
+## Migrating from v1
 
-    search youtube ___________________: ______ replace this with your query
+The v1 monolith (2123-line `__PYSHA.py` et al.) has been preserved under
+[`legacy/`](./legacy/) so old behaviours remain inspectable and reusable.
+Features you relied on in v1 map to v2 as follows:
 
-    or youtube ___________________
+| v1 module | v2 equivalent |
+|---|---|
+| `__Voice.py` + `pyttsx` | `engines.tts.edge` / `engines.tts.pyttsx` |
+| `speech_recognition` | `engines.stt.google` / `engines.stt.whisper` |
+| `ChatterBot` corpus | LLM (Anthropic / OpenAI / Ollama) |
+| `_WolFrameAlphaClass.py` | `skills.wolfram` |
+| `_YouTube.py`, `__github.py`, … | `skills.web_search` (or custom skill) |
+| `__shorttermmemory.py` (7 ± 2) | `core.memory.ConversationMemory` |
+| `_dbdata.py` (SQLite) | `core.memory.MemoryStore` (async) |
+| Tkinter `__init__.py` | `ui.cli` (Rich) + `ui.web` (FastAPI) |
 
-    ask> search music _____________ or find music _______________ : replace ___ with your song name or artist or both
+---
 
-    ask> Read it out to me      or Read it out for me
+## Licensing
 
-    # This will read all the text from the last visited page
+- **Core (this repository):** MIT — free for open-source and commercial use.
+- **Plugins:** author's choice.  Proprietary, closed-source engines are a
+  first-class citizen: install the wheel, set the env var, run PYSHA.
 
+See [`LICENSE`](./LICENSE) for the full dual-licensing notice.
 
-    ask > switch to _______   : replace the _________ with Female , male , dave , hazel , zira
+---
 
+## Credits
 
-    ask > tweet __________________  : posts a tweet on twitter.
-
-
-    ask > search  music ________________ : searched the music.
-
-
-    ask > find music _______________ : finds the music from the internet.
-
-
-    ask > play music  : plays the music
-
-
-
-    ask > Music Please : plays the music
-
-
-
-    ask > music video please : plays a music video
-
-
-
-    ask > search for ________________ : searches on google
-
-
-
-    ask > launch ___________________ or RUN ______________ : runs the define application.
-
-
-
-    ask > read it out for me : reads the last visited page
-
-
-
-    ask > Search for _________: This opens up the browser for the result so that the Virtual assistant is able to read from the
-    data
-
-
-
-    ask > Stop,stop listening,quit : This will results in the Quiting , exiting for the virtual assistant!!
-
-
-
-    ask > search ________ on Wikipedia : will search on wikipedia based on certain meaningful words(replaces at _____)
-
-
-
-    ask > show me a comic : finds a comic from the internet and displayed the comic
-
-
-
-    ask > tell me a joke : Finds a joke from the web and shows the joke
-
-
-    ask > tokenize sentence ____________________________ : will returned a tokenized sen
-
-
-    ask > find me a wallpaper __________ or Find a wallpaper _____________ : replace ______ with your query
-
-    ask > Mouse Move _________ : replace ___- with up , down, left , right , click , scroll # Controls the Mouse Movements
-
-    ask > Stop chrome or other applications : Stops the processes of the application
-
-    ask > Stop windows Media Player : stops the specified application
-
-    ask > What did i just said : returns the last query from the short term memory(termed as the top runned query > the last most)
-
-
-    ask > What did i said you:  Returns maximum from the shrot term memory(last 7+-2 statments ) as per human brain.
-
-    ask > I love you : Will return the Best responce on the basis of the internal machine learning algorithms in chatterbot.
-
-    ask > read it out for me : reads out the complete web page by scrapping it.
-
-    ask > open link _________________________ : ask any query and will find the first link on the google and open it up
-
-    ask > github search ___________________________ or search on github   : will find suitable patterns and will tell you the github search results and show it on the browser.
-
-    ask > ______________________-  Ask anything other than the above text the responce wil be returned based on the machine larning algorithums and then the responce data will be returned.!
-
-    ask > Stop __________ : replace ____ with any application name such as Calculator , windows media player and others
-
-
- 
- 
- * Refined code and Corrected along with tests and examples will be uploaded in another repository.
-
-* The source code is at https://github.com/shafaypro/PYSHAv2/tree/dev
-
-* (refining source code will take a month or two : started in 08/18/2018)
-
+Originally created in 2017 by **M Shafay Amjad** as an undergraduate project.
+v2.0 is a modernising rewrite — new stack, new architecture, same spirit.
