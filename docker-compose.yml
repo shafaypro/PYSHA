@@ -1,0 +1,24 @@
+services:
+  pysha:
+    build: .
+    image: pysha:2.0
+    container_name: pysha
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - pysha-data:/root/.pysha
+
+  # Optional: local LLM runtime.  Uncomment to enable.
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama:/root/.ollama
+
+volumes:
+  pysha-data:
+  # ollama:

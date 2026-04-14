@@ -1,0 +1,150 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pysha"
+version = "2.0.0"
+description = "PYSHA — A modular, AI-powered virtual assistant with pluggable engines for speech, language, and automation."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [
+    { name = "M Shafay Amjad", email = "shafaypro@gmail.com" },
+]
+keywords = [
+    "virtual-assistant",
+    "ai",
+    "speech-recognition",
+    "text-to-speech",
+    "llm",
+    "plugin",
+    "automation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "pydantic>=2.0,<3",
+    "pydantic-settings>=2.0,<3",
+    "httpx>=0.27,<1",
+    "rich>=13.0,<14",
+    "click>=8.1,<9",
+    "aiosqlite>=0.20,<1",
+    "structlog>=24.0",
+]
+
+[project.optional-dependencies]
+# Speech engines
+stt-whisper = ["openai-whisper>=20231117", "sounddevice>=0.4", "numpy>=1.26"]
+stt-google = ["SpeechRecognition>=3.10", "PyAudio>=0.2.14"]
+stt-deepgram = ["deepgram-sdk>=3.0"]
+tts-edge = ["edge-tts>=6.1"]
+tts-pyttsx = ["pyttsx3>=2.90"]
+tts-openai = ["openai>=1.0"]
+
+# LLM engines
+llm-anthropic = ["anthropic>=0.40"]
+llm-openai = ["openai>=1.0"]
+llm-ollama = ["ollama>=0.3"]
+
+# Skills
+skills-web = ["beautifulsoup4>=4.12", "duckduckgo-search>=6.0"]
+skills-wikipedia = ["wikipedia>=1.4"]
+skills-wolfram = ["wolframalpha>=5.0"]
+skills-news = ["duckduckgo-search>=6.0"]
+skills-system = ["psutil>=5.9"]
+
+# Web UI
+web = ["fastapi>=0.115", "uvicorn[standard]>=0.30", "websockets>=12.0"]
+
+# Development
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+    "ruff>=0.7",
+    "mypy>=1.11",
+    "pre-commit>=3.8",
+]
+
+# All open-source engines
+all = [
+    "pysha[stt-google,tts-edge,tts-pyttsx,llm-anthropic,llm-openai,llm-ollama]",
+    "pysha[skills-web,skills-wikipedia,skills-wolfram,skills-news,skills-system]",
+    "pysha[web,dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/shafaypro/pysha"
+Repository = "https://github.com/shafaypro/pysha"
+Issues = "https://github.com/shafaypro/pysha/issues"
+
+[project.scripts]
+pysha = "pysha.__main__:main"
+
+# --- Plugin entry points ---
+# Third-party (or closed-source) engines register here.
+# Example: a proprietary STT engine would add:
+#   [project.entry-points."pysha.engines.stt"]
+#   my_stt = "my_package.stt:MySTTEngine"
+[project.entry-points."pysha.engines.stt"]
+google = "pysha.engines.stt.google:GoogleSTTEngine"
+whisper = "pysha.engines.stt.whisper:WhisperSTTEngine"
+
+[project.entry-points."pysha.engines.tts"]
+edge = "pysha.engines.tts.edge:EdgeTTSEngine"
+pyttsx = "pysha.engines.tts.pyttsx:PyttsxTTSEngine"
+
+[project.entry-points."pysha.engines.llm"]
+anthropic = "pysha.engines.llm.anthropic:AnthropicLLMEngine"
+openai = "pysha.engines.llm.openai:OpenAILLMEngine"
+ollama = "pysha.engines.llm.ollama:OllamaLLMEngine"
+
+[project.entry-points."pysha.skills"]
+web_search = "pysha.skills.web_search:WebSearchSkill"
+wikipedia = "pysha.skills.wikipedia_skill:WikipediaSkill"
+wolfram = "pysha.skills.wolfram:WolframSkill"
+weather = "pysha.skills.weather:WeatherSkill"
+news = "pysha.skills.news:NewsSkill"
+system_control = "pysha.skills.system_control:SystemControlSkill"
+datetime_skill = "pysha.skills.datetime_skill:DateTimeSkill"
+
+# --- Tool configuration ---
+[tool.hatch.build.targets.wheel]
+packages = ["src/pysha"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/pysha", "tests", "README.md", "LICENSE"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "A", "SIM", "TCH"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pysha"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
