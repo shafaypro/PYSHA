@@ -249,7 +249,7 @@ And all the other things given to the Assistant so that it can work in there.
 
 # TODO : USE THE Natural Language processing TOO, To improve the Virtual Assistant
 __author__ = "M Shafay Amjad"
-__QA__ = "mshafayamjad@gmail.com"
+__QA__ = ""
 __copyrights__ = "© to  , No changes should be made prior to his permission"
 __supervisor__ = ""
 __version__ = 1.0

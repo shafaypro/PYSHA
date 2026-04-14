@@ -36,7 +36,7 @@ def speech_to_text():
         #text = r.recognize_google(audio, language='en-US')
 
         text = r.recognize_google(audio, language='en-GB')
-        # text = r.recognize_ibm(audio,"mshafayamjad@gmail.com", "shafay12332100s")
+        # text = r.recognize_ibm(audio, "IBM_USERNAME", "IBM_PASSWORD")
         # r.re
         # r.re
         print("You said: " + text)
