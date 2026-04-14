@@ -238,5 +238,5 @@ See [`LICENSE`](./LICENSE) for the full dual-licensing notice.
 
 ## Credits
 
-Originally created in 2017 by **M Shafay Amjad** as an undergraduate project.
+Originally created in 2017 by **Shafay** as an undergraduate project.
 v2.0 is a modernising rewrite — new stack, new architecture, same spirit.
