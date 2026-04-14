@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from typing import TYPE_CHECKING
 
 from rich.console import Console
 from rich.markdown import Markdown
@@ -11,7 +12,8 @@ from rich.prompt import Prompt
 from rich.spinner import Spinner
 from rich.text import Text
 
-from pysha.app import Assistant
+if TYPE_CHECKING:
+    from pysha.app import Assistant
 
 
 class CLI:
@@ -34,7 +36,8 @@ class CLI:
     async def chat_loop(self, *, speak: bool = False, voice: bool = False) -> None:
         self.console.print(self._banner())
         self.console.print(
-            "[dim]Type your message, or :q to quit. Try 'weather in Paris' or 'tell me about Rome'.[/dim]\n"
+            "[dim]Type your message, or :q to quit. "
+            "Try 'weather in Paris' or 'tell me about Rome'.[/dim]\n"
         )
         if voice:
             await self._voice_loop(speak=True)

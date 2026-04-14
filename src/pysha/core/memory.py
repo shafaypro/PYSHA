@@ -9,13 +9,16 @@ from __future__ import annotations
 import json
 from collections import deque
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from pathlib import Path
+from datetime import UTC, datetime
+from typing import TYPE_CHECKING
 
 import aiosqlite
 import structlog
 
 from pysha.core.engine import LLMMessage
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 logger = structlog.get_logger(__name__)
 
@@ -26,7 +29,7 @@ SHORT_TERM_CAPACITY = 7  # Miller's Law — 7 ± 2
 class MemoryEntry:
     role: str
     content: str
-    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    timestamp: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
 class ConversationMemory:
@@ -135,7 +138,8 @@ class MemoryStore:
         assert self._db is not None
         await self._db.execute(
             "INSERT INTO facts (key, value, updated_at) VALUES (?, ?, datetime('now')) "
-            "ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at",
+            "ON CONFLICT(key) DO UPDATE SET value = excluded.value, "
+            "updated_at = excluded.updated_at",
             (key, value),
         )
         await self._db.commit()

@@ -6,11 +6,14 @@ Optional dependency — install with ``pip install 'pysha[stt-google]'``.
 from __future__ import annotations
 
 import asyncio
-from typing import AsyncIterator
+from typing import TYPE_CHECKING
 
 import structlog
 
 from pysha.core.engine import Transcript
+
+if TYPE_CHECKING:
+    from collections.abc import AsyncIterator
 
 logger = structlog.get_logger(__name__)
 
@@ -67,7 +70,10 @@ class GoogleSTTEngine:
             try:
                 text = await loop.run_in_executor(
                     None,
-                    lambda: self._recognizer.recognize_google(audio, language=language),  # type: ignore[union-attr]
+                    lambda audio=audio: self._recognizer.recognize_google(  # type: ignore[union-attr]
+                        audio,
+                        language=language,
+                    ),
                 )
                 yield Transcript(text=text, language=language)
             except sr.UnknownValueError:

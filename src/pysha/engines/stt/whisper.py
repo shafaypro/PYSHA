@@ -10,11 +10,14 @@ from __future__ import annotations
 import asyncio
 import io
 import wave
-from typing import AsyncIterator
+from typing import TYPE_CHECKING
 
 import structlog
 
 from pysha.core.engine import Transcript
+
+if TYPE_CHECKING:
+    from collections.abc import AsyncIterator
 
 logger = structlog.get_logger(__name__)
 
